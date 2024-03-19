@@ -1,0 +1,6 @@
+{
+    "$schema": "https://github.com/nix-community/nixd/raw/release/1.2/nixd/docs/nixd-schema.json",
+    "formatting": {
+        "command": "alejandra"
+    }
+}

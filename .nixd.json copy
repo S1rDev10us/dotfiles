@@ -1,0 +1,23 @@
+{
+    "$schema": "https://github.com/nix-community/nixd/raw/release/1.2/nixd/docs/nixd-schema.json",
+    "eval": {
+        "target": {
+            "args": [
+                "-f",
+                "default.nix"
+            ],
+            "installable": "nixosConfigurations.nixos-testing"
+        },
+        "depth": 10
+    },
+    "formatting": {
+        "command": "alejandra"
+    },
+    "options": {
+        "enable": false,
+        "target": {
+            "args": [],
+            "installable": ".#nixosConfigurations.nixos-testing.options"
+        }
+    }
+}
