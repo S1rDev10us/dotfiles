@@ -7,5 +7,10 @@
     };
 
     plymouth.enable = true;
+    kernelParams = [
+      "splash"
+      "quiet"
+      "loglevel=3"
+    ];
   };
 }

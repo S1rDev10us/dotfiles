@@ -1,22 +1,32 @@
 {
   userConfig,
   systemConfig,
+  config,
+  lib,
   ...
 } @ nixosInputs: {
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
-  home-manager.extraSpecialArgs = {
-    inherit nixosInputs;
-    inherit userConfig;
-    inherit systemConfig;
+  options.home-module = lib.mkOption {
+    type = lib.types.anything;
+    default = {};
   };
-  home-manager.sharedModules = [
-    {
-      /*
-      The home.stateVersion option does not have a default and must be set
-      */
-      home.stateVersion = "23.11";
-    }
-  ];
+  config = {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit nixosInputs;
+        inherit userConfig;
+        inherit systemConfig;
+      };
+      sharedModules = [
+        {
+          /*
+          The home.stateVersion option does not have a default and must be set
+          */
+          home.stateVersion = "23.11";
+        }
+        config.home-module
+      ];
+    };
+  };
 }

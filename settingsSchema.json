@@ -33,6 +33,9 @@
                 },
                 "configLocation": {
                     "type": "string"
+                },
+                "nvidia": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -40,7 +43,8 @@
                 "desktop-environment",
                 "systemArchitecture",
                 "headless",
-                "configLocation"
+                "configLocation",
+                "nvidia"
             ]
         },
         "userConfig": {

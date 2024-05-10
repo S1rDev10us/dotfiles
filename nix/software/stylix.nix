@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  stylix,
   userConfig,
   lib,
   ...
@@ -12,27 +10,35 @@
       stylix.base16Scheme = ../../themes/base16/. + "/${userConfig.theme}.yaml";
     })
   ];
-  stylix.autoEnable = false;
-  stylix.targets = {
-    grub.enable = false;
-    plymouth.enable = false;
-    gnome.enable = userConfig.desktop-environment == "gnome";
-    gtk.enable = userConfig.desktop-environment == "gnome";
+  stylix = {
+    autoEnable = true;
+    targets = {
+      grub.enable = false;
+      plymouth.enable = false;
+      waybar = {
+        enableCenterBackColors = true;
+        enableLeftBackColors = true;
+        enableRightBackColors = true;
+      };
+    };
+    polarity = "dark";
+    image = pkgs.fetchurl (builtins.fromTOML (builtins.readFile (../../themes/backgrounds/. + (userConfig.background.toml))));
+    opacity = {
+      applications = 0.0;
+      desktop = 1.0;
+      popups = 0.0;
+      terminal = 0.0;
+    };
   };
 
-  stylix.polarity = "dark";
-
-  stylix.image = pkgs.fetchurl (builtins.fromTOML (builtins.readFile (../../themes/backgrounds/. + (userConfig.background.toml))));
-  home-manager.sharedModules = [
-    {
-      stylix.autoEnable = false;
-      stylix.targets = {
-        firefox.enable = true;
-        vscode.enable = true;
-        gnome.enable = true;
-        gtk.enable = true;
-        tmux.enable = true;
-      };
-    }
-  ];
+  home-module = {
+    stylix.autoEnable = true;
+    stylix.targets = {
+      firefox.enable = true;
+      vscode.enable = true;
+      gnome.enable = true;
+      gtk.enable = true;
+      tmux.enable = true;
+    };
+  };
 }

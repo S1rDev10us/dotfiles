@@ -1,11 +1,13 @@
 {
   lib,
   systemConfig,
+  pkgs,
   ...
 }: {
   options = lib.mkIf (!systemConfig.headless) {
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox-bin;
       policies = {
         DisablePocket = true;
         DisableTelemetry = true;

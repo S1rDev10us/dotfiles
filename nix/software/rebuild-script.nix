@@ -9,12 +9,13 @@
       alejandra
       git
       gnugrep
+      libnotify
     ];
     text = ''
 
       # Inspired by https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
       set -e
-      pushd ${systemConfig.configLocation}
+      pushd "${systemConfig.configLocation}"
 
       git add --intent-to-add settings.json
       git add --intent-to-add nix/hardware/hardware-configuration.nix
@@ -29,6 +30,7 @@
       if [ "''$LOCAL" = "''$BASE" ]; then
 
       	notify-send -e "There are remote changes on the git branch. Please resolve the changes and make sure that there are no conflicts"
+        echo "There are remote changes on the git branch. Please resolve the changes and make sure that there are no conflicts"
       	exit 0
       fi
 
@@ -46,14 +48,16 @@
 
       echo "Rebuilding!"
 
-      sudo nixos-rebuild switch
+      sudo nixos-rebuild switch --flake .
       gitGenerationUnmodified=''$(git rev-list --count HEAD)
       gitGeneration=''${gitGenerationUnmodified+1}
+
       # shellcheck disable=SC2016
       localGeneration=''$(nix-env --list-generations | grep current | awk '{print ''$1}')
 
       git commit -am "Generation ''$gitGeneration (Local:''$localGeneration)"
 
+      # Clear space
       sudo nix-env --delete-generations +5
       sudo nix-store --gc
 
@@ -75,10 +79,10 @@ in {
     script
     desktopItem
   ];
-  # home-manager.sharedModules = [
+  # home-module =
   #   {
   #     home.packages = [
   #     ];
   #   }
-  # ];
+  # ;
 }

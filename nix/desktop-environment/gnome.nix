@@ -23,7 +23,7 @@
   environment.gnome.excludePackages =
     (with pkgs; [
       #gnome-photos
-      #gnome-tour
+      gnome-tour
     ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
@@ -44,40 +44,39 @@
   ################
   # Home Manager #
   ################
-  home-manager.sharedModules = [
-    {
-      dconf = {
-        enable = true;
-
+  home-module = {
+    dconf = {
+      enable = true;
+      settings = {
         # Dark mode
-        settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+        "org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
         # Screen lock
-        settings."org/gnome/desktop/session".idle-delay = 300;
-        settings."org/gnome/desktop/screensaver".lock-enabled = true;
-        settings."org/gnome/desktop/screensaver".lock-delay = 1800;
-        settings."org/gnome/desktop/notifications".show-in-lock-screen = true;
+        "org/gnome/desktop/session".idle-delay = 300;
+        "org/gnome/desktop/screensaver".lock-enabled = true;
+        "org/gnome/desktop/screensaver".lock-delay = 1800;
+        "org/gnome/desktop/notifications".show-in-lock-screen = true;
 
         # Disable autorun
-        settings."org/gnome/desktop/media-handling".autorun-never = true;
+        "org/gnome/desktop/media-handling".autorun-never = true;
 
         # Show battery number
-        settings."org/gnome/desktop/interface".show-battery-percentage = true;
+        "org/gnome/desktop/interface".show-battery-percentage = true;
 
         # Edge tiling
-        settings."org/gnome/mutter".edge-tiling = false;
+        "org/gnome/mutter".edge-tiling = false;
 
         # Hot corners
-        settings."org/gnome/desktop/interface".enable-hot-corners = true;
+        "org/gnome/desktop/interface".enable-hot-corners = true;
 
         # Scroll method
-        settings."org/gnome/desktop/peripherals/mouse".natural-scroll = false;
+        "org/gnome/desktop/peripherals/mouse".natural-scroll = false;
 
         # Dynamic workspaces
-        settings."org/gnome/mutter".dynamic-workspaces = true;
+        "org/gnome/mutter".dynamic-workspaces = true;
 
         # Enabled gnome extensions
-        settings."org/gnome/shell".enabled-extensions = [
+        "org/gnome/shell".enabled-extensions = [
           "extension-list@tu.berry"
           "appindicatorsupport@rgcjonas.gmail.com"
           "blur-my-shell@aunetx"
@@ -87,12 +86,12 @@
         ];
 
         # Gnome tweaks config
-        settings."org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,maximize,close";
+        "org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,maximize,close";
 
         # Dash to panel settings
-        settings."org/gnome/shell/extensions/dash-to-panel".dot-style-focused = "SEGMENTED";
-        settings."org/gnome/shell/extensions/dash-to-panel".dot-style-unfocused = "DOTS";
+        "org/gnome/shell/extensions/dash-to-panel".dot-style-focused = "SEGMENTED";
+        "org/gnome/shell/extensions/dash-to-panel".dot-style-unfocused = "DOTS";
       };
-    }
-  ];
+    };
+  };
 }
