@@ -34,7 +34,7 @@
     lib = nixpkgs.lib;
     libx = import ./utils (parameters
       // {
-        inherit pkgs lib;
+        inherit pkgs lib options;
       });
     # hosts = ["minotaur"];
     hosts = libx.allFrom ./hosts;
@@ -48,6 +48,16 @@
       (builtins.map (host: {
           name = host;
           value = libx.makeHost {
+            inherit host;
+            specialArgs = parameters;
+          };
+        })
+        hosts);
+    homeConfigurations =
+      builtins.listToAttrs
+      (builtins.map (host: {
+          name = host;
+          value = libx.makeHome {
             inherit host;
             specialArgs = parameters;
           };
