@@ -36,6 +36,7 @@ lib.nixosSystem {
     ]
     ++ options
     ++ (libx.allModulesFrom ../modules/nix)
+    ++ (libx.allModulesFrom ../modules/common)
     ++ (libx.ifExists ../hosts/${host}/configuration.nix)
     ++ (libx.ifExists ../hosts/${host}/hardware-configuration.nix);
 }

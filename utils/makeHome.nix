@@ -24,5 +24,6 @@ inputs.home-manager.lib.homeManagerConfiguration {
     ]
     ++ options
     ++ (libx.allModulesFrom ../modules/home)
+    ++ (libx.allModulesFrom ../modules/common)
     ++ libx.ifExists ../hosts/${host}/home.nix;
 }
