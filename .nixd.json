@@ -9,6 +9,13 @@
             ],
             "installable": "nixosConfigurations.minotaur.options"
         },
+		"home": {
+            "args": [
+                "-f",
+                "default.nix"
+            ],
+            "installable": "homeConfigurations.minotaur.options"
+        },
         "depth": 20
 
     },
@@ -20,6 +27,10 @@
         "target": {
             "args": [],
             "installable": ".#nixosConfigurations.minotaur.options"
+        },
+		"home": {
+            "args": [],
+            "installable": ".#homeConfigurations.minotaur.options"
         }
     }
 }
