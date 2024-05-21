@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.settings.GUI && config.settings.environment.gnome) {
+lib.mkIf (config.settings.GUI.enable && config.settings.environment.gnome.enable) {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

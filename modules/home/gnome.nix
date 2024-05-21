@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.settings.GUI && config.settings.environment.gnome) {
+lib.mkIf (config.settings.GUI.enable && config.settings.environment.gnome.enable) {
   dconf = {
     enable = true;
     settings = {

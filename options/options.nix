@@ -1,16 +1,16 @@
 {lib, ...}:
 with lib; {
   options.settings = {
-    coding = mkEnableOption "code editors";
+    coding.enable = mkEnableOption "code editors";
     environment = {
-      hyprland = mkEnableOption "hyprland";
-      gnome = mkEnableOption "gnome";
+      hyprland.enable = mkEnableOption "hyprland";
+      gnome.enable = mkEnableOption "gnome";
     };
-    fun = mkEnableOption "fun tools like `eDex-ui`";
-    gamedev = mkEnableOption "game development tools";
-    gaming = mkEnableOption "games";
-    GUI = mkEnableOption "gui packages";
-    WSL = mkEnableOption "WSL";
+    fun.enable = mkEnableOption "fun tools like `eDex-ui`";
+    gamedev.enable = mkEnableOption "game development tools";
+    gaming.enable = mkEnableOption "games";
+    GUI.enable = mkEnableOption "gui packages";
+    WSL.enable = mkEnableOption "WSL";
     unfreePackages = mkOption {
       type = lib.types.listOf lib.types.package;
     };

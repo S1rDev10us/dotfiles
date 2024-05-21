@@ -1,3 +1,3 @@
 {
-  settings.WSL = true;
+  settings.WSL.enable = true;
 }

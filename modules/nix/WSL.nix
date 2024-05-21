@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  enable = config.settings.WSL;
+  enable = config.settings.WSL.enable;
 in {
   imports = [inputs.nixos-wsl.nixosModules.default];
   config = {
