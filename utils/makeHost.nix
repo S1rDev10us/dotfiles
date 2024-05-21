@@ -2,6 +2,7 @@
   inputs,
   lib,
   libx,
+  options,
   ...
 } @ thisInputs: {
   host,
@@ -11,14 +12,15 @@
 }:
 lib.nixosSystem {
   system = architecture;
-  inherit specialArgs;
+  specialArgs =
+    specialArgs
+    // {
+      inherit stateVersion architecture host;
+      env = "nixos";
+    };
+
   modules =
     [
-      {
-        networking.hostName = lib.mkForce host;
-        system.stateVersion = stateVersion;
-        nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-      }
       ../hosts/${host}
       {
         nixpkgs.config = {
@@ -32,7 +34,7 @@ lib.nixosSystem {
         };
       }
     ]
-    ++ (libx.allModulesFrom ../options)
+    ++ options
     ++ (libx.allModulesFrom ../modules/nix)
     ++ (libx.ifExists ../hosts/${host}/configuration.nix)
     ++ (libx.ifExists ../hosts/${host}/hardware-configuration.nix);
