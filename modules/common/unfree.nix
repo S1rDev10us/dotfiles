@@ -2,10 +2,13 @@
   config,
   lib,
   ...
-}: {
+}: let
+  processedPackages = builtins.map (pkg:
+    if builtins.isString pkg
+    then pkg
+    else lib.getName pkg)
+  config.settings.unfreePackages;
+in {
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.any (newpkg:
-      if builtins.isString newpkg
-      then (lib.getName pkg) == newpkg
-      else newpkg == pkg) (config.settings.unfreePackages);
+    builtins.elem (lib.getName pkg) processedPackages;
 }

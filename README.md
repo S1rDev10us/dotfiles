@@ -27,9 +27,9 @@ Feel free to take elements and inspiration from this config in order to create y
 | :---------: | :----------------: | :-----------------------: | :-------------------: | :-----------: | :-----------------: |
 |    Hydra    |       NixOS        |   Linux learning device   |           ✅           |       ⛔       |  Old silver laptop  |
 | Amphisbaena |   NixOS Dualboot   |     Main work device      | [🚧](## "in progress") |       ⛔       |  Thin black laptop  |
-|  Minotaur   | WSL on Amphisbaena | linux features on windows |           ✅           |       ⛔       |          ^          |
+|  Minotaur   | WSL on Amphisbaena | Linux features on windows |           ✅           |       ⛔       |          ^          |
+|Cerberus|NixOS VM on Amphisbaena|Using Linux more often|✅|⛔|^|
 |  Chimaera   |   NixOS Dualboot   |   Gaming and streaming    | [🚧](## "in progress") |       ⛔       | Large white desktop |
-
 
 ✅ yes
 
@@ -45,16 +45,18 @@ Feel free to take elements and inspiration from this config in order to create y
 ## Host config options
 
 - `settings`
-  - `coding` 			= enable generic code editors
+  - `coding.enable` 			= enable generic code editors
   - `environment`
-	- `hyprland` 			= enable hyprland
-	- `gnome` 				= enable gnome
-  - `fun` 				= enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
-  - `gamedev` 			= enable game development tools
-  - `gaming` 			= enable games
-  - `GUI` 				= enable GUI packages
-  - `WSL` 				= enable WSL support
-  - `unfreePackages` 	= a list of unfree packages
+	- `hyprland.enable` 			= enable hyprland
+	- `gnome.enable` 				= enable gnome
+  - `fun.enable` 				= enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
+  - `gamedev.enable` 			= enable game development tools
+  - `gaming.enable` 			= enable games
+  - `GUI.enable` 				= enable GUI packages
+  - `WSL.enable` 				= enable WSL support
+  - `VM.enable`=enable vm support
+  - `unfreePackages.enable` 	= a list of unfree packages
+
 
 
 ## Inspirations
@@ -77,7 +79,7 @@ No doubt I've missed a few from when I was first getting into nix but I am thank
 <!-- -- >
 Reference for self:
 - [Interesting mixin style config](https://github.com/MatthewCroughan/nixcfg)
-- [Seperation of home manager and nixos config](https://github.com/wimpysworld/nix-config)
+- [Separation of home manager and NixOS config](https://github.com/wimpysworld/nix-config)
 - [Method of loading all files easily](https://github.com/donovanglover/nix-config/blob/master/flake.nix)
-- https://jdisaacs.com/blog/nixos-config/
+- [helpful guide for separating home manager and NixOS](https://jdisaacs.com/blog/nixos-config/)
 <!-- -->

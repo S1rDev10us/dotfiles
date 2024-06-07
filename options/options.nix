@@ -11,8 +11,10 @@ with lib; {
     gaming.enable = mkEnableOption "games";
     GUI.enable = mkEnableOption "gui packages";
     WSL.enable = mkEnableOption "WSL";
+    VM.enable = mkEnableOption "Virtual Box guest support";
     unfreePackages = mkOption {
       type = lib.types.listOf lib.types.package;
+      default = [];
     };
   };
 }
