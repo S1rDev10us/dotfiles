@@ -23,13 +23,13 @@ Feel free to take elements and inspiration from this config in order to create y
 
 ## Hosts
 
-|  Hostname   |    Environment     |         Use case          |         State         | Secondary GPU | Device description  |
-| :---------: | :----------------: | :-----------------------: | :-------------------: | :-----------: | :-----------------: |
-|    Hydra    |       NixOS        |   Linux learning device   |           ✅           |       ⛔       |  Old silver laptop  |
-| Amphisbaena |   NixOS Dualboot   |     Main work device      | [🚧](## "in progress") |       ⛔       |  Thin black laptop  |
-|  Minotaur   | WSL on Amphisbaena | Linux features on windows |           ✅           |       ⛔       |          ^          |
-|Cerberus|NixOS VM on Amphisbaena|Using Linux more often|✅|⛔|^|
-|  Chimaera   |   NixOS Dualboot   |   Gaming and streaming    | [🚧](## "in progress") |       ⛔       | Large white desktop |
+|  Hostname   |       Environment       |         Use case          |         State         | Secondary GPU | Device description  |
+| :---------: | :---------------------: | :-----------------------: | :-------------------: | :-----------: | :-----------------: |
+|    Hydra    |          NixOS          |   Linux learning device   |           ✅           |       ⛔       |  Old silver laptop  |
+| Amphisbaena |     NixOS Dualboot      |     Main work device      | [🚧](## "in progress") |       ⛔       |  Thin black laptop  |
+|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ✅           |       ⛔       |          ^          |
+|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ✅           |       ⛔       |          ^          |
+|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") |       ⛔       | Large white desktop |
 
 ✅ yes
 
@@ -70,6 +70,7 @@ A few of the configs that I've taken ideas from include:
 - [fufexan](https://github.com/fufexan/dotfiles)
 - [MatthewCroughan](https://github.com/MatthewCroughan/nixcfg)
 - [jordanisaacs](https://github.com/jordanisaacs/dotfiles)
+- [librephoenix](https://librephoenix.com/tags/nixos.html)
 
 
 
