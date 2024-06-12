@@ -3,8 +3,10 @@
   host,
   inputs,
   lib,
+  pkgs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [home-manager];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   networking.hostName = lib.mkForce host;
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
