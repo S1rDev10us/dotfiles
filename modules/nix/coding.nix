@@ -11,6 +11,7 @@
         nixd
         nil
         git
+        just
       ]
       ++ lib.optionals config.settings.GUI.enable [
         vscode
