@@ -5,15 +5,16 @@
   ...
 }: {
   config = lib.mkIf config.settings.coding.enable {
-    environment.systemPackages =
-      []
-      ++ lib.optionals config.settings.GUI.enable (with pkgs; [
+    environment.systemPackages = with pkgs;
+      [
         alejandra
         nixd
         nil
-        vscode
         git
-      ]);
+      ]
+      ++ lib.optionals config.settings.GUI.enable [
+        vscode
+      ];
     settings.unfreePackages = lib.optionals config.settings.GUI.enable [pkgs.vscode];
   };
 }
