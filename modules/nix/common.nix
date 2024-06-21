@@ -6,7 +6,7 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [home-manager];
+  environment.systemPackages = with pkgs; [home-manager just];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   networking.hostName = lib.mkForce host;
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
