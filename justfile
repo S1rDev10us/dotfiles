@@ -1,13 +1,24 @@
+set shell := ["sh", "-c"]
+
+currentUser := `whoami`
+currentHost := `hostname`
 
 default:
-	@just --list
+    @just --choose || just --list
 
-switch config="":
-	@just switch-system config
-	@just switch-home config
+switch host="":
+    @just switch-system {{ if host == "" { "" } else { "'" + host + "'" } }}
+    @just switch-home {{ if host == "" { "" } else { "'" + currentUser + "@" + host + "'" } }}
 
-switch-system config="":
-	sudo nixos-rebuild switch --flake '.{{ if config!="" {"#"+config} else {""} }}'
+switch-system host="":
+    sudo nixos-rebuild switch --flake '.#{{ if host != "" { host } else { currentHost } }}'
 
-switch-home config="":
-	home-manager switch --flake '.{{ if config!="" {"#"+config} else {""} }}'
+switch-home user="":
+    home-manager switch --flake '.#{{ if user != "" { user } else { currentUser } }}@{{ currentHost }}'
+
+update:
+    @just update-only
+    just switch
+
+update-only:
+    nix flake update
