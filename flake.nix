@@ -1,15 +1,17 @@
 {
   description = "S1rDev10us' dotfiles";
 
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+  inputs = let
+    nix_version="23.11";
+  in {
+    nixpkgs.url = "nixpkgs/nixos-${nix_version}";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-${nix_version}";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:danth/stylix/release-23.11";
+      url = "github:danth/stylix/release-${nix_version}";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
