@@ -22,3 +22,6 @@ update:
 
 update-only:
     nix flake update
+
+format:
+    alejandra .
