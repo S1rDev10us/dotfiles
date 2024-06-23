@@ -36,8 +36,9 @@
       // {
         inherit pkgs lib options;
       });
-    # hosts = ["minotaur"];
-    hosts = libx.allFrom ./hosts;
+    # hosts = ["cerberus"];
+    hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.allFrom ./hosts);
+    users = libx.allFrom ./users;
     parameters = {
       inherit inputs outputs libx;
     };
@@ -53,15 +54,17 @@
           };
         })
         hosts);
-    homeConfigurations =
-      builtins.listToAttrs
-      (builtins.map (host: {
-          name = host;
-          value = libx.makeHome {
-            inherit host;
-            specialArgs = parameters;
-          };
-        })
-        hosts);
+    homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map (
+        user: (builtins.map (host: {
+            name = user + "@" + host;
+            value = libx.makeHome {
+              inherit host;
+              inherit user;
+              specialArgs = parameters;
+            };
+          })
+          hosts)
+      )
+      users));
   };
 }

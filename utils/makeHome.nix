@@ -6,21 +6,27 @@
   ...
 } @ thisInputs: {
   host,
+  user,
   defaultStateVersion ? "23.11",
   architecture ? "x86_64-linux",
   specialArgs ? thisInputs,
 }:
 inputs.home-manager.lib.homeManagerConfiguration {
-  pkgs = inputs.nixpkgs.legacySystem."${architecture}";
+  pkgs = inputs.nixpkgs.legacyPackages."${architecture}";
   extraSpecialArgs =
     specialArgs
     // {
-      inherit defaultStateVersion architecture host;
+      inherit defaultStateVersion architecture host user;
       env = "home";
     };
   modules =
     [
+      ../users/${user}
       ../hosts/${host}
+      ({config, ...}: {
+        _module.args = {user = config.home.username;};
+        home.username = lib.mkDefault user;
+      })
     ]
     ++ options
     ++ (libx.allModulesFrom ../modules/home)
