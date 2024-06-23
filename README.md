@@ -15,7 +15,7 @@
 
 This repo contains 
 
-If you want to try it out you need to create a `settings.json` file and then apply the schema from `settingsSchema.json` to it and fill out the required fields.
+If you want to try it out you need to create a new host and potentially a new user account and then run `just switch`
 
 This configuration is constantly in development and may also not reflect the current state of my config.
 
