@@ -20,7 +20,6 @@ inputs.home-manager.lib.homeManagerConfiguration {
     };
   modules =
     [
-      ../users/${user}
       ../hosts/${host}
       ({ config, ... }: {
         _module.args = { user = config.home.username; };
@@ -28,6 +27,7 @@ inputs.home-manager.lib.homeManagerConfiguration {
       })
     ]
     ++ options
+    ++ (libx.allModulesFrom ../hosts/${host})
     ++ (libx.allModulesFrom ../modules/home)
     ++ (libx.allModulesFrom ../modules/common)
     ++ libx.ifExists ../hosts/${host}/home.nix;
