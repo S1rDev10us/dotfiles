@@ -1,35 +1,34 @@
-
-
 # dotfiles
 
 ## TOC
+
 - [dotfiles](#dotfiles)
-	- [TOC](#toc)
-	- [Repo description](#repo-description)
-	- [Hosts](#hosts)
-	- [Features](#features)
-	- [Host config options](#host-config-options)
-	- [Inspirations](#inspirations)
+  - [TOC](#toc)
+  - [Repo description](#repo-description)
+  - [Hosts](#hosts)
+  - [Features](#features)
+  - [Host config options](#host-config-options)
+  - [Inspirations](#inspirations)
 
 ## Repo description
 
-This repo contains 
+This repo contains the dotfiles for my NixOS config.
 
 If you want to try it out you need to create a new host and potentially a new user account and then run `just switch`
 
 This configuration is constantly in development and may also not reflect the current state of my config.
 
-Feel free to take elements and inspiration from this config in order to create your own 
+Feel free to take elements and inspiration from this config in order to create your own
 
 ## Hosts
 
-|  Hostname   |       Environment       |         Use case          |         State         | Secondary GPU | Device description  |
-| :---------: | :---------------------: | :-----------------------: | :-------------------: | :-----------: | :-----------------: |
-|    Hydra    |          NixOS          |   Linux learning device   |           ✅           |       ⛔       |  Old silver laptop  |
-| Amphisbaena |     NixOS Dualboot      |     Main work device      | [🚧](## "in progress") |       ⛔       |  Thin black laptop  |
-|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ✅           |       ⛔       |          ^          |
-|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ✅           |       ⛔       |          ^          |
-|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") |       ⛔       | Large white desktop |
+|  Hostname   |       Environment       |         Use case          |         State          | Secondary GPU | Device description  |
+| :---------: | :---------------------: | :-----------------------: | :--------------------: | :-----------: | :-----------------: |
+|    Hydra    |          NixOS          |   Linux learning device   |           ✅           |      ⛔       |  Old silver laptop  |
+| Amphisbaena |     NixOS Dualboot      |     Main work device      | [🚧](## "in progress") |      ⛔       |  Thin black laptop  |
+|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ✅           |      ⛔       |          ^          |
+|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ✅           |      ⛔       |          ^          |
+|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") |      ⛔       | Large white desktop |
 
 ✅ yes
 
@@ -47,8 +46,8 @@ Feel free to take elements and inspiration from this config in order to create y
 - `settings`
   - `coding.enable` = enable generic code editors
   - `environment`
-	- `hyprland.enable` = enable hyprland
-	- `gnome.enable` = enable gnome
+  - `hyprland.enable` = enable hyprland
+  - `gnome.enable` = enable gnome
   - `fun.enable` = enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
   - `gamedev.enable` = enable game development tools
   - `gaming.enable` = enable games
@@ -57,11 +56,10 @@ Feel free to take elements and inspiration from this config in order to create y
   - `VM.enable` = enable vm support
   - `unfreePackages` = a list of unfree packages
 
-
-
 ## Inspirations
 
 A few of the configs that I've taken ideas from include:
+
 - [nmasur](https://github.com/nmasur/dotfiles)
 - [wimpysworld](https://github.com/wimpysworld/nix-config)
 - [donovanglover](https://github.com/donovanglover/nix-config)
@@ -75,7 +73,6 @@ A few of the configs that I've taken ideas from include:
 [(A more up to date and comprehensive list of what I've used)](https://github.com/stars/S1rDev10us/lists/nixos)
 
 No doubt I've missed a few from when I was first getting into nix but I am thankful to everyone who left their config on the internet for me to learn from.
-
 
 <!-- -- >
 Reference for self:
