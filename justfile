@@ -25,3 +25,6 @@ update-only:
 
 format:
     @alejandra .
+
+check: format
+   nix flake check 
