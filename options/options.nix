@@ -1,6 +1,10 @@
 {lib, ...}:
 with lib; {
-  options.settings = {
+  options = {
+    stateVersion = mkOption {
+      type = types.str;
+      default = "23.11";
+    };
     coding.enable = mkEnableOption "code editors";
     environment = {
       hyprland.enable = mkEnableOption "hyprland";
@@ -12,9 +16,5 @@ with lib; {
     GUI.enable = mkEnableOption "gui packages";
     WSL.enable = mkEnableOption "WSL";
     VM.enable = mkEnableOption "Virtual Box guest support";
-    unfreePackages = mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [];
-    };
   };
 }

@@ -7,6 +7,6 @@
 }: {
   home = {
     stateVersion = lib.mkOverride 1499 defaultStateVersion;
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    homeDirectory = lib.mkDefault "/home/${user}";
   };
 }

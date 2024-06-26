@@ -1,7 +1,5 @@
 {
-  settings = {
-    coding.enable = true;
-    WSL.enable = true;
-    fun.enable = true;
-  };
+  coding.enable = true;
+  WSL.enable = true;
+  fun.enable = true;
 }

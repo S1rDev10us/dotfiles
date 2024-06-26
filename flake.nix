@@ -46,20 +46,30 @@
   in {
     nixosConfigurations =
       builtins.listToAttrs
-      (builtins.map (host: {
+      (builtins.map
+        (host: let
+          evaluatedOptions = libx.getHostSettings host;
+        in {
           name = host;
           value = libx.makeHost {
             inherit host;
+            evaluatedOptions = evaluatedOptions.config;
+            defaultStateVersion = evaluatedOptions.config.stateVersion;
             specialArgs = parameters;
           };
         })
         hosts);
-    homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map (
-        user: (builtins.map (host: {
+    homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map
+      (
+        user: (builtins.map
+          (host: let
+            evaluatedOptions = libx.getHomeSettings host user;
+          in {
             name = user + "@" + host;
             value = libx.makeHome {
-              inherit host;
-              inherit user;
+              inherit host user;
+              evaluatedOptions = evaluatedOptions.config;
+              defaultStateVersion = evaluatedOptions.config.stateVersion;
               specialArgs = parameters;
             };
           })

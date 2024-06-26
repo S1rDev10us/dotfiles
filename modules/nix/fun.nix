@@ -2,12 +2,12 @@
   lib,
   config,
   pkgs,
+  opts,
   ...
 }: {
   environment.systemPackages = with pkgs;
-    lib.optionals config.settings.fun.enable ([
-        fastfetch
+    lib.optionals opts.fun.enable ([
       ]
-      ++ (lib.optionals config.settings.GUI.enable [
+      ++ (lib.optionals opts.GUI.enable [
         ]));
 }

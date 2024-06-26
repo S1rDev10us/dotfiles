@@ -2,9 +2,10 @@
   pkgs,
   lib,
   config,
+  opts,
   ...
 }:
-lib.mkIf config.settings.environment.hyprland.enable {
+lib.mkIf opts.environment.hyprland.enable {
   programs.hyprland = {
     enable = true;
     xwayland = {

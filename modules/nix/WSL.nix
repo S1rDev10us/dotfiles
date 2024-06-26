@@ -2,14 +2,17 @@
   inputs,
   config,
   lib,
+  pkgs,
+  opts,
   ...
-}: let
-  enable = config.settings.WSL.enable;
-in {
+}: {
   imports = [inputs.nixos-wsl.nixosModules.default];
-  config = {
-    programs.nix-ld = lib.mkIf enable {enable = true;};
-    wsl = lib.mkIf enable {
+  config = lib.mkIf opts.WSL.enable {
+    programs.nix-ld = {
+      enable = true;
+      # package = pkgs.nix-ld-rs;
+    };
+    wsl = {
       enable = true;
       defaultUser = "nixos";
     };

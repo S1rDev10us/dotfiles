@@ -2,9 +2,10 @@
   pkgs,
   lib,
   config,
+  opts,
   ...
 }:
-lib.mkIf (config.settings.GUI.enable && config.settings.environment.gnome.enable) {
+lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
   dconf = {
     enable = true;
     settings = {

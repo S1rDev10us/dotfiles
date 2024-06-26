@@ -2,9 +2,10 @@
   lib,
   config,
   pkgs,
+  opts,
   ...
 }: {
-  config = lib.mkIf config.settings.coding.enable {
+  config = lib.mkIf opts.coding.enable {
     environment.systemPackages = with pkgs;
       [
         alejandra
@@ -13,9 +14,9 @@
         git
         just
       ]
-      ++ lib.optionals config.settings.GUI.enable [
+      ++ lib.optionals opts.GUI.enable [
         vscode
       ];
-    settings.unfreePackages = lib.optionals config.settings.GUI.enable [pkgs.vscode];
+    unfreePackages = lib.optionals opts.GUI.enable [pkgs.vscode];
   };
 }

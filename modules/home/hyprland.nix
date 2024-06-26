@@ -1,9 +1,10 @@
 {
   lib,
   config,
+  opts,
   ...
 }:
-lib.mkIf config.settings.environment.hyprland.enable {
+lib.mkIf opts.environment.hyprland.enable {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;

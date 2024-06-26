@@ -1,11 +1,12 @@
 {
   config,
   lib,
+  opts,
   ...
 }: {
-  config = lib.mkIf (config.settings.gaming.enable) {
+  config = lib.mkIf (opts.gaming.enable) {
     programs.steam.enable = true;
-    settings.unfreePackages = [
+    unfreePackages = [
       "steam"
       "steam-original"
       "steam-run"

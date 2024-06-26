@@ -6,4 +6,6 @@
   ifExists = import ./ifExists.nix inputs;
   allFrom = import ./allFrom.nix inputs;
   allModulesFrom = import ./allModulesFrom.nix inputs;
+  getHomeSettings = import ./getHomeSettings.nix inputs;
+  getHostSettings = import ./getHostSettings.nix inputs;
 }

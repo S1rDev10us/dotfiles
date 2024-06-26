@@ -6,6 +6,7 @@
   ...
 } @ thisInputs: {
   host,
+  evaluatedOptions,
   defaultStateVersion ? "23.11",
   architecture ? "x86_64-linux",
   specialArgs ? thisInputs,
@@ -16,12 +17,12 @@ lib.nixosSystem {
     specialArgs
     // {
       inherit defaultStateVersion architecture host;
+      opts = evaluatedOptions;
       env = "nixos";
     };
 
   modules =
     [
-      ../hosts/${host}
       {
         nixpkgs.config = {
           packageOverrides = pkgs: {
@@ -34,7 +35,6 @@ lib.nixosSystem {
         };
       }
     ]
-    ++ options
     ++ (libx.allModulesFrom ../modules/nix)
     ++ (libx.allModulesFrom ../modules/common)
     ++ (libx.ifExists ../hosts/${host}/configuration.nix)
