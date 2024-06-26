@@ -31,5 +31,6 @@ inputs.home-manager.lib.homeManagerConfiguration {
     ++ (libx.allModulesFrom ../modules/home)
     ++ (libx.allModulesFrom ../modules/common)
     ++ (libx.ifExists ../hosts/${host}/home.nix)
-    ++ (builtins.filter (path: path != ../users/${user}/default.nix) (libx.allModulesFrom ../users/${user}));
+    # ++ (builtins.filter (path: path != ../users/${user}/default.nix) (libx.allModulesFrom ../users/${user}))
+    ++ (libx.ifExists ../users/${user}/home.nix);
 }
