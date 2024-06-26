@@ -70,7 +70,7 @@ A few of the configs that I've taken ideas from include:
 - [jordanisaacs](https://github.com/jordanisaacs/dotfiles)
 - [librephoenix](https://librephoenix.com/tags/nixos.html)
 
-[(A more up to date and comprehensive list of what I've used)](https://github.com/stars/S1rDev10us/lists/nixos)
+[(A more up to date and comprehensive list of what I've looked at)](https://github.com/stars/S1rDev10us/lists/nixos)
 
 No doubt I've missed a few from when I was first getting into nix but I am thankful to everyone who left their config on the internet for me to learn from.
 
