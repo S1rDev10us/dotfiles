@@ -74,10 +74,10 @@ dotfiles
 |  ⌞ _*
 | options
 | ⌞ *
-| users
-| ⌞ ${user}
-|   | default.nix
-|   ⌞ _home.nix
+⌞ users
+  ⌞ ${user}
+    | default.nix
+    ⌞ _home.nix
 ```
 
 ## Hosts
