@@ -30,7 +30,7 @@
     fsType = "tmpfs";
   };
 
-  fileSystems."/lib/modules/5.15.146.1-microsoft-standard-WSL2" = {
+  fileSystems."/lib/modules/5.15.153.1-microsoft-standard-WSL2" = {
     device = "none";
     fsType = "overlay";
   };
