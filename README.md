@@ -115,6 +115,14 @@ dotfiles
 - `WSL.enable` = enable WSL support
 - `VM.enable` = enable vm support
 
+## Potential issues
+
+When using a wsl config like `minotaur` it may occasionally throw an error along the lines of
+`Failed to mount /lib/modules/5.15.146.1-microsoft-standard-WSL2.`.
+This is because you have updated your WSL version without changing the mount path of the wsl config.
+To fix this go to the hardware-configuration for the system and change the line that has that mount path to respect your current WSL version.
+(You can get your WSL version with `WSL --version`, the line you're looking for is "Kernel version")
+
 ## Inspirations
 
 A few of the configs that I've taken ideas from include:
