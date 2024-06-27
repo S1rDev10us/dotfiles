@@ -14,7 +14,9 @@
   services.xserver.xkb.layout = "gb,us";
   console.keyMap = "uk";
 
-  # Make this slightly higher priority than whatever the default is but pretty much always overridable
+  # These shouldn't be overridden from config files, it should be set from the other modules system.
+  # Hostname is slightly higher priority because there might be *some* reasons you want to override it but you probably shouldn't
   system.stateVersion = lib.mkForce stateVersion;
-  networking.hostName = lib.mkOverride 1499 host;
+  # Make it very slightly above the normal value so you do have to use mkForce
+  networking.hostName = lib.mkOverride 99 host;
 }
