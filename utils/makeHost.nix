@@ -24,6 +24,7 @@ lib.nixosSystem {
   modules =
     [
       {
+        nixpkgs.hostPlatform = architecture;
         nixpkgs.config = {
           packageOverrides = pkgs: {
             unstable = import inputs.nixpkgs-unstable {
