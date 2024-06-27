@@ -20,6 +20,66 @@ This configuration is constantly in development and may also not reflect the cur
 
 Feel free to take elements and inspiration from this config in order to create your own
 
+## Structure
+
+There are two config directories for each user in a system.
+
+They have a set of options that are only applied when using home manager and a set of options that are applied when using NixOS and home manager
+
+The home manager specific configuration is in ./users/${user}/default.nix and the shared system config is in ./hosts/${host}/default.nix
+
+Those options are not evaluated by the usual home manager or nix modules system,
+instead they are evaluated ahead of time.
+This means that that config's settings can be used to get the `stateVersion`
+(and potentially the system architecture in the future)
+
+Modules for nixos and home manager as well as shared modules are stored in the `modules` folder (under the `nix`, `home` and `common` folders respectively)
+
+The options for the aforementioned system config are stored in the `options` directory and are recursively gathered.
+The options that they generate are documented [below](#host-config-options)
+
+The NixOS and home manager configs also gather a few specific files for their config so that
+if you need to specify configuration that is unique to that computer or user then
+you can do so.
+
+These files are:
+
+- Home manager:
+  - `./users/${user}/home.nix`
+  - `./hosts/${host}/home.nix`
+- NixOS:
+  - `./hosts/${host}/configuration.nix`
+  - `./hosts/${host}/hardware-configuration.nix`
+
+Modules in system specific files cannot affect the main system options and the config for the options can't control the systems directly
+
+The overall structure of the system is as follows:
+
+(Modules with ! aren't optional, modules with \_ are home manager specific and modules with - are NixOS specific)
+
+```
+dotfiles
+| hosts
+| ⌞ ${host}
+|   | _home.nix
+|   | !default.nix
+|   | -configuration.nix
+|   ⌞ -hardware-configuration.nix
+| modules
+| | common
+| | ⌞ *
+| | nix
+| | ⌞ -*
+| ⌞ home
+|  ⌞ _*
+| options
+| ⌞ *
+| users
+| ⌞ ${user}
+|   | default.nix
+|   ⌞ _home.nix
+```
+
 ## Hosts
 
 |  Hostname   |       Environment       |         Use case          |         State          | Secondary GPU | Device description  |
