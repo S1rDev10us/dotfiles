@@ -43,18 +43,17 @@ Feel free to take elements and inspiration from this config in order to create y
 
 ## Host config options
 
-- `settings`
-  - `coding.enable` = enable generic code editors
-  - `environment`
+- `stateVersion` = a string that is used for the stateVersion
+- `coding.enable` = enable generic code editors
+- `environment`
   - `hyprland.enable` = enable hyprland
   - `gnome.enable` = enable gnome
-  - `fun.enable` = enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
-  - `gamedev.enable` = enable game development tools
-  - `gaming.enable` = enable games
-  - `GUI.enable` = enable GUI packages
-  - `WSL.enable` = enable WSL support
-  - `VM.enable` = enable vm support
-  - `unfreePackages` = a list of unfree packages
+- `fun.enable` = enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
+- `gamedev.enable` = enable game development tools
+- `gaming.enable` = enable games
+- `GUI.enable` = enable GUI packages
+- `WSL.enable` = enable WSL support
+- `VM.enable` = enable vm support
 
 ## Inspirations
 
