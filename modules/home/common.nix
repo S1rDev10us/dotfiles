@@ -1,12 +1,12 @@
 {
   lib,
-  defaultStateVersion,
+  stateVersion,
   user,
   config,
   ...
 }: {
   home = {
-    stateVersion = lib.mkOverride 1499 defaultStateVersion;
+    stateVersion = lib.mkForce stateVersion;
     homeDirectory = lib.mkDefault "/home/${user}";
   };
 }

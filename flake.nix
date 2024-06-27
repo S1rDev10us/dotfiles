@@ -54,7 +54,7 @@
           value = libx.makeHost {
             inherit host;
             evaluatedOptions = evaluatedOptions.config;
-            defaultStateVersion = evaluatedOptions.config.stateVersion;
+            stateVersion = evaluatedOptions.config.stateVersion;
             specialArgs = parameters;
           };
         })
@@ -69,7 +69,7 @@
             value = libx.makeHome {
               inherit host user;
               evaluatedOptions = evaluatedOptions.config;
-              defaultStateVersion = evaluatedOptions.config.stateVersion;
+              stateVersion = evaluatedOptions.config.stateVersion;
               specialArgs = parameters;
             };
           })

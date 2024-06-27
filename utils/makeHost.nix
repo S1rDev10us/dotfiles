@@ -7,7 +7,7 @@
 } @ thisInputs: {
   host,
   evaluatedOptions,
-  defaultStateVersion ? "23.11",
+  stateVersion ? "23.11",
   architecture ? "x86_64-linux",
   specialArgs ? thisInputs,
 }:
@@ -16,7 +16,7 @@ lib.nixosSystem {
   specialArgs =
     specialArgs
     // {
-      inherit defaultStateVersion architecture host;
+      inherit stateVersion architecture host;
       opts = evaluatedOptions;
       env = "nixos";
     };

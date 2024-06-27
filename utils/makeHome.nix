@@ -8,7 +8,7 @@
   host,
   user,
   evaluatedOptions,
-  defaultStateVersion ? "23.11",
+  stateVersion ? "23.11",
   architecture ? "x86_64-linux",
   specialArgs ? thisInputs,
 }:
@@ -17,7 +17,7 @@ inputs.home-manager.lib.homeManagerConfiguration {
   extraSpecialArgs =
     specialArgs
     // {
-      inherit defaultStateVersion architecture host user;
+      inherit stateVersion architecture host user;
       opts = evaluatedOptions;
       env = "home";
     };
