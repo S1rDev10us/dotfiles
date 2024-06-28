@@ -10,5 +10,10 @@ lib.evalModules {
       ../hosts/${host}
     ]
     ++ options;
-  specialArgs = inputs // {inherit host;};
+  specialArgs =
+    inputs
+    // {
+      inherit host;
+      env = "nixos";
+    };
 }

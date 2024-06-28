@@ -4,8 +4,17 @@
   options,
   ...
 } @ inputs: host: user:
-(libx.getHostSettings host).extendModules {
+lib.evalModules {
   modules =
-    libx.ifExists ../users/${user}/default.nix;
-  specialArgs = {inherit host user;};
+    [
+      ../hosts/${host}
+    ]
+    ++ (libx.ifExists ../users/${user}/default.nix)
+    ++ options;
+  specialArgs =
+    inputs
+    // {
+      inherit host user;
+      env = "home";
+    };
 }
