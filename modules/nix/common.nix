@@ -13,6 +13,22 @@
   # services.xserver.layout = "gb,us";
   services.xserver.xkb.layout = "gb,us";
   console.keyMap = "uk";
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
+  };
 
   # These shouldn't be overridden from config files, it should be set from the other modules system.
   # Hostname is slightly higher priority because there might be *some* reasons you want to override it but you probably shouldn't
