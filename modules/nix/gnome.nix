@@ -16,6 +16,7 @@ lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
   environment.systemPackages =
     (with pkgs; [
       gnome.gnome-tweaks
+      gnome.dconf-editor
       gnome-extension-manager
     ])
     ++ (with pkgs.gnomeExtensions; [
