@@ -6,10 +6,8 @@
     blender
 
     discord
-    jetbrains.rider
   ];
   unfreePackages = with pkgs; [
-    jetbrains.rider
     discord
   ];
 }
