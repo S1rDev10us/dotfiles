@@ -12,6 +12,12 @@
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
 - [ ] Disable logging into root and add a local admin account
+- [ ] Configure user accounts under `users.users.${name}.whatever`
+  - I could go back to the old way of extending the host config with the user config
+  - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
+  - [ ] Create an option for each user
+  - [ ] If the option is enabled add configuration.nix from that folder to the config
+    - [ ] Automatically create the user using `users.users.${user}`
 - [ ] Try getting stylix to work again
   - [ ] If not could I make my own version or something?
     - https://pablo.tools/blog/computers/system-wide-colorscheme/
