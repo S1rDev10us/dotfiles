@@ -16,6 +16,7 @@ in {
     default = [];
   };
   config = {
+    nixpkgs.config.allowUnfree = lib.mkForce false;
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) processedPackages;
   };
