@@ -1,15 +1,5 @@
 # dotfiles
 
-## TOC
-
-- [dotfiles](#dotfiles)
-  - [TOC](#toc)
-  - [Repo description](#repo-description)
-  - [Hosts](#hosts)
-  - [Features](#features)
-  - [Host config options](#host-config-options)
-  - [Inspirations](#inspirations)
-
 ## Repo description
 
 This repo contains the dotfiles for my NixOS config.
