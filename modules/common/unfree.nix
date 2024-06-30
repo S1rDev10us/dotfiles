@@ -11,8 +11,7 @@
       else lib.getName pkg)
     config.unfreePackages;
 in {
-  options.
-  unfreePackages = lib.mkOption {
+  options.unfreePackages = lib.mkOption {
     type = lib.types.listOf lib.types.package;
     default = [];
   };
