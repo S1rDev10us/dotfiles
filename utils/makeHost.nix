@@ -7,7 +7,7 @@
 } @ thisInputs: {
   host,
   evaluatedOptions,
-  stateVersion ? "23.11",
+  stateVersion,
   architecture ? "x86_64-linux",
   specialArgs ? thisInputs,
 }:
