@@ -13,6 +13,7 @@
   - [ ] Create options for those modules
 - [ ] Disable logging into root and add a local admin account
 - [ ] setup plymouth
+- [ ] Look at setting up impermanence
 - [ ] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
