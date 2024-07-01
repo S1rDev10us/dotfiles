@@ -9,17 +9,26 @@
     - [ ] Network manager
     - [ ] Antivirus
     - [ ] Doas
+    - [ ] Firefox
+      - [ ] With extensions
+        - Redirector
+        - KeePassXC
+        - UBlockOrigin
+        - MultiAccountContainers
+        - Google container
+        - Facebook container
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
 - [ ] Disable logging into root and add a local admin account
 - [ ] setup plymouth
-- [ ] Look at setting up impermanence
-- [ ] Configure user accounts under `users.users.${name}.whatever`
+- [ ] Look at setting up impermanence https://www.youtube.com/watch?v=YPKwkWtK7l0
+- [ ] Document structure changes
+- [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
-  - [ ] Create an option for each user
+  - [x] Create an option for each user
   - [ ] If the option is enabled add configuration.nix from that folder to the config
-    - [ ] Automatically create the user using `users.users.${user}`
+  - [x] Automatically create the user using `users.users.${user}`
 - [ ] Try getting stylix to work again
   - [ ] If not could I make my own version or something?
     - https://pablo.tools/blog/computers/system-wide-colorscheme/
@@ -33,6 +42,12 @@
 - [ ] Add missing packages to system with relevant options
   - [ ] Discord
   - [ ] KeePassXC
+  - [ ] Hyprland
+    - [ ] Setup options with home manager
+    - [ ] Make sure it's working properly
+    - https://github.com/lbonn/rofi
+    - https://github.com/Alexays/Waybar/wiki/Configuration
+    - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
   - [ ] Obsidian
     - [ ] Check if it still needs to be in unstable because of the electron issue
   - [ ] Neovim
@@ -41,3 +56,21 @@
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
+- [ ] Look at improving security
+  - [ ] https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
+  - [ ] https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
+  - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
+  - [ ] https://wiki.nixos.org/wiki/Security
+  - [ ] [Secure boot](https://github.com/nix-community/lanzaboote)
+- [ ] Create a home lab
+  - [ ] Look at Home assistant
+  - [ ] Look at Nextcloud
+    - https://old.reddit.com/r/selfhosted/comments/1cx35ol/ticket_system_or_todo_for_your_homelab/
+  - [ ] Look at TailScale
+    - https://old.reddit.com/r/homelab/comments/16bg3h2/why_tailscale/
+    - https://old.reddit.com/r/Tailscale/comments/ut25pk/dynamic_ip/
+    - https://tailscale.com/blog/how-tailscale-works
+- [ ] Look at what hardware specific options need to be set for my laptop
+  - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
+- [ ] Setup auto-updates
+  - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
