@@ -1,5 +1,11 @@
-{lib, ...}:
-with lib; {
+{
+  lib,
+  libx,
+  ...
+}:
+with lib; let
+  mkEnabledEnableOption = name: (mkEnableOption name) // {default = true;};
+in {
   options = {
     stateVersion = mkOption {
       type = types.str;
@@ -16,5 +22,9 @@ with lib; {
     GUI.enable = mkEnableOption "gui packages";
     WSL.enable = mkEnableOption "WSL";
     VM.enable = mkEnableOption "Virtual Box guest support";
+    users = lib.genAttrs (libx.allFrom ../users) (user: {
+      enable = mkEnableOption "${user} user";
+      admin = mkEnableOption "${user} admin";
+    });
   };
 }
