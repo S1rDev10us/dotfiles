@@ -36,8 +36,8 @@
       // {
         inherit pkgs lib options;
       });
-    # hosts = ["cerberus"];
-    hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.allFrom ./hosts);
+    hosts = libx.allFrom ./hosts;
+    # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.allFrom ./hosts);
     users = libx.allFrom ./users;
     parameters = {
       inherit inputs outputs libx;
@@ -61,8 +61,10 @@
         hosts);
     homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map
       (
-        user: (builtins.map
-          (host: let
+        host: let
+          hostOptions = libx.getHostSettings host;
+        in (builtins.map
+          (user: let
             evaluatedOptions = libx.getHomeSettings host user;
           in {
             name = user + "@" + host;
@@ -73,8 +75,8 @@
               specialArgs = parameters;
             };
           })
-          hosts)
+          (builtins.filter (user: hostOptions.config.users.${user}.enable) users))
       )
-      users));
+      hosts));
   };
 }
