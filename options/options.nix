@@ -23,7 +23,8 @@ in {
       enable = enable (mkEnableOption "grub");
       useEfi = mkEnableOption "grub efi support";
       efiLocation = mkOption {
-        type = with types; nullOr string;
+        type = types.str;
+        default = "";
       };
     };
     GUI.enable = mkEnableOption "gui packages";
