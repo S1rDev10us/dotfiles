@@ -6,6 +6,8 @@ This repo contains the dotfiles for my NixOS config.
 
 If you want to try it out you need to create a new host and potentially a new user account and then run `just switch`
 
+If you want to setup a Windows dualboot you need to set Windows to use [UTC time instead of local time](https://wiki.archlinux.org/title/System_time#UTC_in_Microsoft_Windows)
+
 This configuration is constantly in development and may also not reflect the current state of my config.
 
 Feel free to take elements and inspiration from this config in order to create your own
