@@ -7,7 +7,7 @@
   gamedev.enable = true;
   gaming.enable = true;
   grub.useEfi = true;
-  # grub.windowsLocation = ""; # Need to find this out
+  grub.windowsLocation = "F4F3-9649";
   GUI.enable = true;
   users.s1rdev10us = {
     enable = true;
