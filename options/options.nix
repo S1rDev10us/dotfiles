@@ -15,6 +15,7 @@ in {
     environment = {
       hyprland.enable = mkEnableOption "hyprland";
       gnome.enable = mkEnableOption "gnome";
+      KDE.enable = mkEnableOption "KDE";
     };
     fun.enable = mkEnableOption "fun tools like `eDex-ui`";
     gamedev.enable = mkEnableOption "game development tools";
