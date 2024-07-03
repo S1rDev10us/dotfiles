@@ -38,7 +38,7 @@ lib.mkIf opts.environment.hyprland.enable {
       });
     })
   ];
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     nerdfonts
     meslo-lgs-nf
   ];
