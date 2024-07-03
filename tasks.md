@@ -6,10 +6,10 @@
     - [x] Grub
     - [x] Misc apps
     - [x] Printing
-    - [ ] Network manager
+    - [x] Network manager
     - [ ] Antivirus
     - [ ] Doas
-    - [ ] Firefox
+    - [x] Firefox
       - [ ] With extensions
         - Redirector
         - KeePassXC
