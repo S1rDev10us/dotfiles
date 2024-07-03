@@ -8,6 +8,6 @@
     user = opts.users."${username}";
   in {
     isNormalUser = true;
-    extraGroups = [] ++ (lib.optional user.admin "wheel");
+    extraGroups = [] ++ (lib.optionals user.admin ["wheel" "networkmanager"]);
   });
 }
