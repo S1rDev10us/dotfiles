@@ -66,10 +66,19 @@
   - [ ] Look at Home assistant
   - [ ] Look at Nextcloud
     - https://old.reddit.com/r/selfhosted/comments/1cx35ol/ticket_system_or_todo_for_your_homelab/
+  - [ ] Look at cockpit
+    - https://cockpit-project.org/
+    - https://fictionbecomesfact.com/nixos-cockpit
   - [ ] Look at TailScale
     - https://old.reddit.com/r/homelab/comments/16bg3h2/why_tailscale/
     - https://old.reddit.com/r/Tailscale/comments/ut25pk/dynamic_ip/
     - https://tailscale.com/blog/how-tailscale-works
+    - https://old.reddit.com/r/homelab/comments/13beyti/best_way_for_remote_access_to_homelab/
+    - https://old.reddit.com/r/homelab/comments/mnqoka/how_do_you_access_your_homelab_from_outside/
+  - https://old.reddit.com/r/homelab/comments/1djwtjz/starting_over_again_how_to_do_domains_certs_and/
+  - [ ] Look at setting up hardware
+    - https://old.reddit.com/r/NixOS/comments/cjgcih/installing_on_hp_proliant_gen8/
+    - https://askubuntu.com/questions/524814/how-to-install-ubuntu-server-on-hp-proliant-microserver-gen8
 - [ ] Look at what hardware specific options need to be set for my laptop
   - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
 - [ ] Setup auto-updates
