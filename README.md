@@ -25,7 +25,7 @@ instead they are evaluated ahead of time.
 This means that that config's settings can be used to get the `stateVersion`
 (and potentially the system architecture in the future)
 
-Modules for nixos and home manager as well as shared modules are stored in the `modules` folder (under the `nix`, `home` and `common` folders respectively)
+Modules for NixOS and home manager as well as shared modules are stored in the `modules` folder (under the `nix`, `home` and `common` folders respectively)
 
 The options for the aforementioned system config are stored in the `options` directory and are recursively gathered.
 The options that they generate are documented [below](#host-config-options)
@@ -91,7 +91,7 @@ dotfiles
 ## Features
 
 - Individual configs for different machines by customizing data in the hosts folder
-- Update home manager and nixos together or separately
+- Update home manager and NixOS together or separately
 
 ## Host config options
 
