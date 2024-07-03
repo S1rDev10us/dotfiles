@@ -12,7 +12,7 @@
     config.unfreePackages;
 in {
   options.unfreePackages = lib.mkOption {
-    type = lib.types.listOf lib.types.package;
+    type = with lib.types; listOf (oneOf [package str]);
     default = [];
   };
   config = {
