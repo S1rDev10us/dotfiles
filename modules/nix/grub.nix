@@ -6,7 +6,7 @@
 lib.mkIf (opts.grub.enable) {
   assertions = [
     {
-      assertion = opts.grub.efiLocation == null && opts.grub.useEfi;
+      assertion = opts.grub.efiLocation != null || !opts.grub.useEfi;
       message = "If using efi mode for grub, efiLocation MUST be set";
     }
   ];
