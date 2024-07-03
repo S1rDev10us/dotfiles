@@ -5,6 +5,7 @@
   fun.enable = true;
   gamedev.enable = true;
   gaming.enable = true;
+  grub.useEfi = true;
   GUI.enable = true;
   users.s1rdev10us = {
     enable = true;
