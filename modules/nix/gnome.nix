@@ -6,11 +6,16 @@
   ...
 }:
 lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
 
-  # Enable the GNOME desktop environment
-  services.xserver.desktopManager.gnome.enable = true;
+    # Enable the GNOME desktop environment
+    desktopManager = {
+      gnome.enable = true;
+      gdm.enable = true;
+    };
+  };
 
   # Gnome specific packages
   environment.systemPackages =
