@@ -22,7 +22,7 @@ in {
     grub = {
       enable = enable (mkEnableOption "grub");
       useEfi = mkEnableOption "grub efi support";
-      efiLocation = mkOption {
+      windowsLocation = mkOption {
         type = types.str;
         default = "";
       };

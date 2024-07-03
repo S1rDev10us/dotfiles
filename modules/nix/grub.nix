@@ -6,8 +6,8 @@
 lib.mkIf (opts.grub.enable) {
   assertions = [
     {
-      assertion = opts.grub.efiLocation != "" || !opts.grub.useEfi;
-      message = "If using efi mode for grub, efiLocation MUST be set";
+      assertion = opts.grub.windowsLocation != "" || !opts.grub.useEfi;
+      message = "If using efi mode for grub, windowsLocation MUST be set";
     }
   ];
   boot.loader =
@@ -35,7 +35,7 @@ lib.mkIf (opts.grub.enable) {
             insmod fat
             insmod search_fs_uuid
             insmod chain
-            search --fs-uuid --set=root ${opts.grub.efiLocation}
+            search --fs-uuid --set=root ${opts.grub.windowsLocation}
             chainloader /EFI/Microsoft/Boot/bootmgfw.efi
           }
         '';
