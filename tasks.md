@@ -51,9 +51,12 @@
   - [ ] Obsidian
     - [x] Check if it still needs to be in unstable because of the electron issue
     - It no longer needs to be in unstable! :)
-  - [ ] Neovim
-    - [ ] Neovide (Terminals are better on linux. Will this be needed there?)
+  - [x] Neovim
+    - [x] Neovide (Terminals are better on linux. Will this be needed there?)
     - [ ] Neovim settings/config
+      - [ ] Dependencies
+        - [x] Rust
+        - [ ] Fzf
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
