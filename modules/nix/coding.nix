@@ -13,12 +13,14 @@
         nixd
         nil
         just
+        neovim
+        rustup
       ]
       ++ lib.optionals opts.GUI.enable [
         vscode
         unityhub
+        neovide
         jetbrains-toolbox
-
         jetbrains.rider
       ];
     unfreePackages = lib.optionals opts.GUI.enable (with pkgs; [
