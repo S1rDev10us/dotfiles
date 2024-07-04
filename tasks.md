@@ -1,5 +1,35 @@
 # Tasks
 
+## Hosts
+
+### Homelab
+
+- [ ] Create a home lab
+  - [ ] Look at Home assistant
+  - [ ] Look at Nextcloud
+    - https://old.reddit.com/r/selfhosted/comments/1cx35ol/ticket_system_or_todo_for_your_homelab/
+  - [ ] Look at cockpit
+    - https://cockpit-project.org/
+    - https://fictionbecomesfact.com/nixos-cockpit
+  - [ ] Look at TailScale
+    - https://old.reddit.com/r/homelab/comments/16bg3h2/why_tailscale/
+    - https://old.reddit.com/r/Tailscale/comments/ut25pk/dynamic_ip/
+    - https://tailscale.com/blog/how-tailscale-works
+    - https://old.reddit.com/r/homelab/comments/13beyti/best_way_for_remote_access_to_homelab/
+    - https://old.reddit.com/r/homelab/comments/mnqoka/how_do_you_access_your_homelab_from_outside/
+  - https://old.reddit.com/r/homelab/comments/1djwtjz/starting_over_again_how_to_do_domains_certs_and/
+  - [ ] Look at setting up hardware
+    - https://old.reddit.com/r/NixOS/comments/cjgcih/installing_on_hp_proliant_gen8/
+    - https://askubuntu.com/questions/524814/how-to-install-ubuntu-server-on-hp-proliant-microserver-gen8
+
+### Amphisbaena
+- [ ] Look at what hardware specific options need to be set for my laptop
+  - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
+- [ ] Setup battery management (tlp?)
+  - https://wiki.nixos.org/wiki/Laptop
+
+## Maintenence
+
 - [ ] Get system back to old state
   - [ ] Import missing settings from git commit "feat!: burn it all"
     - [x] Audio
@@ -19,10 +49,22 @@
         - Facebook container
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
+- [ ] Look at improving security
+  - [ ] https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
+  - [ ] https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
+  - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
+  - [ ] https://wiki.nixos.org/wiki/Security
+  - [ ] [Secure boot](https://github.com/nix-community/lanzaboote)
+- [ ] Document structure changes
+- [ ] Setup auto-updates
+  - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
+
+
+## Upgrades
+
 - [ ] Disable logging into root and add a local admin account
 - [ ] setup plymouth
 - [ ] Look at setting up impermanence https://www.youtube.com/watch?v=YPKwkWtK7l0
-- [ ] Document structure changes
 - [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
@@ -60,30 +102,3 @@
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
-- [ ] Look at improving security
-  - [ ] https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
-  - [ ] https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
-  - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
-  - [ ] https://wiki.nixos.org/wiki/Security
-  - [ ] [Secure boot](https://github.com/nix-community/lanzaboote)
-- [ ] Create a home lab
-  - [ ] Look at Home assistant
-  - [ ] Look at Nextcloud
-    - https://old.reddit.com/r/selfhosted/comments/1cx35ol/ticket_system_or_todo_for_your_homelab/
-  - [ ] Look at cockpit
-    - https://cockpit-project.org/
-    - https://fictionbecomesfact.com/nixos-cockpit
-  - [ ] Look at TailScale
-    - https://old.reddit.com/r/homelab/comments/16bg3h2/why_tailscale/
-    - https://old.reddit.com/r/Tailscale/comments/ut25pk/dynamic_ip/
-    - https://tailscale.com/blog/how-tailscale-works
-    - https://old.reddit.com/r/homelab/comments/13beyti/best_way_for_remote_access_to_homelab/
-    - https://old.reddit.com/r/homelab/comments/mnqoka/how_do_you_access_your_homelab_from_outside/
-  - https://old.reddit.com/r/homelab/comments/1djwtjz/starting_over_again_how_to_do_domains_certs_and/
-  - [ ] Look at setting up hardware
-    - https://old.reddit.com/r/NixOS/comments/cjgcih/installing_on_hp_proliant_gen8/
-    - https://askubuntu.com/questions/524814/how-to-install-ubuntu-server-on-hp-proliant-microserver-gen8
-- [ ] Look at what hardware specific options need to be set for my laptop
-  - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
-- [ ] Setup auto-updates
-  - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
