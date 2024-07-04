@@ -40,6 +40,7 @@
     - [ ] Antivirus
     - [ ] Doas
     - [x] Firefox
+      - [ ] With policies
       - [ ] With extensions
         - Redirector
           - [ ] setup with redirects automatically
@@ -84,6 +85,7 @@
   - [ ] Stream deck
 - [ ] Add missing packages to system with relevant options
   - [x] Discord
+  - [ ] Thunderbird
   - [ ] KeePassXC
   - [ ] Hyprland
     - [ ] Setup options with home manager
