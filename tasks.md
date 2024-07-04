@@ -40,7 +40,7 @@
   - [ ] Razor mouse
   - [ ] Stream deck
 - [ ] Add missing packages to system with relevant options
-  - [ ] Discord
+  - [x] Discord
   - [ ] KeePassXC
   - [ ] Hyprland
     - [ ] Setup options with home manager
@@ -49,7 +49,8 @@
     - https://github.com/Alexays/Waybar/wiki/Configuration
     - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
   - [ ] Obsidian
-    - [ ] Check if it still needs to be in unstable because of the electron issue
+    - [x] Check if it still needs to be in unstable because of the electron issue
+    - It no longer needs to be in unstable! :)
   - [ ] Neovim
     - [ ] Neovide (Terminals are better on linux. Will this be needed there?)
     - [ ] Neovim settings/config
