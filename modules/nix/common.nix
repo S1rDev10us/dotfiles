@@ -6,13 +6,18 @@
   pkgs,
   ...
 }: {
+  # Packages required to run flakes (not to edit them)
   environment.systemPackages = with pkgs; [home-manager just];
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
   time.timeZone = "Europe/London";
+
   # services.xserver.layout = "gb,us";
   services.xserver.xkb.layout = "gb,us";
   console.keyMap = "uk";
+
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_GB.UTF-8";
@@ -29,6 +34,10 @@
       LC_TIME = "en_GB.UTF-8";
     };
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  ];
 
   # These shouldn't be overridden from config files, it should be set from the other modules system.
   # Hostname is slightly higher priority because there might be *some* reasons you want to override it but you probably shouldn't
