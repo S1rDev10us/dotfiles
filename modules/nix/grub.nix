@@ -28,7 +28,6 @@ lib.mkIf (opts.grub.enable) {
         devices = ["nodev"];
         efiSupport = true;
         enable = true;
-        version = 2;
         extraEntries = ''
           menuentry "Windows" {
             insmod part_gpt
