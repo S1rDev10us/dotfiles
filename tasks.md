@@ -24,7 +24,7 @@
 
 ### Amphisbaena
 - [ ] Look at what hardware specific options need to be set for my laptop
-  - https://gi thub.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
+  - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
 - [ ] Setup battery management (tlp?)
   - https://wiki.nixos.org/wiki/Laptop
 
