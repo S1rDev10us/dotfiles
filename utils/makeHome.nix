@@ -17,7 +17,7 @@ inputs.home-manager.lib.homeManagerConfiguration {
   extraSpecialArgs =
     specialArgs
     // {
-      inherit stateVersion architecture host user;
+      inherit stateVersion architecture host;
       opts = evaluatedOptions;
       env = "home";
     };
