@@ -1,4 +1,4 @@
-# dotfiles
+# S1rDev10us/dotfiles
 
 ## Repo description
 
