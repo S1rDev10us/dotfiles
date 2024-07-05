@@ -89,7 +89,7 @@
 - [ ] Add missing packages to system with relevant options
   - [x] Discord
   - [ ] Thunderbird
-  - [ ] KeePassXC
+  - [x] KeePassXC
   - [ ] Hyprland
     - [ ] Setup options with home manager
     - [ ] Make sure it's working properly
