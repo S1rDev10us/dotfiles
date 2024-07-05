@@ -11,6 +11,7 @@ in {
       type = types.str;
       default = "23.11";
     };
+    batteryManagement.enable = mkEnableOption "battery management";
     coding.enable = mkEnableOption "code editors";
     environment = {
       hyprland.enable = mkEnableOption "hyprland";

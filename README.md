@@ -96,6 +96,7 @@ dotfiles
 ## Host config options
 
 - `stateVersion` = a string that is used for the stateVersion
+- `batteryManagement.enable` = enable battery management
 - `coding.enable` = enable generic code editors
 - `environment`
   - `hyprland.enable` = enable hyprland
