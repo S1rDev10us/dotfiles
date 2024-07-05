@@ -57,7 +57,7 @@
   - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
   - [ ] https://wiki.nixos.org/wiki/Security
   - [ ] [Secure boot](https://github.com/nix-community/lanzaboote)
-- [ ] Document structure changes
+- [x] Document structure changes
 - [ ] Setup auto-updates
   - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
 
