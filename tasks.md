@@ -40,7 +40,7 @@
     - [ ] Antivirus
     - [ ] Doas
     - [x] Firefox
-      - [ ] With policies
+      - [/] With policies
         - [ ] Setup custom homepage
           - https://mozilla.github.io/policy-templates/#hompage
           - https://old.reddit.com/r/startpages
