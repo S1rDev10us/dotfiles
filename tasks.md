@@ -88,7 +88,7 @@
   - [ ] Stream deck
 - [ ] Add missing packages to system with relevant options
   - [x] Discord
-  - [ ] Thunderbird
+  - [x] Thunderbird
   - [x] KeePassXC
   - [ ] Hyprland
     - [ ] Setup options with home manager
@@ -96,7 +96,7 @@
     - https://github.com/lbonn/rofi
     - https://github.com/Alexays/Waybar/wiki/Configuration
     - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
-  - [ ] Obsidian
+  - [x] Obsidian
     - [x] Check if it still needs to be in unstable because of the electron issue
     - It no longer needs to be in unstable! :)
   - [x] Neovim
