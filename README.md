@@ -100,12 +100,20 @@ dotfiles
 - `environment`
   - `hyprland.enable` = enable hyprland
   - `gnome.enable` = enable gnome
+  - `KDE.enable` = enable KDE
 - `fun.enable` = enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
 - `gamedev.enable` = enable game development tools
 - `gaming.enable` = enable games
+- `grub`
+  - `enable` = enable grub
+  - `useEfi` = enable grub EFI support
+  - `windowsLocation` = uuid of windows partition 
 - `GUI.enable` = enable GUI packages
 - `WSL.enable` = enable WSL support
 - `VM.enable` = enable vm support
+- `users.${user}`
+  - `enable` = enable this user
+  - `admin` = give this user admin permissions
 
 ## Potential issues
 
