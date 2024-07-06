@@ -1,6 +1,6 @@
 {
   lib,
-  config,
+  pkgs,
   opts,
   ...
 }:
@@ -12,6 +12,7 @@ lib.mkIf opts.environment.hyprland.enable {
     # plugins=[];
 
     settings = {
+      exec-once = ["${pkgs.waybar}"];
       monitor = [
         ",preferred,auto,auto"
       ];
@@ -65,9 +66,9 @@ lib.mkIf opts.environment.hyprland.enable {
         preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-      };
+      # master = {
+      #   new_is_master = true;
+      # };
 
       gestures = {
         workspace_swipe = true;
