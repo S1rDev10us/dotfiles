@@ -96,6 +96,7 @@
     - https://github.com/lbonn/rofi
     - https://github.com/Alexays/Waybar/wiki/Configuration
     - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
+    - https://github.com/fufexan/dotfiles/tree/main/home/programs/wayland/hyprland
   - [x] Obsidian
     - [x] Check if it still needs to be in unstable because of the electron issue
     - It no longer needs to be in unstable! :)
