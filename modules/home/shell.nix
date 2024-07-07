@@ -1,10 +1,6 @@
-{
-  lib,
-  opts,
-  ...
-}: {
+{...}: {
   programs.foot = {
-    enable = opts.GUI.enable;
+    enable = true;
     settings = {
       main = {
         font = "JetbrainsMonoNF:size=10";
