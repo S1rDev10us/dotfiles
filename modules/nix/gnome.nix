@@ -39,7 +39,7 @@ lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
     ++ (with pkgs.gnome; [
       cheese # webcam tool
       gnome-music
-      #gnome-terminal
+      gnome-terminal
       #gedit # text editor
       epiphany # web browser
       geary # email reader
