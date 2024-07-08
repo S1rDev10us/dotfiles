@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   pkgs,
   opts,
   ...
@@ -9,11 +8,6 @@
     programs.git.enable = true;
     environment.systemPackages = with pkgs;
       [
-        alejandra
-        nixd
-        nil
-        just
-        rustup
       ]
       ++ lib.optionals opts.GUI.enable [
         vscode

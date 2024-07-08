@@ -8,7 +8,7 @@
 }: {
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Packages required to run flakes (not to edit them)
-  environment.systemPackages = with pkgs; [home-manager just];
+  environment.systemPackages = with pkgs; [home-manager];
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

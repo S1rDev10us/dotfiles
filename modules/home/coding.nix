@@ -9,7 +9,17 @@ lib.mkIf opts.coding.enable {
     enable = true;
     defaultEditor = true;
     # Mason dependencies
-    extraPackages = with pkgs; [dotnetCorePackages.dotnet_8.sdk unzip rustup wget nodePackages.prettier prettierd];
+    extraPackages = with pkgs; [
+      dotnetCorePackages.dotnet_8.sdk
+      unzip
+      rustup
+      wget
+      nodePackages.prettier
+      prettierd
+      nixd
+      nil
+      alejandra
+    ];
     withNodeJs = true;
   };
 }

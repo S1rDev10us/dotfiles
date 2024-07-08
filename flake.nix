@@ -78,5 +78,21 @@
           (builtins.filter (user: hostOptions.config.users.${user}.enable) users))
       )
       hosts));
+
+    devShells = let
+      allSystems = ["x86_64-linux"];
+      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {pkgs = import nixpkgs {inherit system;};});
+    in
+      forAllSystems ({pkgs}: {
+        default = pkgs.mkShell rec {
+          packages = with pkgs;
+            [
+              just
+              alejandra
+            ]
+            # For compiling to X11
+            ++ (with xorg; [libX11 libXcursor libXi libXrandr]);
+        };
+      });
   };
 }
