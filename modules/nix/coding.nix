@@ -13,7 +13,6 @@
         nixd
         nil
         just
-        neovim
         rustup
       ]
       ++ lib.optionals opts.GUI.enable [
