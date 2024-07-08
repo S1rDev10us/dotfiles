@@ -15,7 +15,6 @@ lib.mkIf opts.environment.hyprland.enable {
     };
   };
   environment.systemPackages = with pkgs; [
-    hyprland
     swww # for wallpapers
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
@@ -26,6 +25,7 @@ lib.mkIf opts.environment.hyprland.enable {
     wayland-utils
     wl-clipboard
     wlroots
+    rofi-wayland
   ];
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   nixpkgs.overlays = [
