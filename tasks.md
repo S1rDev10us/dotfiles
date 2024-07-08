@@ -23,6 +23,7 @@
     - https://askubuntu.com/questions/524814/how-to-install-ubuntu-server-on-hp-proliant-microserver-gen8
 
 ### Amphisbaena
+
 - [ ] Look at what hardware specific options need to be set for my laptop
   - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
 - [ ] Setup battery management (tlp?)
@@ -64,21 +65,15 @@
 - [ ] Setup auto-updates
   - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
 
-
 ## Upgrades
 
 - [ ] Disable logging into root and add a local admin account
-- [ ] setup plymouth
-- [ ] Look at setting up impermanence https://www.youtube.com/watch?v=YPKwkWtK7l0
 - [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
   - [x] Create an option for each user
   - [ ] If the option is enabled add configuration.nix from that folder to the config
   - [x] Automatically create the user using `users.users.${user}`
-- [ ] Try getting stylix to work again
-  - [ ] If not could I make my own version or something?
-    - https://pablo.tools/blog/computers/system-wide-colorscheme/
 - [ ] Special input support
   - [ ] Logitech
     - [ ] Mouse
@@ -86,28 +81,35 @@
   - [ ] Steelseries keyboard
   - [ ] Razor mouse
   - [ ] Stream deck
-- [ ] Add missing packages to system with relevant options
-  - [x] Discord
-  - [x] Thunderbird
-  - [x] KeePassXC
-  - [ ] Hyprland
-    - [ ] Setup options with home manager
-    - [ ] Make sure it's working properly
-    - https://github.com/lbonn/rofi
-    - https://github.com/Alexays/Waybar/wiki/Configuration
-    - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
-    - https://github.com/fufexan/dotfiles/tree/main/home/programs/wayland/hyprland
-  - [x] Obsidian
-    - [x] Check if it still needs to be in unstable because of the electron issue
-    - It no longer needs to be in unstable! :)
-  - [x] Neovim
-    - [x] Neovide (Terminals are better on linux. Will this be needed there?)
-    - [ ] Neovim settings/config
-      - [ ] Dependencies
-        - [x] Rust
-        - [ ] Fzf
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
+
+### Package additions
+
+- [x] Discord
+- [x] Thunderbird
+- [x] KeePassXC
+- [ ] Hyprland
+  - [ ] Setup options with home manager
+  - [ ] Make sure it's working properly
+  - https://github.com/lbonn/rofi
+  - https://github.com/Alexays/Waybar/wiki/Configuration
+  - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
+  - https://github.com/fufexan/dotfiles/tree/main/home/programs/wayland/hyprland
+- [x] Obsidian
+  - [x] Check if it still needs to be in unstable because of the electron issue
+  - It no longer needs to be in unstable! :)
+- [x] Neovim
+  - [x] Neovide (Terminals are better on linux. Will this be needed there?)
+  - [ ] Neovim settings/config
+    - [ ] Dependencies
+      - [x] Rust
+      - [ ] Fzf
+- [ ] setup plymouth
+- [ ] Look at setting up impermanence https://www.youtube.com/watch?v=YPKwkWtK7l0
 - [ ] Take a look at [kando](https://github.com/kando-menu/kando)
   - [Packaged with nix](https://github.com/Zhaith-Izaliel/zhaith-nixos-configuration/blob/3d0869bc845759fa510c7f21595f14dff3b06a0c/packages/kando.nix#L10)
+- [ ] Try getting stylix to work again
+  - [ ] If not could I make my own version or something?
+    - https://pablo.tools/blog/computers/system-wide-colorscheme/
