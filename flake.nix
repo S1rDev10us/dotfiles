@@ -84,14 +84,11 @@
       forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {pkgs = import nixpkgs {inherit system;};});
     in
       forAllSystems ({pkgs}: {
-        default = pkgs.mkShell rec {
-          packages = with pkgs;
-            [
-              just
-              alejandra
-            ]
-            # For compiling to X11
-            ++ (with xorg; [libX11 libXcursor libXi libXrandr]);
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            just
+            alejandra
+          ];
         };
       });
   };
