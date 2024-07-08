@@ -9,6 +9,7 @@ lib.mkIf opts.coding.enable {
     enable = true;
     defaultEditor = true;
     # Mason dependencies
-    extraPackages = with pkgs; [nodejs_22 dotnetCorePackages.dotnet_8.sdk unzip rustup wget];
+    extraPackages = with pkgs; [dotnetCorePackages.dotnet_8.sdk unzip rustup wget];
+    withNodeJs = true;
   };
 }
