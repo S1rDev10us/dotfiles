@@ -109,3 +109,5 @@
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
+- [ ] Take a look at [kando](https://github.com/kando-menu/kando)
+  - [Packaged with nix](https://github.com/Zhaith-Izaliel/zhaith-nixos-configuration/blob/3d0869bc845759fa510c7f21595f14dff3b06a0c/packages/kando.nix#L10)
