@@ -55,19 +55,12 @@
         - Facebook container
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
-- [ ] Look at improving security
-  - [ ] https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
-  - [ ] https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
-  - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
-  - [ ] https://wiki.nixos.org/wiki/Security
-  - [ ] [Secure boot](https://github.com/nix-community/lanzaboote)
 - [x] Document structure changes
 - [ ] Setup auto-updates
   - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
 
 ## Upgrades
 
-- [ ] Disable logging into root and add a local admin account
 - [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
@@ -84,6 +77,19 @@
 - [ ] See if I can do anything about specialisations
   - If I'm making a specialisation per DE I could loop over the list of all DEs and create specialisations if more than one is enabled
   - Alternatively I could probably add in my implementation of the specialisation option in my modules system and then integrate that into the Nix specialisation option
+
+### Security
+
+- [ ] Disable logging into root and add a local admin account
+- [ ] Various security hardening
+  - [ ] https://github.com/fufexan/dotfiles/blob/e85f77b1ab197e6bb4f7c8861305a02db2ea38df/system/core/security.nix
+  - [ ] https://wiki.nixos.org/wiki/Security
+  - [ ] https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
+  - [ ] https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
+  - [ ] https://old.reddit.com/r/NixOS/comments/1aqck9l/systemd_hardening_some_preconfigured_options_d/
+  - [ ] https://wiki.nixos.org/wiki/Security
+  - [ ] [Secure boot](https://github.com/nix-community/lanzaboote) ([wiki](https://wiki.nixos.org/wiki/Secure_Boot))
+  - [ ] [Systemd hardening](https://wiki.nixos.org/wiki/Systemd/Hardening)
 
 ### Package additions
 
