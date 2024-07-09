@@ -28,3 +28,9 @@ format:
 
 check: format
    nix flake check 
+
+
+clean:
+    nix-env --delete-generations +10
+    nix-collect-garbage
+    nix-store --optimise -v
