@@ -5,6 +5,63 @@
   ...
 }:
 lib.mkIf opts.environment.hyprland.enable {
+  programs = {
+    hyprlock.enable = true;
+    waybar.enable = true;
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      theme = "sidebar-v2";
+    };
+  };
+  # Been getting an error where this is set to a missing attribute
+  # Stopped that value being
+  systemd.user.services.hypridle.Unit.X-Restart-Triggers = lib.mkForce [];
+  services = {
+    hypridle = {
+      enable = true;
+      # settings = {
+      #   general = {
+      #     lock_cmd = "pidof hyprlock || hyprlock";
+      #   };
+      #
+      #   listener = [
+      #     {
+      #       timeout = 150; # 2.5min.
+      #       on-timeout = "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+      #       on-resume = "brightnessctl -r"; # monitor backlight restore.
+      #     }
+      #
+      #     # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+      #     {
+      #       timeout = 150; # 2.5min.
+      #       on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+      #       on-resume = "brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
+      #     }
+      #
+      #     {
+      #       timeout = 300; # 5min
+      #       on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
+      #     }
+      #
+      #     {
+      #       timeout = 330; # 5.5min
+      #       on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+      #       on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+      #     }
+      #
+      #     {
+      #       timeout = 1800; # 30min
+      #       on-timeout = "systemctl suspend"; # suspend pc
+      #     }
+      #   ];
+      # };
+    };
+    hyprpaper = {
+      enable = true;
+      settings = {splash = false;};
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -12,7 +69,7 @@ lib.mkIf opts.environment.hyprland.enable {
     # plugins=[];
 
     settings = {
-      exec-once = ["${pkgs.waybar}"];
+      exec-once = ["waybar"];
       monitor = [
         ",preferred,auto,auto"
       ];
@@ -102,6 +159,7 @@ lib.mkIf opts.environment.hyprland.enable {
         (moveactive "j" "d")
         (moveactive "l" "r")
         (moveactive "h" "l")
+        "SUPER, Tab, exec, rofi -show window"
       ];
       bindel = [
         # https://wiki.hyprland.org/Configuring/Binds/#media
@@ -111,6 +169,10 @@ lib.mkIf opts.environment.hyprland.enable {
       bindl = [
         # https://wiki.hyprland.org/Configuring/Binds/#media
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ];
+      bindr = [
+        # Launcher
+        "SUPER, SUPER_L, exec, rofi -show drun"
       ];
     };
   };
