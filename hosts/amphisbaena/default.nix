@@ -2,7 +2,7 @@
   stateVersion = "24.05";
   batteryManagement.enable = true;
   coding.enable = true;
-  # environment.hyprland.enable = true;
+  environment.hyprland.enable = true;
   environment.KDE.enable = true;
   fun.enable = true;
   gamedev.enable = true;
