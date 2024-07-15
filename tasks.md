@@ -31,30 +31,6 @@
 
 ## Maintenence
 
-- [ ] Get system back to old state
-  - [ ] Import missing settings from git commit "feat!: burn it all"
-    - [x] Audio
-    - [x] Grub
-    - [x] Misc apps
-    - [x] Printing
-    - [x] Network manager
-    - [ ] Antivirus
-    - [ ] Doas
-    - [x] Firefox
-      - [/] With policies
-        - [ ] Setup custom homepage
-          - https://mozilla.github.io/policy-templates/#hompage
-          - https://old.reddit.com/r/startpages
-      - [ ] With extensions
-        - Redirector
-          - [ ] setup with redirects automatically
-        - KeePassXC
-        - UBlockOrigin
-        - MultiAccountContainers
-        - Google container
-        - Facebook container
-  - [ ] Convert those settings to modules
-  - [ ] Create options for those modules
 - [x] Document structure changes
 - [ ] Setup auto-updates
   - https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/tasks/auto-upgrade.nix
@@ -119,3 +95,27 @@
 - [ ] Try getting stylix to work again
   - [ ] If not could I make my own version or something?
     - https://pablo.tools/blog/computers/system-wide-colorscheme/
+- [ ] Get system back to old state
+  - [ ] Import missing settings from git commit "feat!: burn it all"
+    - [x] Audio
+    - [x] Grub
+    - [x] Misc apps
+    - [x] Printing
+    - [x] Network manager
+    - [ ] Antivirus
+    - [ ] Doas
+    - [x] Firefox
+      - [/] With policies
+        - [ ] Setup custom homepage
+          - https://mozilla.github.io/policy-templates/#hompage
+          - https://old.reddit.com/r/startpages
+      - [ ] With extensions
+        - Redirector
+          - [ ] setup with redirects automatically
+        - KeePassXC
+        - UBlockOrigin
+        - MultiAccountContainers
+        - Google container
+        - Facebook container
+  - [ ] Convert those settings to modules
+  - [ ] Create options for those modules
