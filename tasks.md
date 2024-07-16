@@ -107,7 +107,7 @@
     - [x] Printing
     - [x] Network manager
     - [ ] Antivirus
-    - [ ] Doas
+    - [x] Doas
     - [x] Firefox
       - [/] With policies
         - [ ] Setup custom homepage
