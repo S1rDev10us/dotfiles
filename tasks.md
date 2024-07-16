@@ -76,8 +76,8 @@
 - [x] Discord
 - [x] Thunderbird
 - [x] KeePassXC
-- [ ] Hyprland
-  - [ ] Setup options with home manager
+- [x] Hyprland
+  - [x] Setup options with home manager
   - [ ] Make sure it's working properly
   - https://github.com/lbonn/rofi
   - https://github.com/Alexays/Waybar/wiki/Configuration
