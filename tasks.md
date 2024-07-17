@@ -24,6 +24,7 @@
 
 ### Amphisbaena
 
+- [ ] Check what the error is in the boot (and shutdown) sequence (Looked to be something about "ACPI" I think, I'll need to record the boot sequence to see what it says)
 - [ ] Look at what hardware specific options need to be set for my laptop
   - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
 - [ ] Setup battery management (tlp?)
