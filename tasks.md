@@ -75,6 +75,7 @@
 
 ### Package additions
 
+- [ ] Phone connection app? KDE Connect would probably work
 - [ ] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
 - [ ] Use krunner / anyrunner instead of rofi?
 - [ ] OBS
