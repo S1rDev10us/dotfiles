@@ -38,6 +38,11 @@
 
 ## Upgrades
 
+- When using Hyprland
+  - [ ] Automatically spawn Obsidian in my vault in a specific desktop
+  - [ ] Automatically spawn Firefox in a desktop
+  - [ ] Automatically spawn foot in a desktop
+  - [ ] Theme the icons for waybar workspaces such that they represent these specific meanings
 - [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
   - Because then I could generate an option for each user and then only if it is enabled do I add the configuration.nix from the user
