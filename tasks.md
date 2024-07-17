@@ -75,6 +75,7 @@
 
 ### Package additions
 
+- [ ] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
 - [ ] Use krunner / anyrunner instead of rofi?
 - [ ] OBS
 - [ ] Aseprite (I have it with steam but I think I saw it as a module which could be better?)
