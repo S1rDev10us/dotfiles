@@ -38,6 +38,9 @@
 
 ## Upgrades
 
+- Convert various package installs to modules
+  - [ ] obs-studio
+  - [ ] thunderbird
 - When using Hyprland
   - [ ] Automatically spawn Obsidian in my vault in a specific desktop
   - [ ] Automatically spawn Firefox in a desktop
