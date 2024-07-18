@@ -111,7 +111,9 @@
   - [ ] Import missing settings from git commit "feat!: burn it all"
     - [x] Audio
     - [x] Grub
-    - [x] Misc apps
+    - [/] Misc apps
+      - [ ] Partition manager
+        - GParted
     - [x] Printing
     - [x] Network manager
     - [ ] Antivirus
