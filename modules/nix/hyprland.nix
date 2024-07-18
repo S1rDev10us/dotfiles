@@ -1,15 +1,10 @@
 {
   pkgs,
   lib,
-  config,
   opts,
   ...
 }:
 lib.mkIf opts.environment.hyprland.enable {
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
   programs.hyprland = {
     enable = true;
     xwayland = {
@@ -29,6 +24,9 @@ lib.mkIf opts.environment.hyprland.enable {
     wayland-utils
     wl-clipboard
     wlroots
+    libnotify
+    networkmanagerapplet
+    hypridle
   ];
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   nixpkgs.overlays = [
@@ -42,8 +40,18 @@ lib.mkIf opts.environment.hyprland.enable {
     nerdfonts
     meslo-lgs-nf
   ];
-  # Screensharing
-  services.dbus.enable = true;
+  fonts.fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
+  services = {
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    blueman.enable = true;
+
+    # Screensharing
+    dbus.enable = true;
+  };
+  security.pam.services.hyprlock = {};
   xdg.portal = {
     enable = true;
     wlr.enable = true;
