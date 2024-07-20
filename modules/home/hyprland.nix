@@ -326,6 +326,8 @@ lib.mkIf opts.environment.hyprland.enable {
         # https://wiki.hyprland.org/Configuring/Binds/#media
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl s -n=10% 5%-"
       ];
       bindl = [
         # https://wiki.hyprland.org/Configuring/Binds/#media

@@ -27,6 +27,7 @@ lib.mkIf opts.environment.hyprland.enable {
     libnotify
     networkmanagerapplet
     hypridle
+    brightnessctl
   ];
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   nixpkgs.overlays = [
