@@ -19,6 +19,7 @@ lib.mkIf opts.coding.enable {
       nixd
       nil
       alejandra
+      fzf
     ];
     withNodeJs = true;
   };
