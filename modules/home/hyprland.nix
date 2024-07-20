@@ -276,7 +276,7 @@ lib.mkIf opts.environment.hyprland.enable {
         movefocus = binding "SUPER" "movefocus";
         movewindow = binding "SUPER&CTRL" "movewindow";
         goToWorkspace = binding "SUPER" "workspace";
-        # movewindowtoworkspace = binding "SUPER SHIFT" "movetoworkspace";
+        moveWindowToWorkspace = binding "SUPER SHIFT" "movetoworkspace";
         # exec = "exec, ags -b hypr";
       in
         [
@@ -297,6 +297,7 @@ lib.mkIf opts.environment.hyprland.enable {
           # App switcher
           "SUPER, Tab, exec, pkill rofi || rofi -show window"
         ]
+        ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
         ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10);
       bindm = [
         "SUPER, mouse:272, movewindow"
