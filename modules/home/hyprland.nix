@@ -195,7 +195,6 @@ lib.mkIf opts.environment.hyprland.enable {
     # plugins=[];
 
     settings = {
-      "debug:disable_logs" = false;
       exec-once = let
         bash = command: "bash \"${command}\"";
       in [
