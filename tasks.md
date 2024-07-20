@@ -38,6 +38,9 @@
 
 ## Upgrades
 
+- [ ] When playing worldless on xbox controller extra rumbles play after an intended rumble
+  - This probably needs an extra driver to be installed
+  - It feels like the rumbles are some kind of testing rumble to see if all the different rumbles are working correctly
 - Convert various package installs to modules
   - [ ] obs-studio
   - [ ] thunderbird
