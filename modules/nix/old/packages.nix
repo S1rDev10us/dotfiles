@@ -16,6 +16,7 @@
       thunderbird
       discord
       obsidian
+      krita
     ]);
   unfreePackages = with pkgs; [
     discord

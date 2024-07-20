@@ -90,7 +90,7 @@
 - [ ] Use krunner / anyrunner instead of rofi?
 - [ ] OBS
 - [ ] Aseprite (I have it with steam but I think I saw it as a module which could be better?)
-- [ ] Krita
+- [x] Krita
 - [x] Discord
 - [x] Thunderbird
 - [x] KeePassXC
