@@ -1,10 +1,16 @@
 {...}: {
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        font = "JetbrainsMonoNF:size=10";
+  programs = {
+    foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "JetbrainsMonoNF:size=10";
+        };
       };
+    };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
     };
   };
 }
