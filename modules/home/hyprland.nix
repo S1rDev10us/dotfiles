@@ -88,6 +88,10 @@ lib.mkIf opts.environment.hyprland.enable {
               # Firefox #
               ###########
               "((.*) — )?Mozilla Firefoxꯍ.*" = "󰈹 $2";
+              #########
+              # Empty #
+              #########
+              "ꯍꯍꯍ" = "";
             };
           };
           "hyprland/workspaces" = {
