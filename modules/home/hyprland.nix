@@ -199,6 +199,7 @@ lib.mkIf opts.environment.hyprland.enable {
         (bash "waybar &")
         (bash "dunst &")
         (bash "nm-applet &")
+        (bash "firefox &")
       ];
       monitor = [
         ",preferred,auto,auto"
@@ -267,6 +268,7 @@ lib.mkIf opts.environment.hyprland.enable {
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
+        "workspace 2, class:firefox"
       ];
       workspace = builtins.genList (i: "${builtins.toString (i + 1)}, persistent:true") 10;
 

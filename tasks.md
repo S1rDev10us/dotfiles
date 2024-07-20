@@ -45,10 +45,10 @@
   - [ ] obs-studio
   - [ ] thunderbird
 - When using Hyprland
-  - [ ] Automatically spawn Obsidian in my vault in a specific desktop
-  - [ ] Automatically spawn Firefox in a desktop
-  - [ ] Automatically spawn Thunderbird in a specific desktop
-  - [ ] Automatically spawn terminal (foot) in a desktop (Should I spawn that in a special desktop so I can pull it up with a keybind?)
+  - [ ] Automatically spawn and move Obsidian in my vault in a specific desktop
+  - [x] Automatically spawn and move Firefox in a desktop
+  - [ ] Automatically spawn and move Thunderbird in a specific desktop
+  - [ ] Automatically spawn and move terminal (foot) in a desktop (Should I spawn that in a special desktop so I can pull it up with a keybind?)
   - [ ] Theme the icons for waybar workspaces such that they represent these specific meanings
 - [x] Configure user accounts under `users.users.${name}.whatever`
   - I could go back to the old way of extending the host config with the user config
