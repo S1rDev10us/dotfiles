@@ -20,6 +20,7 @@ lib.mkIf opts.coding.enable {
       nil
       alejandra
       fzf
+      ripgrep
     ];
     withNodeJs = true;
   };
