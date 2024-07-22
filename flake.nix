@@ -59,20 +59,19 @@
     });
 
     nixosConfigurations =
-      builtins.listToAttrs
-      (builtins.map
-        (host: let
+      lib.genAttrs hosts
+      (
+        host: let
           evaluatedOptions = libx.getHostSettings host;
-        in {
-          name = host;
-          value = libx.makeHost {
+        in
+          libx.makeHost {
             inherit host;
             evaluatedOptions = evaluatedOptions.config;
             stateVersion = evaluatedOptions.config.stateVersion;
             specialArgs = parameters;
-          };
-        })
-        hosts);
+          }
+      );
+
     homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map
       (
         host: let
@@ -95,11 +94,11 @@
 
     devShells = let
       allSystems = ["x86_64-linux"];
-      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {pkgs = import nixpkgs {inherit system;};});
+      forAllSystems = f: lib.genAttrs allSystems (system: f {systemPkgs = pkgs.legacyPackages.${system};});
     in
-      forAllSystems ({pkgs}: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
+      forAllSystems ({systemPkgs}: {
+        default = systemPkgs.mkShell {
+          packages = with systemPkgs; [
             just
             alejandra
           ];
