@@ -271,7 +271,7 @@ lib.mkIf opts.environment.hyprland.enable {
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
-        "workspace 2, class:firefox"
+        "workspace 2 silent, class:firefox"
       ];
       workspace = builtins.genList (i: "${builtins.toString (i + 1)}, persistent:true") 10;
 
