@@ -228,9 +228,10 @@ lib.mkIf opts.environment.hyprland.enable {
         rounding = 10;
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 5;
+          passes = 2;
           vibrancy = 0.1696;
+          brightness = 0.5;
         };
         drop_shadow = true;
         shadow_range = 4;
