@@ -44,6 +44,20 @@
     };
     options = libx.allModulesFrom ./options;
   in {
+    templates = lib.genAttrs (libx.allFrom ./templates) (template: let
+      templateFolder = ./templates/${template};
+      templateFlake = templateFolder + "/flake.nix";
+    in {
+      path = templateFolder;
+      description = let
+        templateFlakeExists = builtins.pathExists templateFlake;
+        placeholderDescription = "Template for ${template}";
+      in
+        if templateFlakeExists
+        then ({description = placeholderDescription;} // import templateFlake).description
+        else placeholderDescription;
+    });
+
     nixosConfigurations =
       builtins.listToAttrs
       (builtins.map
