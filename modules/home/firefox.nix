@@ -17,6 +17,22 @@ lib.mkIf opts.GUI.enable {
           Bing.metaData.hidden = true;
           Google.metaData.hidden = true;
           eBay.metaData.hidden = true;
+          Github = {
+            urls = [
+              {
+                template = "https://github.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            iconUpdateUrl = "https://github.com/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            aliases = ["@gh"];
+          };
         };
       };
     };
