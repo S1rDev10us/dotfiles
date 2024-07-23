@@ -198,10 +198,10 @@ lib.mkIf opts.environment.hyprland.enable {
       exec-once = let
         bash = command: "bash \"${command}\"";
       in [
-        "hyprpaper"
-        "dunst"
-        "nm-applet"
-        "firefox"
+        "hyprpaper &"
+        "dunst &"
+        "nm-applet &"
+        "firefox &"
       ];
       monitor = [
         ",preferred,auto,auto"
