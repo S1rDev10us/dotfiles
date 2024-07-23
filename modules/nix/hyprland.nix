@@ -14,9 +14,6 @@ lib.mkIf opts.environment.hyprland.enable {
     };
   };
   environment.systemPackages = with pkgs; [
-    # swww # for wallpapers (using hyprpaper for now)
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
     xwayland
     waybar
     meson
