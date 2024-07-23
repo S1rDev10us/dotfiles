@@ -7,11 +7,7 @@
 lib.mkIf opts.environment.hyprland.enable {
   programs.hyprland = {
     enable = true;
-    xwayland = {
-      # hidpi = true; #  XWayland patches are deprecated https://wiki.hyprland.org/Configuring/XWayland
-
-      enable = true;
-    };
+    xwayland.enable = true;
   };
   environment.systemPackages = with pkgs; [
     xwayland
