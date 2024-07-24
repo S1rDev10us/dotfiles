@@ -302,7 +302,7 @@ lib.mkIf opts.environment.hyprland.enable {
           # App switcher
           "SUPER, Tab, exec, pkill rofi || rofi -show window"
           # Open terminal
-          "SUPER, RETURN, exec, foot"
+          "SUPER, RETURN, exec, [float; center] foot"
         ]
         ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
         ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10);
