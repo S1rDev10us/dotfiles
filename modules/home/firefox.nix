@@ -49,7 +49,7 @@ lib.mkIf opts.GUI.enable {
         Pocket = false;
         Snippets = false;
       };
-      HttpsOnlyMode = "enabled";
+      HttpsOnlyMode = "force_enabled";
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
     };
