@@ -74,6 +74,7 @@
 
 ### Security
 
+- [ ] Setup ClamAV and potentially add systemd task to run it automatically
 - [ ] Disable logging into root and add a local admin account
 - [ ] Various security hardening
   - [ ] https://github.com/fufexan/dotfiles/blob/e85f77b1ab197e6bb4f7c8861305a02db2ea38df/system/core/security.nix
