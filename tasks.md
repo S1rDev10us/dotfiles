@@ -87,6 +87,7 @@
 
 ### Package additions
 
+- [ ] Switch to using ags instead of waybar
 - [ ] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [ ] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
