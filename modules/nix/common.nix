@@ -15,10 +15,6 @@
 
   time.timeZone = "Europe/London";
 
-  # services.xserver.layout = "gb,us";
-  services.xserver.xkb.layout = "gb,us";
-  console.keyMap = "uk";
-
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_GB.UTF-8";
