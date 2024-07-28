@@ -20,6 +20,10 @@
       url = "github:inclyc/flake-compat";
       flake = false;
     };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
