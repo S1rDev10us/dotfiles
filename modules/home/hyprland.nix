@@ -269,10 +269,23 @@ lib.mkIf opts.environment.hyprland.enable {
         force_default_wallpaper = 0;
       };
 
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-        "workspace 2 silent, class:firefox"
-      ];
+      windowrulev2 = let
+        mkRules = selector: rules: builtins.map (rule: rule + ", " + selector) rules;
+      in
+        [
+          "suppressevent maximize, class:.*"
+          "workspace 2 silent, class:firefox"
+        ]
+        # Place thunderbird notifications in the bottom right of the screen and don't focus it
+        ++ mkRules "class:thunderbird, title:^$" [
+          "move onscreen 100% 100%"
+          "noinitialfocus"
+        ]
+        # Float windows that aren't the main window or email composition windows
+        ++ mkRules "class:thunderbird, title:^(?!Write|Mozilla)" [
+          "float"
+          # "move 100% 100%"
+        ];
       workspace = builtins.genList (i: "${builtins.toString (i + 1)}, persistent:true") 10;
 
       bind = let
