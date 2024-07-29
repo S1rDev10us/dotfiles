@@ -29,7 +29,8 @@ in {
         default = "";
       };
     };
-    GUI.enable = mkEnableOption "gui packages";
+    # Automatically enables the default if one of the desktop environments (/window manager) is enabled
+    GUI.enable = (mkEnableOption "gui packages") // {default = with config.environment; lib.any (x: x) [hyprland.enable gnome.enable KDE.enable];};
     WSL.enable = mkEnableOption "WSL";
     VM.enable = mkEnableOption "Virtual Box guest support";
     users = lib.genAttrs (libx.allFrom ../users) (user: {
