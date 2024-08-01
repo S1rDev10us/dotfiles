@@ -48,8 +48,8 @@
     };
     options = libx.allModulesFrom ./options;
   in {
-    templates = lib.genAttrs (libx.allFrom ./templates) (template: let
-      templateFolder = ./templates/${template};
+    templates = lib.genAttrs (libx.allFrom ./resources/templates) (template: let
+      templateFolder = ./resources/templates/${template};
       templateFlake = templateFolder + "/flake.nix";
     in {
       path = templateFolder;
@@ -109,5 +109,6 @@
           ];
         };
       });
+    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {};
   };
 }
