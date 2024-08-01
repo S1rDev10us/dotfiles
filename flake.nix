@@ -105,6 +105,7 @@
           packages = with systemPkgs; [
             just
             alejandra
+            nodejs_22
           ];
         };
       });
