@@ -37,17 +37,19 @@
             wayland
             # For commitlint
             nodejs_22
+            # Command runner
+            just
           ]
           # For compiling to X11
           ++ (with xorg; [libX11 libXcursor libXi libXrandr]);
         shellHook = ''
-          rustup install stable
           npm install
           npm run prepare
           export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath (with pkgs; [
             alsaLib
             udev
             vulkan-loader
+            wayland
           ])}"
         '';
       };

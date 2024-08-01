@@ -1,0 +1,5 @@
+#!bin/sh
+cargo check
+cargo build
+cargo test
+cargo fmt --all
