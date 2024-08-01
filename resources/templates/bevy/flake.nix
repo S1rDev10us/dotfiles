@@ -1,11 +1,20 @@
 {
   description = "A basic template for bevy projects";
   inputs = {
-    pkgs.url = "nixpkgs/24.05";
+    nixpkgs.url = "nixpkgs/24.05";
+    rust-overlay = {
+      src = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = {nixpkgs, ...}: let
+  outputs = {
+    nixpkgs,
+    rust-overlay,
+    ...
+  }: let
     allSystems = ["x86_64-linux"];
-    forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {pkgs = import nixpkgs {inherit system;};});
+    overlays = [(import rust-overlay)];
+    forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {pkgs = import nixpkgs {inherit system overlays;};});
   in {
     devShells = forAllSystems ({pkgs}: {
       default = pkgs.mkShell rec {
@@ -14,9 +23,7 @@
             pkg-config
             lld
             # rust
-            cargo
-            rustup
-            clippy
+            (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
             # Bevy
             udev
             alsa-lib
