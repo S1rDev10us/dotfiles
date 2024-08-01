@@ -4,8 +4,11 @@
   inputs,
   lib,
   pkgs,
+  opts,
   ...
 }: {
+  hardware.opengl.enable = lib.mkForce opts.GUI.enable;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Packages required to run flakes (not to edit them)
   environment.systemPackages = with pkgs; [home-manager];
