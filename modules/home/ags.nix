@@ -5,12 +5,14 @@
   lib,
   config,
   ...
-}: {
+}: let
+  agsPackage = config.programs.ags.finalPackage;
+in {
   imports = [inputs.ags.homeManagerModules.default];
   config = lib.mkIf opts.environment.hyprland.enable {
     programs.ags = {
       enable = true;
-      configDir = "${pkgs.callPackage ../../resources/ags-dots/default.nix {}}";
+      configDir = "${pkgs.callPackage ../../resources/ags-dots/default.nix {ags = agsPackage;}}";
       extraPackages = import ../../resources/ags-dots/dependencies.nix {inherit pkgs;};
     };
     systemd.user.services.ags = {
@@ -19,7 +21,7 @@
         PartOf = ["hyprland-session.target"];
       };
       Service = {
-        ExecStart = "${config.programs.ags.finalPackage}/bin/ags";
+        ExecStart = "${agsPackage}/bin/ags";
         Restart = "on-failure";
       };
       Install.WantedBy = ["hyprland-session.target"];

@@ -109,6 +109,6 @@
           ];
         };
       });
-    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {};
+    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {ags = inputs.ags.packages.x86_64-linux.default;};
   };
 }
