@@ -1,0 +1,20 @@
+.bar {
+  min-height: 16pt;
+  > * {
+    .workspaces button {
+      background-color: transparent;
+      border: none;
+      margin-right: 2.5px;
+      font-size: 0;
+      padding: 0;
+      label {
+        background-color: white;
+        min-width: calc(16pt / 3);
+        min-height: calc(16pt / 3);
+        margin: calc(16pt / 3) 0;
+        border-radius: 50%;
+        font-size: 0;
+      }
+    }
+  }
+}

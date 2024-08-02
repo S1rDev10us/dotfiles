@@ -10,8 +10,8 @@
   config = lib.mkIf opts.environment.hyprland.enable {
     programs.ags = {
       enable = true;
-      configDir = "${pkgs.callPackage ../../resources/ags/default.nix {}}";
-      extraPackages = import ../../resources/ags/dependencies.nix {inherit pkgs;};
+      configDir = "${pkgs.callPackage ../../resources/ags-dots/default.nix {}}";
+      extraPackages = import ../../resources/ags-dots/dependencies.nix {inherit pkgs;};
     };
     systemd.user.services.ags = {
       Unit = {

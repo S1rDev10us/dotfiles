@@ -1,0 +1,33 @@
+const hyprland = await Service.import("hyprland");
+
+export const focusedTitle = Widget.Label({
+  label: hyprland.active.client.bind("title"),
+  visible: hyprland.active.client.bind("address").as((addr) => !!addr),
+});
+
+export const changeWorkspace = (/** @type {string|number}*/ ws) =>
+  hyprland.messageAsync(`dispatch workspace ${ws}`);
+
+export const Workspaces = () =>
+  Widget.EventBox({
+    onScrollUp: () => changeWorkspace("+1"),
+    onScrollDown: () => changeWorkspace("-1"),
+    "class-names": ["workspaces"],
+    child: Widget.Box({
+      children: Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
+        Widget.Button({
+          attribute: i,
+          child: Widget.Label({}),
+          onClicked: () => changeWorkspace(i),
+          setup: (self) =>
+            self.hook(hyprland, () => {
+              self.toggleClassName("active", hyprland.active.workspace.id == i);
+              self.toggleClassName(
+                "hasWindows",
+                (hyprland.getWorkspace(i)?.windows || 0) > 0,
+              );
+            }),
+        }),
+      ),
+    }),
+  });
