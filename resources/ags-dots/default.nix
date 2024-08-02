@@ -1,12 +1,19 @@
 {
   stdenv,
+  pkgs,
   bun,
   rsync,
   ags,
   bash,
   dart-sass,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation
+(let
+  agsPackage = ags.override {
+    extraPackages = import ./dependencies.nix {inherit pkgs;};
+    buildTypes = true;
+  };
+in {
   pname = "ags-dots";
   version = "0.0.3";
   src = ./.;
@@ -14,7 +21,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     echo "Linking ags types to local types"
-    ln -s ${ags}/share/com.github.Aylur.ags/types ./types
+    ln -s ${agsPackage}/share/com.github.Aylur.ags/types ./types
 
     echo "Building with bun"
     bun build ./config.ts --outdir ./result/js --external 'resource://*' --external 'gi://*'
@@ -43,7 +50,7 @@ stdenv.mkDerivation {
     mkdir $out/bin
     cat > $out/bin/ags-dots << EOF
     #!${bash}/bin/bash
-    ${ags}/bin/ags -q && ${ags}/bin/ags -c $out/config.js
+    ${agsPackage}/bin/ags -q && ${agsPackage}/bin/ags -c $out/config.js
     EOF
 
     runHook postInstall
@@ -53,5 +60,5 @@ stdenv.mkDerivation {
     echo "Making convience output script executable"
     chmod +x $out/bin/ags-dots
   '';
-  buildInputs = [bun rsync dart-sass ags];
-}
+  buildInputs = [bun rsync dart-sass agsPackage];
+})
