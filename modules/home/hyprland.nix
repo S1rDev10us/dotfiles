@@ -98,6 +98,7 @@ lib.mkIf opts.environment.hyprland.enable {
         "hyprpaper &"
         "dunst &"
         "nm-applet &"
+        "blueman-applet &"
         "firefox &"
       ];
       monitor = [
