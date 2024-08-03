@@ -99,7 +99,7 @@ lib.mkIf opts.environment.hyprland.enable {
         "[workspace 2 silent] firefox"
       ];
       monitor = [
-        ",preferred,auto,auto"
+        ",preferred,auto,1"
       ];
       input = {
         kb_layout = "gb";
