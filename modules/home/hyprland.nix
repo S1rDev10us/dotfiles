@@ -92,13 +92,11 @@ lib.mkIf opts.environment.hyprland.enable {
     # plugins=[];
 
     settings = {
-      exec-once = let
-        bash = command: "bash \"${command}\"";
-      in [
-        "hyprpaper &"
-        "nm-applet &"
-        "blueman-applet &"
-        "firefox &"
+      exec-once = [
+        "hyprpaper"
+        "nm-applet"
+        "blueman-applet"
+        "[workspace 2 silent] firefox"
       ];
       monitor = [
         ",preferred,auto,auto"
@@ -171,7 +169,7 @@ lib.mkIf opts.environment.hyprland.enable {
       in
         [
           "suppressevent maximize, class:.*"
-          "workspace 2 silent, class:firefox"
+          # "workspace 2 silent, class:firefox"
         ]
         # Place thunderbird notifications in the bottom right of the screen and don't focus it
         ++ mkRules "class:thunderbird, title:^$" [
