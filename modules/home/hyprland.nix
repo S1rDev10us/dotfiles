@@ -96,7 +96,6 @@ lib.mkIf opts.environment.hyprland.enable {
         bash = command: "bash \"${command}\"";
       in [
         "hyprpaper &"
-        "dunst &"
         "nm-applet &"
         "blueman-applet &"
         "firefox &"
