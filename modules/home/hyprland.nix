@@ -189,7 +189,6 @@ lib.mkIf opts.environment.hyprland.enable {
         movewindow = binding "SUPER&CTRL" "movewindow";
         goToWorkspace = binding "SUPER" "workspace";
         moveWindowToWorkspace = binding "SUPER SHIFT" "movetoworkspace";
-        # exec = "exec, ags -b hypr";
       in
         [
           "SUPER, F, togglefloating"
