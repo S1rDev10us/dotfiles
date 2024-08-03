@@ -24,10 +24,13 @@
 
 ### Amphisbaena
 
-- [ ] Check what the error is in the boot (and shutdown) sequence (Looked to be something about "ACPI" I think, I'll need to record the boot sequence to see what it says)
+- [/] Check what the error is in the boot (and shutdown) sequence (Looked to be something about "ACPI" I think, I'll need to record the boot sequence to see what it says)
+  - Can look at the error with `journalctl -b` (`journalctl` -boot presumably?)
+  - It appears to be some energy/power saving and underclocking features.
+    - This would make sense with how hot my computer gets when it's plugged in even at low processor levels
 - [ ] Look at what hardware specific options need to be set for my laptop
   - https://github.com/NixOS/nixos-hardware/tree/master/asus/zenbook/ux371
-- [ ] Setup battery management (tlp?)
+- [/] Setup battery management (tlp?)
   - https://wiki.nixos.org/wiki/Laptop
 
 ## Maintenence
@@ -89,13 +92,13 @@
 ### Package additions
 
 - [ ] Add [Freetube](https://freetubeapp.io/) https://mynixos.com/home-manager/options/programs.freetube
-- [ ] Switch to using ags instead of waybar
+- [/] Switch to using ags instead of waybar
 - [ ] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
-- [ ] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
+- [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
 - [ ] Use krunner / anyrunner instead of rofi?
-- [ ] OBS
-- [ ] Aseprite (I have it with steam but I think I saw it as a module which could be better?)
+- [x] OBS
+- [-] Aseprite (I have it with steam but I think I saw it as a module which could be better?)
 - [x] Krita
 - [x] Discord
 - [x] Thunderbird
@@ -135,8 +138,8 @@
     - [ ] Antivirus
     - [x] Doas
     - [x] Firefox
-      - [/] With policies
-        - [ ] Setup custom homepage
+      - [x] With policies
+        - [-] Setup custom homepage
           - https://mozilla.github.io/policy-templates/#hompage
           - https://old.reddit.com/r/startpages
       - [ ] With extensions
