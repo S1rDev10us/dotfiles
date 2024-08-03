@@ -166,16 +166,15 @@ lib.mkIf opts.environment.hyprland.enable {
 
       windowrulev2 = let
         mkRules = selector: rules: builtins.map (rule: rule + ", " + selector) rules;
+        notificationRules = ["move onscreen 100% 100%" "noinitialfocus"];
       in
         [
           "suppressevent maximize, class:.*"
           # "workspace 2 silent, class:firefox"
         ]
+        ++ mkRules "class:\.blueman-applet-wrapped" notificationRules
         # Place thunderbird notifications in the bottom right of the screen and don't focus it
-        ++ mkRules "class:thunderbird, title:^$" [
-          "move onscreen 100% 100%"
-          "noinitialfocus"
-        ]
+        ++ mkRules "class:thunderbird, title:^$" notificationRules
         # Float windows that aren't the main window or email composition windows
         ++ mkRules "class:thunderbird, title:^(?!Write|Mozilla)" [
           "float"
