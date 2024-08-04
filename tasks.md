@@ -93,7 +93,7 @@
 
 - [ ] Add [Freetube](https://freetubeapp.io/) https://mynixos.com/home-manager/options/programs.freetube
 - [/] Switch to using ags instead of waybar
-- [ ] Add BTop for system monitor
+- [x] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
 - [ ] Use krunner / anyrunner instead of rofi?
@@ -131,7 +131,7 @@
     - [x] Audio
     - [x] Grub
     - [/] Misc apps
-      - [ ] Partition manager
+      - [x] Partition manager
         - GParted
     - [x] Printing
     - [x] Network manager

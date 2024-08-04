@@ -6,6 +6,7 @@
 }: {
   environment.systemPackages = with pkgs;
     [
+      btop
     ]
     ++ (lib.optionals opts.GUI.enable [
       keepassxc
@@ -17,6 +18,8 @@
       discord
       obsidian
       krita
+      libreoffice
+      gparted
     ]);
   unfreePackages = with pkgs; [
     discord
