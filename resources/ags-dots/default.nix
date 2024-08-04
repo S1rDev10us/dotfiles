@@ -27,7 +27,7 @@ in {
     bun build ./config.ts --outdir ./result/js --external 'resource://*' --external 'gi://*'
 
     echo "Building with sass"
-    sass --trace 'style':'result/css'
+    sass --trace style/style.scss style.css
 
     runHook postBuild
   '';
@@ -38,13 +38,10 @@ in {
     mkdir $out
 
     echo "Copying most files using rsync"
-    rsync -av --del --exclude '*.js' --exclude '*.ts' --exclude '*.scss' --exclude 'result/***' ./ $out/
+    rsync -avm --del --exclude '*.js' --exclude '*.ts' --exclude '*.scss' --exclude 'result/***' ./ $out/
 
     echo "Copying js"
     cp -r ./result/js/* $out
-
-    echo "Copying css"
-    cp -r ./result/css/* $out
 
     echo "Creating convience output script"
     mkdir $out/bin
