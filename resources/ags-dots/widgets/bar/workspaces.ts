@@ -5,7 +5,7 @@ export const focusedTitle = Widget.Label({
   visible: hyprland.active.client.bind("address").as((addr) => !!addr),
 });
 
-export const changeWorkspace = (/** @type {string|number}*/ ws) =>
+export const changeWorkspace = (ws: number | string) =>
   hyprland.messageAsync(`dispatch workspace ${ws}`);
 
 export const Workspaces = () =>
