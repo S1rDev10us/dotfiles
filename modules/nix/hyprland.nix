@@ -21,6 +21,7 @@ lib.mkIf opts.environment.hyprland.enable {
     networkmanagerapplet
     hypridle
     brightnessctl
+    grimblast
   ];
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   nixpkgs.overlays = [
