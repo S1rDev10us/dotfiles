@@ -17,11 +17,12 @@ in {
   pname = "ags-dots";
   version = "0.0.3";
   src = ./.;
-  buildPhase = ''
-    runHook preBuild
-
+  preBuild = ''
     echo "Linking ags types to local types"
     ln -s ${agsPackage}/share/com.github.Aylur.ags/types ./types
+  '';
+  buildPhase = ''
+    runHook preBuild
 
     echo "Building with bun"
     bun build ./config.ts --outdir ./result/js --external 'resource://*' --external 'gi://*'
