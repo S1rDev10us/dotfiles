@@ -17,7 +17,11 @@ export const Workspaces = () =>
       children: Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
         Widget.Button({
           attribute: i,
-          child: Widget.Label({}),
+          child: Widget.Label({
+            label: hyprland
+              .bind("workspaces")
+              .as((_) => `${hyprland.getWorkspace(i)?.windows || ""}`),
+          }),
           onClicked: () => changeWorkspace(i),
           setup: (self) =>
             self.hook(hyprland, () => {
