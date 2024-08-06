@@ -5,6 +5,9 @@
   ...
 }:
 lib.mkIf opts.environment.hyprland.enable {
+  home.packages = with pkgs; [
+    swww
+  ];
   programs = {
     hyprlock = {
       enable = true;
@@ -97,6 +100,7 @@ lib.mkIf opts.environment.hyprland.enable {
         "nm-applet"
         "blueman-applet"
         "[workspace 2 silent] firefox"
+        "swww-daemon"
       ];
       monitor = [
         ",preferred,auto,1"

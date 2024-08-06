@@ -153,4 +153,4 @@
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
 - [/] yazi https://yazi-rs.github.io/features https://mynixos.com/home-manager/options/programs.yazi
-- [ ] replace hyprpaper with swww (Because swww has a cool background switch animation)
+- [/] replace hyprpaper with swww (Because swww has a cool background switch animation)
