@@ -1,10 +1,5 @@
 const hyprland = await Service.import("hyprland");
 
-export const focusedTitle = Widget.Label({
-  label: hyprland.active.client.bind("title"),
-  visible: hyprland.active.client.bind("address").as((addr) => !!addr),
-});
-
 export const changeWorkspace = (ws: number | string) =>
   hyprland.messageAsync(`dispatch workspace ${ws}`);
 
@@ -39,3 +34,4 @@ export const Workspaces = () =>
       ),
     }),
   });
+export default Workspaces;

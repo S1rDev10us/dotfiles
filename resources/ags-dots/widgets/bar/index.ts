@@ -1,4 +1,5 @@
-import { focusedTitle, Workspaces } from "./workspaces";
+import Workspaces from "./workspaces";
+import AppTitle from "./appTitle";
 
 const time = Variable(new Date(), {
   poll: [
@@ -17,7 +18,7 @@ export const Bar = (monitor: number) =>
     "class-names": ["background", "bar"],
     child: Widget.CenterBox({
       start_widget: Workspaces(),
-      center_widget: focusedTitle,
+      center_widget: AppTitle(),
       end_widget: Widget.Label({
         label: time.bind().as((date) => date.toLocaleTimeString()),
         "tooltip-text": time.bind().as((date) => date.toLocaleDateString()),
