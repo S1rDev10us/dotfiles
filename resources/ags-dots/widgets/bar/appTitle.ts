@@ -12,6 +12,8 @@ function getIconFromTitle(window: string) {
   return window;
 }
 
+const MAX_TITLE_LENGTH = 150;
+
 export const AppTitle = () =>
   Widget.Box({
     setup: (self) => {
@@ -30,7 +32,13 @@ export const AppTitle = () =>
         }
       }),
       Widget.Label({
-        label: hyprland.active.client.bind("title"),
+        label: hyprland.active.client
+          .bind("title")
+          .as((title) =>
+            title.length <= MAX_TITLE_LENGTH
+              ? title
+              : title.substring(0, MAX_TITLE_LENGTH - 1) + "…",
+          ),
         visible: hyprland.active.client.bind("address").as((addr) => !!addr),
       }),
     ],
