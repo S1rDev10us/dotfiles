@@ -102,7 +102,7 @@ dotfiles
   - `hyprland.enable` = enable hyprland
   - `gnome.enable` = enable gnome
   - `KDE.enable` = enable KDE
-- `fun.enable` = enable fun tools like [eDex ui](https://github.com/GitSquared/edex-ui/tree/v2.2.8)
+- `fun.enable` = enable fun tools like fastfetch
 - `gamedev.enable` = enable game development tools
 - `gaming.enable` = enable games
 - `grub`

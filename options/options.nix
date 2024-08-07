@@ -18,7 +18,7 @@ in {
       gnome.enable = mkEnableOption "gnome";
       KDE.enable = mkEnableOption "KDE";
     };
-    fun.enable = mkEnableOption "fun tools like `eDex-ui`";
+    fun.enable = mkEnableOption "fun tools like `fastfetch`";
     gamedev.enable = mkEnableOption "game development tools";
     gaming.enable = mkEnableOption "games";
     grub = {
