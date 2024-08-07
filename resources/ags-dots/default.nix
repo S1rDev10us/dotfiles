@@ -39,7 +39,15 @@ in {
     mkdir $out
 
     echo "Copying most files using rsync"
-    rsync -avm --del --exclude '*.js' --exclude '*.ts' --exclude '*.scss' --exclude 'result/***' ./ $out/
+    rsync -avm --del \
+      --exclude '*.js' \
+      --exclude '*.ts' \
+      --exclude '*.scss' \
+      --exclude '*.nix' \
+      --exclude 'tsconfig.json' \
+      --exclude 'result' \
+      --exclude 'types' \
+      ./ $out/
 
     echo "Copying js"
     cp -r ./result/js/* $out
