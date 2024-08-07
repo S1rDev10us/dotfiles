@@ -18,9 +18,13 @@ export const Workspaces = () =>
         Widget.Button({
           attribute: i,
           child: Widget.Label({
-            label: hyprland
-              .bind("workspaces")
-              .as((_) => `${hyprland.getWorkspace(i)?.windows || ""}`),
+            label: hyprland.active.workspace
+              .bind("id")
+              .as((workspaceId) =>
+                workspaceId != i
+                  ? hyprland.getWorkspace(i)?.name || i.toString()
+                  : "",
+              ),
           }),
           onClicked: () => changeWorkspace(i),
           setup: (self) =>
