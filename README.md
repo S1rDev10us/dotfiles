@@ -108,7 +108,7 @@ dotfiles
 - `grub`
   - `enable` = enable grub
   - `useEfi` = enable grub EFI support
-  - `windowsLocation` = uuid of windows partition 
+  - `windowsLocation` = uuid of windows partition
 - `GUI.enable` = enable GUI packages
 - `WSL.enable` = enable WSL support
 - `VM.enable` = enable vm support
@@ -149,3 +149,7 @@ Reference for self:
 - [Method of loading all files easily](https://github.com/donovanglover/nix-config/blob/master/flake.nix)
 - [helpful guide for separating home manager and NixOS](https://jdisaacs.com/blog/nixos-config/)
 <!-- -->
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/S1rDev10us/dotfiles.svg?variant=adaptive)](https://starchart.cc/S1rDev10us/dotfiles)
