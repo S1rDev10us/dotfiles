@@ -107,6 +107,10 @@
             alejandra
             nodejs_22
           ];
+          shellHook = ''
+            echo "linking types"
+            ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/types
+          '';
         };
       });
     packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {ags = inputs.ags.packages.x86_64-linux.default;};
