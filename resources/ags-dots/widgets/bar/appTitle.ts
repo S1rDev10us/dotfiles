@@ -19,6 +19,10 @@ export const AppTitle = () =>
     setup: (self) => {
       self.toggleClassName("windowTitle", true);
     },
+    hpack: "center",
+    visible: hyprland.active.client
+      .bind("class")
+      .as((clientClass) => clientClass.length != 0),
     children: [
       Widget.Icon({}).hook(hyprland.active.client, (self) => {
         let client = hyprland.active.client;
@@ -39,7 +43,6 @@ export const AppTitle = () =>
               ? title
               : title.substring(0, MAX_TITLE_LENGTH - 1) + "…",
           ),
-        visible: hyprland.active.client.bind("address").as((addr) => !!addr),
       }),
     ],
   });
