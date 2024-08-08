@@ -23,6 +23,10 @@ function mapTitle(title: string) {
 }
 
 const MAX_TITLE_LENGTH = 150;
+const UNKNOWN_APP_ICON = Utils.lookUpIcon(
+  "application-x-executable",
+  128,
+)?.load_icon();
 
 export const AppTitle = () =>
   Widget.Box({
@@ -39,10 +43,17 @@ export const AppTitle = () =>
         let classIcon = Utils.lookUpIcon(getIconFromClass(client.class), 128);
         let titleIcon = Utils.lookUpIcon(getIconFromTitle(client.title), 128);
 
-        self.visible = classIcon != null || titleIcon != null;
-        if (self.visible) {
-          self.icon =
-            titleIcon != null ? titleIcon.load_icon() : classIcon!.load_icon();
+        self.visible = true;
+        if (titleIcon) {
+          self.icon = titleIcon.load_icon();
+        } else if (classIcon) {
+          self.icon = classIcon.load_icon();
+        } else {
+          if (UNKNOWN_APP_ICON) {
+            self.icon = UNKNOWN_APP_ICON;
+          } else {
+            self.visible = false;
+          }
         }
       }),
       Widget.Label({
