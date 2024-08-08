@@ -21,6 +21,7 @@ lib.mkIf opts.coding.enable {
       alejandra
       fzf
       ripgrep
+      lazygit
     ];
     withNodeJs = true;
   };
