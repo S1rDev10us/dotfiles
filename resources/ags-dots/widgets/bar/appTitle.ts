@@ -39,24 +39,34 @@ export const AppTitle = () =>
       .as((clientClass) => clientClass.length != 0),
     class_name: "background panel",
     children: [
-      Widget.Icon({}).hook(hyprland.active.client, (self) => {
-        let client = hyprland.active.client;
+      Widget.Icon({
+        setup: (self) => {
+          self.hook(hyprland.active.client, (self) => {
+            let client = hyprland.active.client;
 
-        let classIcon = Utils.lookUpIcon(getIconFromClass(client.class), 128);
-        let titleIcon = Utils.lookUpIcon(getIconFromTitle(client.title), 128);
+            let classIcon = Utils.lookUpIcon(
+              getIconFromClass(client.class),
+              128,
+            );
+            let titleIcon = Utils.lookUpIcon(
+              getIconFromTitle(client.title),
+              128,
+            );
 
-        self.visible = true;
-        if (titleIcon) {
-          self.icon = titleIcon.load_icon();
-        } else if (classIcon) {
-          self.icon = classIcon.load_icon();
-        } else {
-          if (UNKNOWN_APP_ICON) {
-            self.icon = UNKNOWN_APP_ICON;
-          } else {
-            self.visible = false;
-          }
-        }
+            self.visible = true;
+            if (titleIcon) {
+              self.icon = titleIcon.load_icon();
+            } else if (classIcon) {
+              self.icon = classIcon.load_icon();
+            } else {
+              if (UNKNOWN_APP_ICON) {
+                self.icon = UNKNOWN_APP_ICON;
+              } else {
+                self.visible = false;
+              }
+            }
+          });
+        },
       }),
       Widget.Label({
         label: hyprland.active.client.bind("title").as((title) => {
