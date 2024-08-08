@@ -88,11 +88,19 @@
   - [ ] https://wiki.nixos.org/wiki/Security
   - [ ] [Secure boot](https://github.com/nix-community/lanzaboote) ([wiki](https://wiki.nixos.org/wiki/Secure_Boot))
   - [ ] [Systemd hardening](https://wiki.nixos.org/wiki/Systemd/Hardening)
+  - [ ] https://github.com/cynicsketch/nix-mineral
 
 ### Package additions
 
 - [ ] Add [Freetube](https://freetubeapp.io/) https://mynixos.com/home-manager/options/programs.freetube
 - [/] Switch to using ags instead of waybar
+  - [ ] [Auto reload config](https://github.com/Aylur/ags/issues/92)
+    - https://github.com/Frontear/legacy-dotfiles/blob/main/home/frontear/.config/hypr/scripts/ags_load
+  - [ ] AI window?
+    - https://github.com/spector700/nixos-config/blob/da16e2a400b8170f6f790eab1711459099859ab0/pkgs/ags/widget/aiwindow/AiWindow.ts
+    - https://github.com/end-4/dots-hyprland/blob/main/.config/ags/modules/sideleft/apis/chatgpt.js
+  - [ ] cava integration
+    - https://github.com/ferrreo/ags-dots/blob/main/.config/ags/widgets/visualiser.js
 - [x] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
@@ -106,6 +114,8 @@
 - [x] Hyprland
   - [x] Setup options with home manager
   - [ ] Make sure it's working properly
+  - [ ] https://github.com/KZDKM/Hyprspace
+  - [ ] https://standards.hyprland.org/hyprcursor/
   - https://github.com/lbonn/rofi
   - https://github.com/Alexays/Waybar/wiki/Configuration
   - https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
@@ -119,6 +129,7 @@
     - [ ] Dependencies
       - [x] Rust
       - [ ] Fzf
+    - https://github.com/nix-community/nixvim
 - [ ] setup plymouth
 - [ ] Look at setting up impermanence https://www.youtube.com/watch?v=YPKwkWtK7l0
 - [ ] Take a look at [kando](https://github.com/kando-menu/kando)
