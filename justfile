@@ -29,9 +29,11 @@ format:
 check: format
    nix flake check 
 
+clean-light:
+    nix-collect-garbage
+    nix-store --optimise -v
 
 clean:
     nix-env --delete-generations +10
     home-manager expire-generations 5d
-    nix-collect-garbage
-    nix-store --optimise -v
+    @just clean-light
