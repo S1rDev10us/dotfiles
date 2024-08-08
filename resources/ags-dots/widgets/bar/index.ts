@@ -15,13 +15,21 @@ export const Bar = (monitor: number) =>
     name: `bar${monitor}`,
     anchor: ["top", "left", "right"],
     exclusivity: "exclusive",
-    "class-names": ["background", "bar"],
+    "class-names": ["bar"],
     child: Widget.CenterBox({
-      start_widget: Workspaces(),
+      start_widget: Widget.Box({
+        class_name: "background panel",
+        hpack: "start",
+        child: Workspaces(),
+      }),
       center_widget: AppTitle(),
-      end_widget: Widget.Label({
-        label: time.bind().as((date) => date.toLocaleTimeString()),
-        "tooltip-text": time.bind().as((date) => date.toLocaleDateString()),
+      end_widget: Widget.Box({
+        class_name: "background panel",
+        hpack: "end",
+        child: Widget.Label({
+          label: time.bind().as((date) => date.toLocaleTimeString()),
+          "tooltip-text": time.bind().as((date) => date.toLocaleDateString()),
+        }),
       }),
     }),
   });

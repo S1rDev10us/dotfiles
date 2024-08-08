@@ -37,9 +37,11 @@ export const AppTitle = () =>
     visible: hyprland.active.client
       .bind("class")
       .as((clientClass) => clientClass.length != 0),
+    class_name: "background panel",
     children: [
       Widget.Icon({}).hook(hyprland.active.client, (self) => {
         let client = hyprland.active.client;
+
         let classIcon = Utils.lookUpIcon(getIconFromClass(client.class), 128);
         let titleIcon = Utils.lookUpIcon(getIconFromTitle(client.title), 128);
 
