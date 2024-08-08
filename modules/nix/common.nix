@@ -7,6 +7,7 @@
   opts,
   ...
 }: {
+  security.polkit = lib.mkIf opts.GUI.enable {enable = true;};
   hardware.opengl.enable = lib.mkForce opts.GUI.enable;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
