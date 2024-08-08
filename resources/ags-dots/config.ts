@@ -4,9 +4,7 @@ import { Bar } from "widgets/bar/index";
 
 const bars = {};
 
-App.config({
-  style: "./style.css",
-});
+App.applyCss(App.configDir + "/style.css");
 
 function addMonitor(monitor: number) {
   if (bars[monitor]) return;
