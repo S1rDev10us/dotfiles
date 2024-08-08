@@ -12,6 +12,16 @@ function getIconFromTitle(window: string) {
   return window;
 }
 
+const stripTitleEndings = [" - NVIM", " — Mozilla Firefox"];
+function mapTitle(title: string) {
+  for (const titleEnding of stripTitleEndings) {
+    if (title.toLowerCase().endsWith(titleEnding.toLowerCase())) {
+      title = title.substring(0, title.length - titleEnding.length).trim();
+    }
+  }
+  return title;
+}
+
 const MAX_TITLE_LENGTH = 150;
 
 export const AppTitle = () =>
@@ -36,13 +46,12 @@ export const AppTitle = () =>
         }
       }),
       Widget.Label({
-        label: hyprland.active.client
-          .bind("title")
-          .as((title) =>
-            title.length <= MAX_TITLE_LENGTH
-              ? title
-              : title.substring(0, MAX_TITLE_LENGTH - 1) + "…",
-          ),
+        label: hyprland.active.client.bind("title").as((title) => {
+          title = mapTitle(title);
+          return title.length <= MAX_TITLE_LENGTH
+            ? title
+            : title.substring(0, MAX_TITLE_LENGTH - 1) + "…";
+        }),
       }),
     ],
   });
