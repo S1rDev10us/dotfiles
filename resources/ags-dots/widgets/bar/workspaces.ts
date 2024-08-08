@@ -11,8 +11,13 @@ export const Workspaces = () =>
     child: Widget.Box({
       children: Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
         Widget.Button({
+          hpack: "center",
+          vpack: "center",
           attribute: i,
           child: Widget.Label({
+            hpack: "center",
+            vpack: "center",
+            justification: "center",
             label: hyprland.active.workspace
               .bind("id")
               .as((workspaceId) =>
