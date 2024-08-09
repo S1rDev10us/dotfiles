@@ -12,11 +12,16 @@ function getIconFromTitle(window: string) {
   return window;
 }
 
-const stripTitleEndings = [" - NVIM", " — Mozilla Firefox"];
+const titleFilters: (RegExp | { rule: RegExp; sub: string })[] = [
+  / - NVIM$/gim,
+  / — Mozilla Firefox$/gi,
+];
 function mapTitle(title: string) {
-  for (const titleEnding of stripTitleEndings) {
-    if (title.toLowerCase().endsWith(titleEnding.toLowerCase())) {
-      title = title.substring(0, title.length - titleEnding.length).trim();
+  for (const titleFilter of titleFilters) {
+    if (titleFilter instanceof RegExp) {
+      title = title.replaceAll(titleFilter, "").trim();
+    } else {
+      title = title.replaceAll(titleFilter.rule, titleFilter.sub).trim();
     }
   }
   return title;
