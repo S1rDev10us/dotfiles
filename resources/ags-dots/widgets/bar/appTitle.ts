@@ -22,7 +22,7 @@ function mapTitle(title: string) {
   return title;
 }
 
-const MAX_TITLE_LENGTH = 150;
+const MAX_TITLE_LENGTH = 125;
 const UNKNOWN_APP_ICON = Utils.lookUpIcon(
   "application-x-executable",
   128,
