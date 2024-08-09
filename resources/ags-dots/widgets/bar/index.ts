@@ -1,5 +1,8 @@
 import Workspaces from "./workspaces";
 import AppTitle from "./appTitle";
+import SystemTray from "./systemTray";
+import { Players } from "./media";
+import BatteryProgress from "./battery";
 
 const time = Variable(new Date(), {
   poll: [
@@ -26,10 +29,15 @@ export const Bar = (monitor: number) =>
       end_widget: Widget.Box({
         class_name: "background panel",
         hpack: "end",
-        child: Widget.Label({
-          label: time.bind().as((date) => date.toLocaleTimeString()),
-          "tooltip-text": time.bind().as((date) => date.toLocaleDateString()),
-        }),
+        children: [
+          BatteryProgress(),
+          Players(),
+          SystemTray(),
+          Widget.Label({
+            label: time.bind().as((date) => date.toLocaleTimeString()),
+            "tooltip-text": time.bind().as((date) => date.toLocaleDateString()),
+          }),
+        ],
       }),
     }),
   });
