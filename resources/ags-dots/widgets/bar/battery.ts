@@ -30,6 +30,20 @@ export const BatteryProgress = () =>
         },
       ),
     }),
+    // rounded: true,
+    css: battery.bind("percent").as((p) => {
+      // https://www.desmos.com/calculator/dmjzf0tbvh
+      let maxR = 238;
+      let maxG = 238;
+
+      let frac = p / MAX_BAT;
+
+      let r = Math.min(2 * (1 - frac), 1) * maxR;
+      let g = Math.min(2 * frac, 1) * maxG;
+      let b = 0;
+
+      return `color: rgb(${r},${g},${b});`;
+    }),
     visible: battery.bind("available"),
     value: battery.bind("percent").as((p) => (p > 0 ? p / MAX_BAT : 0)),
     class_name: battery.bind("charging").as((ch) => (ch ? "charging" : "")),
