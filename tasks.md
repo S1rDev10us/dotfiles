@@ -101,6 +101,7 @@
     - https://github.com/end-4/dots-hyprland/blob/main/.config/ags/modules/sideleft/apis/chatgpt.js
   - [ ] cava integration
     - https://github.com/ferrreo/ags-dots/blob/main/.config/ags/widgets/visualiser.js
+  - [this](https://search.nixos.org/packages?type=packages&query=elementary-iconbrowser) is useful for finding appropriate icons
 - [x] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
