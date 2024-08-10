@@ -7,6 +7,9 @@
   min-height: $bar-height;
   font-family: "JetBrainsMono NF";
   padding: 0;
+  label {
+    text-shadow: none;
+  }
 
   .panel {
     border-radius: $half-bar-height;
