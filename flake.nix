@@ -109,7 +109,7 @@
           ];
           shellHook = ''
             echo "linking types"
-            ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/types
+            ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/
           '';
         };
       });
