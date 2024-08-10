@@ -15,6 +15,7 @@ function getIconFromTitle(window: string) {
 const titleFilters: (RegExp | { rule: RegExp; sub: string })[] = [
   / - NVIM$/gim,
   / — Mozilla Firefox$/gi,
+  / - Obsidian v[\d\.]*$/gi,
 ];
 function mapTitle(title: string) {
   for (const titleFilter of titleFilters) {
