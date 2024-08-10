@@ -102,6 +102,17 @@
   - [ ] cava integration
     - https://github.com/ferrreo/ags-dots/blob/main/.config/ags/widgets/visualiser.js
   - [this](https://search.nixos.org/packages?type=packages&query=elementary-iconbrowser) is useful for finding appropriate icons
+  - [ ] Notifications
+  - [ ] Screen brightness level
+  - [ ] System monitor (cpu, memory, temperature)
+  - [ ] Volume
+  - [ ] Anti-screen sleep
+  - [ ] Background (and theme) selector
+    - Click to cycle through
+    - Use swww to animate on background chagne
+    - Click+drag to manually select from grid of backgrounds
+    - Next background preview image for button
+      - (Like in the video just above [this](https://github.com/PROxZIMA/.dotfiles/tree/master?tab=readme-ov-file#installation) heading)
 - [x] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
