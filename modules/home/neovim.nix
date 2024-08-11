@@ -22,6 +22,7 @@ lib.mkIf opts.coding.enable {
       fzf
       ripgrep
       lazygit
+      rust-analyzer
     ];
     withNodeJs = true;
   };
