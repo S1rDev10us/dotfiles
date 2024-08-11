@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs;
     [
       btop
+      exiftool
     ]
     ++ (lib.optionals opts.GUI.enable [
       keepassxc
