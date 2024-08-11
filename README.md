@@ -18,7 +18,7 @@ There are two config directories for each user in a system.
 
 They have a set of options that are only applied when using home manager and a set of options that are applied when using NixOS and home manager
 
-The home manager specific configuration is in `./users/${user}/default.nix` and the shared system config is in "./hosts/${host}/default.nix"
+The home manager specific configuration is in `./users/${user}/default.nix` and the shared system config is in `./hosts/${host}/default.nix`
 
 Those options are not evaluated by the usual home manager or nix modules system,
 instead they are evaluated ahead of time.
