@@ -1,4 +1,5 @@
 {
+  stateVersion = "23.11";
   coding.enable = true;
   GUI.enable = true;
   VM.enable = true;
