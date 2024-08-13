@@ -6,22 +6,17 @@ currentHost := `hostname`
 default:
     @just --choose || just --list
 
-switch host="{{currentHost}}" user = "{{currentUser}}":
-    @just rebuild "switch" '{{host}}' '{{currentUser}}'
+switch host=currentHost user=currentUser: (rebuild "switch" host user)
 
-rebuild method="switch" host="{{currentHost}}" user="{{currentUser}}":
-    @just rebuild-system '{{method}}' '{{host}}'
-    @just rebuild-home '{{user}}' '{{host}}'
+rebuild method="switch" host="{{ currentHost }}" user="{{ currentUser }}": (rebuild-system method host) (rebuild-home user host)
 
-rebuild-system method="switch" host="{{currentHost}}": format
+rebuild-system method="switch" host=currentHost: format
     sudo nixos-rebuild {{method}} --flake '.#{{ host  }}'
 
-rebuild-home user="{{currentUser}}" host="{{currentHost}}": format
+rebuild-home user=currentUser host=currentHost: format
     home-manager switch --flake '.#{{ user }}@{{ host }}'
 
-
-update: && rebuild
-    @just update-only
+update: update-only && rebuild
 
 update-only:
     nix flake update
