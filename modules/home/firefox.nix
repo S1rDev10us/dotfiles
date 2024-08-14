@@ -39,7 +39,7 @@ lib.mkIf opts.GUI.enable {
         result = lib.recursiveUpdate baseSettings extraSettings;
         hasName = builtins.hasAttr "name" result;
       in
-        lib.throwIf hasName "All firefox profiles MUST have a name assigned" result;
+        lib.throwIf (!hasName) "All firefox profiles MUST have a name assigned" result;
     in {
       default = settingsFrom {
         name = user;
