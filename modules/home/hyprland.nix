@@ -215,6 +215,7 @@ lib.mkIf opts.environment.hyprland.enable {
           "SUPER, RETURN, exec, [float; center] foot"
           # Take screenshot
           ", Print, exec, grimblast copy area"
+          "SHIFT SUPER, s, exec, grimblast copy area"
         ]
         ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
         ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10);
