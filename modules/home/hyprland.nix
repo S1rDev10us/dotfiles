@@ -95,12 +95,20 @@ lib.mkIf opts.environment.hyprland.enable {
     # plugins=[];
 
     settings = {
-      exec-once = [
+      exec-once = let
+        withRules = rules: command: "[${builtins.concatStringsSep ";" rules}] ${command}";
+        onWorkspace = workspace: command: withRules ["workspace ${builtins.toString workspace} silent"] command;
+      in [
         "hyprpaper"
         "nm-applet"
         "blueman-applet"
-        "[workspace 2 silent] firefox"
         "swww-daemon"
+        (onWorkspace 1 "foot")
+        (onWorkspace 2 "firefox")
+        (onWorkspace 4 "thunderbird")
+        (onWorkspace 6 "obsidian")
+        (onWorkspace 9 "discord")
+        (onWorkspace 0 "keepassxc")
       ];
       monitor = [
         ",preferred,auto,1"
