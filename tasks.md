@@ -116,7 +116,7 @@
 - [x] Add BTop for system monitor
 - [ ] Phone connection app? KDE Connect would probably work
 - [x] I think it was called `zoxide`? It was a replacement for `cd` which had fuzzy finding and history
-- [ ] Use krunner / anyrunner instead of rofi?
+- [x] Use krunner / anyrunner instead of rofi?
 - [x] OBS
 - [-] Aseprite (I have it with steam but I think I saw it as a module which could be better?)
 - [x] Krita

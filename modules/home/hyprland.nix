@@ -2,8 +2,10 @@
   lib,
   pkgs,
   opts,
+  inputs,
   ...
 }: {
+  imports = [inputs.anyrun.homeManagerModules.default];
   config = lib.mkIf opts.environment.hyprland.enable {
     home.packages = with pkgs; [
       swww
@@ -37,10 +39,25 @@
           ];
         };
       };
-      rofi = {
+      anyrun = {
         enable = true;
-        package = pkgs.rofi-wayland;
-        theme = "fancy";
+        config = {
+          plugins = with inputs.anyrun.packages.${pkgs.system}; [
+            applications
+            rink
+            shell
+            symbols
+          ];
+          layer = "overlay";
+          closeOnClick = true;
+          showResultsImmediately = true;
+          hidePluginInfo = false;
+        };
+        extraCss = ''
+          #window {
+            background-color: rgba(0,0,0,0.5);
+          }
+        '';
       };
     };
     services = {
@@ -217,8 +234,6 @@
             # Kill app
             "SUPER, escape, killactive"
             "ALT, F4, killactive"
-            # App switcher
-            "SUPER, Tab, exec, pkill rofi || rofi -show window"
             # Open terminal
             "SUPER, RETURN, exec, [float; center] foot"
             # Take screenshot
@@ -257,7 +272,7 @@
         ];
         bindr = [
           # App launcher
-          "SUPER, SUPER_L, exec, pkill rofi || rofi -show drun"
+          "SUPER, SUPER_L, exec, pkill anyrun || anyrun"
         ];
       };
     };
