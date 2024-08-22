@@ -7,6 +7,7 @@
   config = lib.mkIf opts.coding.enable {
     environment.systemPackages = with pkgs;
       [
+        lazygit
       ]
       ++ lib.optionals opts.GUI.enable [
         vscode
