@@ -16,9 +16,15 @@ rebuild-system method="switch" host=currentHost: format
 rebuild-home user=currentUser host=currentHost: format
     home-manager switch --flake '.#{{ user }}@{{ host }}'
 
+# Update specific inputs and rebuild
 update: update-only && rebuild
 
+# Update only some specific flake inputs
 update-only:
+    nix flake lock --update-input nixpkgs --update-input home-manager --update-input nixpkgs-unstable --update-input firefox-extensions
+
+# Update all flake inputs
+update-all: && rebuild
     nix flake update
 
 format:
