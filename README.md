@@ -92,6 +92,7 @@ dotfiles
 
 - Individual configs for different machines by customizing data in the hosts folder
 - Update home manager and NixOS together or separately
+- Templates for various project types in resources/templates
 
 ## Host config options
 
