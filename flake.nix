@@ -10,7 +10,10 @@
     };
     stylix = {
       url = "github:danth/stylix/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
