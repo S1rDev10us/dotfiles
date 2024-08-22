@@ -2,13 +2,28 @@
   opts,
   lib,
   user,
+  inputs,
+  pkgs,
   ...
 }:
 lib.mkIf opts.GUI.enable {
   programs.firefox = {
     enable = true;
     profiles = let
+      extensions = with inputs.firefox-extensions.packages.${pkgs.system}; [
+        noscript
+        redirector
+        keepassxc-browser
+        ublock-origin
+        facebook-container
+        multi-account-containers
+        # google containers # Uh, I might need to add this one manually or raise an issue for it
+      ];
       baseSettings = {
+        inherit extensions;
+        settings = {
+          "extensions.autoDisableScopes" = 0;
+        };
         search = {
           default = "DuckDuckGo";
           force = true;

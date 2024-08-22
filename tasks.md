@@ -165,14 +165,14 @@
         - [-] Setup custom homepage
           - https://mozilla.github.io/policy-templates/#hompage
           - https://old.reddit.com/r/startpages
-      - [ ] With extensions
-        - Redirector
+      - [/] With extensions
+        - [/] Redirector
           - [ ] setup with redirects automatically
-        - KeePassXC
-        - UBlockOrigin
-        - MultiAccountContainers
-        - Google container
-        - Facebook container
+        - [x] KeePassXC
+        - [x] UBlockOrigin
+        - [x] MultiAccountContainers
+        - [-] Google container (Not in firefox-addons?)
+        - [x] Facebook container
   - [ ] Convert those settings to modules
   - [ ] Create options for those modules
 - [/] yazi https://yazi-rs.github.io/features https://mynixos.com/home-manager/options/programs.yazi
