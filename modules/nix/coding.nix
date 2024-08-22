@@ -11,11 +11,22 @@
       ]
       ++ lib.optionals opts.GUI.enable [
         vscode
-        unityhub
+        (
+          unityhub.override {
+            extraLibs = pkgs: [pkgs.openssl_1_1];
+          }
+        )
         neovide
         jetbrains-toolbox
-        jetbrains.rider
+        # These are needed for Jetbrains Rider to work with unity. Alternatively they could be provided only to Rider using something like [this](https://huantian.dev/blog/unity3d-rider-nixos/) [configuration](https://github.com/huantianad/nixos-config/blob/main/modules/editors/rider.nix)
+        dotnetCorePackages.sdk_6_0
+        dotnetPackages.Nuget
+        mono
+        msbuild
       ];
+    nixpkgs.config.permittedInsecurePackages = [
+      "openssl-1.1.1w"
+    ];
     unfreePackages = lib.optionals opts.GUI.enable (with pkgs; [
       vscode
       unityhub
@@ -30,5 +41,11 @@
       };
     };
     # environment.variables.NIX_LD = lib.makeLibraryPath (with pkgs; [openssl]);
+
+    # Settings so unity can open browser
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+    };
   };
 }
