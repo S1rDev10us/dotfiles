@@ -61,6 +61,10 @@
       };
     };
     services = {
+      mako = {
+        enable = true;
+        defaultTimeout = 30 * 1000;
+      };
       hypridle = {
         enable = true;
         settings = {
@@ -117,6 +121,7 @@
           onWorkspace = workspace: command: withRules ["workspace ${builtins.toString workspace} silent"] command;
         in [
           "hyprpaper"
+          "mako"
           "nm-applet"
           "blueman-applet"
           "swww-daemon"
