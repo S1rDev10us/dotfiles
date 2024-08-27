@@ -28,7 +28,7 @@ update-all: && rebuild
     nix flake update
 
 format:
-    @alejandra .
+    @alejandra . &> /dev/null || alejandra .
 
 check: format
    nix flake check 
