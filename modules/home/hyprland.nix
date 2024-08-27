@@ -275,6 +275,7 @@
         bindl = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", switch:Lid Switch, exec, hyprlock"
         ];
         bindr = [
           # App launcher
