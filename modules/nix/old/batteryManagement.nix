@@ -23,6 +23,10 @@ lib.mkIf opts.batteryManagement.enable {
       # Battery threshold
       START_CHARGE_THRESH_BAT0 = 60;
       STOP_CHARGE_THRESH_BAT0 = 80;
+
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
     };
   };
+  powerManagement.powertop.enable = true;
 }

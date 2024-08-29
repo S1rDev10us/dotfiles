@@ -1,10 +1,11 @@
 set shell := ["sh", "-c"]
+set quiet
 
 currentUser := `whoami`
 currentHost := `hostname`
 
 default:
-    @just --choose || just --list
+    just --choose || just --list
 
 switch host=currentHost user=currentUser: (rebuild "switch" host user)
 
@@ -21,14 +22,15 @@ update: update-only && rebuild
 
 # Update only some specific flake inputs
 update-only:
-    nix flake lock --update-input nixpkgs --update-input home-manager --update-input nixpkgs-unstable --update-input firefox-extensions
+    @nix flake lock --update-input nixpkgs --update-input home-manager --update-input nixpkgs-unstable --update-input firefox-extensions
 
 # Update all flake inputs
 update-all: && rebuild
-    nix flake update
+    @nix flake update
 
 format:
-    @alejandra . &> /dev/null || alejandra .
+    echo "Formatting ..."
+    alejandra . &> /dev/null || (echo "Formatting failed! Error:"; alejandra .)
 
 check: format
    nix flake check 
