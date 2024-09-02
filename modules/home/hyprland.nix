@@ -130,7 +130,8 @@
           (onWorkspace 4 "thunderbird")
           (onWorkspace 6 "obsidian")
           (onWorkspace 9 "discord")
-          (onWorkspace 0 "keepassxc")
+          # Starts in light mode if it spawns too quickly?
+          (onWorkspace 10 "sleep 2 && keepassxc")
         ];
         monitor = [
           ",preferred,auto,1"
