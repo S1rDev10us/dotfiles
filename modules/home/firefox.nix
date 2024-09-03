@@ -60,6 +60,10 @@ lib.mkIf opts.GUI.enable {
         name = user;
         isDefault = true;
       };
+      comms = settingsFrom {
+        id = 2;
+        name = "comms";
+      };
     };
     policies = {
       CaptivePortal = false;

@@ -127,9 +127,10 @@
           "swww-daemon"
           (onWorkspace 1 "foot")
           (onWorkspace 2 "firefox")
-          (onWorkspace 4 "thunderbird")
           (onWorkspace 6 "obsidian")
+          (onWorkspace 9 "thunderbird")
           (onWorkspace 9 "discord")
+          (onWorkspace 9 "firefox -P comms --name 'firefox-comms'")
           # Starts in light mode if it spawns too quickly?
           (onWorkspace 10 "sleep 2 && keepassxc")
         ];
@@ -203,10 +204,13 @@
         windowrulev2 = let
           mkRules = selector: rules: builtins.map (rule: rule + ", " + selector) rules;
           notificationRules = ["move onscreen 100% 100%" "noinitialfocus"];
+          onWorkspace = workspace: selector: "workspace ${builtins.toString workspace} silent,${selector}";
         in
           [
             "suppressevent maximize, class:.*"
             # "workspace 2 silent, class:firefox"
+            (onWorkspace 9 "class:thunderbird")
+            (onWorkspace 9 "class:discord")
           ]
           ++ mkRules "class:\.blueman-applet-wrapped" notificationRules
           # Place thunderbird notifications in the bottom right of the screen and don't focus it
