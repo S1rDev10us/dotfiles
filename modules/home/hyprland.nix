@@ -250,6 +250,7 @@
             # Take screenshot
             ", Print, exec, grimblast copy area"
             "SHIFT SUPER, s, exec, grimblast copy area"
+            "SHIFT SUPER, l, exec, hyprlock --immediate"
           ]
           ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
           ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10);
@@ -280,7 +281,7 @@
         bindl = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", switch:Lid Switch, exec, hyprlock"
+          ", switch:Lid Switch, exec, hyprlock --immediate"
         ];
         bindr = [
           # App launcher
