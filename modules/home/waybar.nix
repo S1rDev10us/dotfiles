@@ -17,7 +17,7 @@ lib.mkIf opts.environment.hyprland.enable {
         position = "top";
         spacing = 4;
         modules-left = [
-          "hyprland/workspaces"
+          # "hyprland/workspaces" # replaced by ags
         ];
         modules-center = [
           "hyprland/window"
@@ -46,10 +46,10 @@ lib.mkIf opts.environment.hyprland.enable {
             ########
 
             # File editor, open file
-            "([^\\s]*) \\((.*)\\) - NVIMꯍ.*" = " (Viewing $2/$1)";
-            "([^\\s]*) \\+ \\((.*)\\) - NVIMꯍ.*" = " (Editing $2/$1)";
+            # "([^\\s]*) \\((.*)\\) - NVIMꯍ.*" = " (Viewing $2/$1)";
+            # "([^\\s]*) \\+ \\((.*)\\) - NVIMꯍ.*" = " (Editing $2/$1)";
             # Neotree
-            "\\w*neo-tree (.*) \\[.\\] - \\((.*)\\) - NVIMꯍ.*" = " ($1: $2)";
+            # "\\w*neo-tree (.*) \\[.\\] - \\((.*)\\) - NVIMꯍ.*" = " ($1: $2)";
 
             # "(.*) [(](.*)[)] - NVIM" = "NVIM - ($1 @ $2)";
             # Generic
@@ -57,7 +57,7 @@ lib.mkIf opts.environment.hyprland.enable {
             ###########
             # Firefox #
             ###########
-            "((.*) — )?Mozilla Firefoxꯍ.*" = "󰈹 $2";
+            # "((.*) — )?Mozilla Firefoxꯍ.*" = "󰈹 $2";
             #########
             # Empty #
             #########
