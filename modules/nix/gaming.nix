@@ -10,6 +10,7 @@
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
     };
+    programs.gamemode.enable = true;
     unfreePackages = [
       "steam"
       "steam-original"
