@@ -211,6 +211,7 @@
             # "workspace 2 silent, class:firefox"
             (onWorkspace 9 "class:thunderbird")
             (onWorkspace 9 "class:discord")
+            (onWorkspace 10 "initialClass:keepassxc")
           ]
           ++ mkRules "class:\.blueman-applet-wrapped" notificationRules
           # Place thunderbird notifications in the bottom right of the screen and don't focus it
