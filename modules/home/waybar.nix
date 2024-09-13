@@ -23,19 +23,19 @@ lib.mkIf opts.environment.hyprland.enable {
           "hyprland/window"
         ];
         modules-right = [
-          "mpd"
+          # "mpd"
           "idle_inhibitor"
           "pulseaudio"
-          "network"
-          "power-profiles-daemon"
+          # "network"
+          # "power-profiles-daemon"
           "cpu"
           "memory"
-          "temperature"
+          # "temperature" # Doesn't work?
           "backlight"
-          "battery"
-          "clock"
+          # "battery"
+          # "clock"
           "tray"
-          "custom/power"
+          # "custom/power"
         ];
         "hyprland/window" = {
           # The separator is uABCD (In neovim/vim you can get it by going into insert mode then pressing "<C-v>uabcd")
