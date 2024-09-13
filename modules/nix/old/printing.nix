@@ -1,9 +1,9 @@
-{...}: {
+{lib, ...}: {
   services = {
     # Enable CUPS to print documents.
     printing.enable = true;
     avahi = {
-      enable = true;
+      enable = lib.mkDefault false;
       nssmdns4 = true;
       openFirewall = true;
     };
