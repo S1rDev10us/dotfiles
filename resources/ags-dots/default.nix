@@ -13,7 +13,7 @@ stdenv.mkDerivation
     extraPackages = import ./dependencies.nix {inherit pkgs;};
     buildTypes = true;
   };
-in {
+in rec {
   pname = "ags-dots";
   version = "0.0.3";
   src = ./.;
@@ -54,7 +54,7 @@ in {
 
     echo "Creating convience output script"
     mkdir $out/bin
-    cat > $out/bin/ags-dots << EOF
+    cat > $out/bin/${pname} << EOF
     #!${bash}/bin/bash
     ${agsPackage}/bin/ags -q && ${agsPackage}/bin/ags -c $out/config.js
     EOF
@@ -64,7 +64,7 @@ in {
   postInstall = ''
 
     echo "Making convience output script executable"
-    chmod +x $out/bin/ags-dots
+    chmod +x $out/bin/${pname}
   '';
   buildInputs = [bun rsync dart-sass agsPackage];
 })
