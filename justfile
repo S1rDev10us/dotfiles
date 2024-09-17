@@ -30,7 +30,7 @@ update-all: && rebuild
 
 format:
     echo "Formatting ..."
-    alejandra . &> /dev/null || (echo "Formatting failed! Error:"; alejandra .)
+    alejandra . &> alejandra.log || (echo "Formatting failed! Error:"; cat alejandra.log | sed 's/^/  /'; exit 1)
 
 check: format
    nix flake check 
