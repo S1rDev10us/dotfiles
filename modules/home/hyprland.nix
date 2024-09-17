@@ -276,14 +276,14 @@
         ];
         bindel = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-          ", XF86MonBrightnessDown, exec, brightnessctl s -n=10% 5%-"
+          ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise --max-volume 120"
+          ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower --max-volume 120"
+          ", XF86MonBrightnessUp, exec, swayosd-client --brightness +10"
+          ", XF86MonBrightnessDown, exec, swayosd-client --brightness -10"
         ];
         bindl = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
           ", switch:Lid Switch, exec, hyprlock --immediate"
         ];
         bindr = [
@@ -292,5 +292,10 @@
         ];
       };
     };
+    services.swayosd = {
+      enable = true;
+      topMargin = 0.8;
+    };
+    systemd.user.services.swayosd.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
   };
 }
