@@ -10,10 +10,10 @@
       settings = {
         main =
           {
-            # When holding down capslock instead press meta and when tapping/releasing it press escape
-            capslock = "overload(nav,backspace)";
+            # Use capslock for backspace
+            capslock = "backspace";
             backspace = "noop"; # To stop me from using the old backspace key accidentaly
-            # Create the rightalt layer and switch to it when pressing down right alt
+            # Create the rightalt/nav layer and switch to it when pressing down right alt
             rightalt = "layer(nav)";
           }
           # Disable arrow keys to force to use rightalt + h/j/k/l
