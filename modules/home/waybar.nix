@@ -23,44 +23,16 @@ lib.mkIf opts.environment.hyprland.enable {
           "hyprland/window"
         ];
         modules-right = [
-          # "mpd"
           "idle_inhibitor"
           "pulseaudio"
-          # "network"
-          # "power-profiles-daemon"
           "cpu"
           "memory"
-          # "temperature" # Doesn't work?
           "backlight"
-          # "battery"
-          # "clock"
-          "tray"
-          # "custom/power"
         ];
         "hyprland/window" = {
           # The separator is uABCD (In neovim/vim you can get it by going into insert mode then pressing "<C-v>uabcd")
           format = "{title}ꯍ{initialTitle}ꯍ{class}ꯍ{initialClass}";
           rewrite = {
-            ########
-            # NVIM #
-            ########
-
-            # File editor, open file
-            # "([^\\s]*) \\((.*)\\) - NVIMꯍ.*" = " (Viewing $2/$1)";
-            # "([^\\s]*) \\+ \\((.*)\\) - NVIMꯍ.*" = " (Editing $2/$1)";
-            # Neotree
-            # "\\w*neo-tree (.*) \\[.\\] - \\((.*)\\) - NVIMꯍ.*" = " ($1: $2)";
-
-            # "(.*) [(](.*)[)] - NVIM" = "NVIM - ($1 @ $2)";
-            # Generic
-            # "(.*) - NVIM" = "NVIM ($1)";
-            ###########
-            # Firefox #
-            ###########
-            # "((.*) — )?Mozilla Firefoxꯍ.*" = "󰈹 $2";
-            #########
-            # Empty #
-            #########
             "ꯍꯍꯍ" = "";
           };
         };
