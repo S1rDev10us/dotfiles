@@ -1,4 +1,5 @@
 import type { MprisPlayer } from "types/service/mpris";
+import { Visualiser } from "./visualiser";
 
 const mpris = await Service.import("mpris");
 
@@ -41,6 +42,11 @@ const Player = (player: MprisPlayer) =>
 
 export const Players = () =>
   Widget.Box({
-    className: "horizontal mediaPlayers",
-    children: mpris.bind("players").as((players) => players.map(Player)),
+    children: [
+      Visualiser(),
+      Widget.Box({
+        className: "horizontal mediaPlayers",
+        children: mpris.bind("players").as((players) => players.map(Player)),
+      }),
+    ],
   });

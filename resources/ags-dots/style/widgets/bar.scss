@@ -90,6 +90,18 @@
       margin-right: 5pt;
     }
   }
+  .visualiser {
+    .barElement {
+      $barWidth: 4pt;
+
+      border-top-left-radius: math.div($barWidth, 2);
+      border-top-right-radius: math.div($barWidth, 2);
+
+      min-width: $barWidth;
+
+      background-color: white;
+    }
+  }
   .mediaPlayers {
     > * {
       margin: 0;

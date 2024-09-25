@@ -99,7 +99,9 @@
   - [ ] AI window?
     - https://github.com/spector700/nixos-config/blob/da16e2a400b8170f6f790eab1711459099859ab0/pkgs/ags/widget/aiwindow/AiWindow.ts
     - https://github.com/end-4/dots-hyprland/blob/main/.config/ags/modules/sideleft/apis/chatgpt.js
-  - [ ] cava integration
+  - [x] cava integration
+    - [ ] Add button to turn it off for performance
+    - [ ] Turn it off when music is paused
     - https://github.com/ferrreo/ags-dots/blob/main/.config/ags/widgets/visualiser.js
   - [this](https://search.nixos.org/packages?type=packages&query=elementary-iconbrowser) is useful for finding appropriate icons
   - [ ] Notifications

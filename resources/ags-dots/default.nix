@@ -13,6 +13,25 @@ stdenv.mkDerivation
     extraPackages = import ./dependencies.nix {inherit pkgs;};
     buildTypes = true;
   };
+  cavaBarCount = 20;
+  cavaRaw = pkgs.writeShellScript "cava" ''
+    ${pkgs.cava}/bin/cava -p ${pkgs.writeText "cava-config" ''
+      [general]
+      bars=${builtins.toString cavaBarCount}
+      mode=normal
+      autosens=1
+      framerate=40
+      [output]
+      method=raw
+      raw_target=/dev/stdout
+      bit_format=8bit
+      data_format=ascii
+      ascii_max_range=255
+
+      channels=mono
+      mono_option=average
+    ''}
+  '';
 in rec {
   pname = "ags-dots";
   version = "0.0.3";
@@ -20,6 +39,13 @@ in rec {
   preBuild = ''
     echo "Linking ags types to local types"
     ln -s ${agsPackage}/share/com.github.Aylur.ags/types ./types
+
+    echo "Passing useful parameters to config"
+    cat > params.ts << EOF
+    export const cava="${cavaRaw}";
+    export const cavaBarCount="${builtins.toString cavaBarCount}";
+    EOF
+
   '';
   buildPhase = ''
     runHook preBuild
