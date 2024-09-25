@@ -291,6 +291,20 @@
         ];
       };
     };
+    systemd.user.services.hyprland-polkit-agent = {
+      Unit = {
+        PartOf = ["hyprland-session.target"];
+      };
+      Service = {
+        ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";
+        # Restart = "on-failure";
+        Restart = "always";
+        # BusName = "org.freedesktop.PolicyKit1.Authority";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+      Install.WantedBy = ["hyprland-session.target"];
+    };
     services.swayosd = {
       enable = true;
       topMargin = 0.8;
