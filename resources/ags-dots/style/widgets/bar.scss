@@ -75,6 +75,14 @@
       }
     }
   }
+  .battery {
+    min-height: $bar-height;
+    font-size: 5pt;
+
+    image {
+      font-size: $half-bar-height;
+    }
+  }
 
   .windowTitle {
     image {
