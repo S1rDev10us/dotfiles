@@ -107,7 +107,7 @@
         };
       };
       hyprpaper = {
-        enable = true;
+        enable = false;
         settings = {splash = false;};
       };
     };
@@ -122,7 +122,6 @@
           withRules = rules: command: "[${builtins.concatStringsSep ";" rules}] ${command}";
           onWorkspace = workspace: command: withRules ["workspace ${builtins.toString workspace} silent"] command;
         in [
-          "hyprpaper"
           "mako"
           "nm-applet"
           "blueman-applet"
