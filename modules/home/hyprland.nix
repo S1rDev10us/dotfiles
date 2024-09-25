@@ -126,7 +126,6 @@
           "nm-applet"
           "blueman-applet"
           "swww-daemon"
-          (onWorkspace 1 "foot")
           (onWorkspace 2 "firefox")
           (onWorkspace 6 "obsidian")
           (onWorkspace 9 "thunderbird")
