@@ -1,4 +1,5 @@
 {...}: {
+  home.sessionVariables.TERMINAL = "foot";
   programs = {
     foot = {
       enable = true;
