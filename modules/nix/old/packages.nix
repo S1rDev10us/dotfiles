@@ -17,7 +17,7 @@
       blender
       thunderbird
       discord
-      obsidian
+      unstable.obsidian
       krita
       libreoffice
       gparted
