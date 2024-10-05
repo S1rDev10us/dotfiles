@@ -121,19 +121,26 @@
       settings = {
         exec-once = let
           withRules = rules: command: "[${builtins.concatStringsSep ";" rules}] ${command}";
-          onWorkspace = workspace: command: withRules ["workspace ${builtins.toString workspace} silent"] command;
+          onWorkspaceWithRules = rules: workspace: command: withRules (["workspace ${builtins.toString workspace} silent"] ++ rules) command;
+          onWorkspace = workspace: command: onWorkspaceWithRules [] workspace command;
+          workspaces = {
+            web = 2;
+            notes = 4;
+            communications = 9;
+            passwords = 10;
+          };
         in [
           "mako"
           "nm-applet"
           "blueman-applet"
           "swww-daemon"
-          (onWorkspace 2 "firefox")
-          (onWorkspace 6 "obsidian")
-          (onWorkspace 9 "thunderbird")
-          (onWorkspace 9 "discord")
-          (onWorkspace 9 "firefox -P comms --name 'firefox-comms'")
+          (onWorkspace workspaces.web "firefox")
+          (onWorkspace workspaces.notes "obsidian")
+          (onWorkspace workspaces.communications "thunderbird")
+          (onWorkspace workspaces.communications "discord")
+          (onWorkspace workspaces.communications "firefox -P comms --name 'firefox-comms'")
           # Starts in light mode if it spawns too quickly?
-          (onWorkspace 10 "sleep 2 && keepassxc")
+          (onWorkspace workspaces.passwords "sleep 2 && keepassxc")
         ];
         monitor = [
           ",preferred,auto,1"
