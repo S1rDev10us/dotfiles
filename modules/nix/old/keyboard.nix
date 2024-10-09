@@ -24,13 +24,12 @@
           j = "down";
           k = "up";
           l = "right";
-          space = "toggle(colemak)";
         };
       };
-      extraConfig = builtins.readFile "${pkgs.keyd}/share/keyd/layouts/colemak";
     };
   };
   services.xserver.xkb.layout = "gb,gb";
   services.xserver.xkb.variant = ",colemak";
+  services.xserver.xkb.options = "grp:win_space_toggle";
   console.keyMap = "uk";
 }

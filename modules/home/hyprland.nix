@@ -60,6 +60,7 @@
         '';
       };
     };
+
     services = {
       mako = {
         enable = true;
@@ -146,7 +147,9 @@
           ",preferred,auto,1"
         ];
         input = {
-          kb_layout = "gb";
+          kb_layout = "gb,gb";
+          kb_variant = ",colemak";
+          kb_options = "grp:win_space_toggle";
           follow_mouse = 1;
           touchpad = {
             natural_scroll = true;
@@ -241,6 +244,7 @@
         in
           [
             "SUPER, F, togglefloating"
+            "SUPER, space, exec, notify-send switch-layout"
             # Move focus
             (movefocus "k" "u")
             (movefocus "j" "d")
