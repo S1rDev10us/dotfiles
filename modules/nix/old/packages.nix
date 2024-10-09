@@ -21,6 +21,7 @@
       krita
       libreoffice
       gparted
+      tenacity
     ]);
   unfreePackages = with pkgs; [
     discord
