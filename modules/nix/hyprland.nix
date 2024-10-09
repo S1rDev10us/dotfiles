@@ -22,7 +22,12 @@ lib.mkIf opts.environment.hyprland.enable {
     hypridle
     brightnessctl
     grimblast
+    adwaita-qt
   ];
+  environment.sessionVariables = {
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+  };
+  qt.style = "adwaita-dark";
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   nixpkgs.overlays = [
     (self: super: {
