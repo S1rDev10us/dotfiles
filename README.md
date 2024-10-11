@@ -1,5 +1,7 @@
 # S1rDev10us/dotfiles
 
+⚠️ warning, this readme is not always up to date with the current system configuration, I am not focused on making sure this readme is updated accurately and my configuration is constantly in development
+
 ## Repo description
 
 This repo contains the dotfiles for my NixOS config.
@@ -74,13 +76,13 @@ dotfiles
 
 ## Hosts
 
-|  Hostname   |       Environment       |         Use case          |         State          | Secondary GPU | Device description  |
-| :---------: | :---------------------: | :-----------------------: | :--------------------: | :-----------: | :-----------------: |
-|    Hydra    |          NixOS          |   Linux learning device   |           ✅           |      ⛔       |  Old silver laptop  |
-| Amphisbaena |     NixOS Dualboot      |     Main work device      |           ✅           |      ⛔       |  Thin black laptop  |
-|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ✅           |      ⛔       |          ^          |
-|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ✅           |      ⛔       |          ^          |
-|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") |      ⛔       | Large white desktop |
+|  Hostname   |       Environment       |         Use case          |         State          | Device description  |
+| :---------: | :---------------------: | :-----------------------: | :--------------------: | :-----------------: |
+|    Hydra    |          NixOS          |   Linux learning device   |           ⛔           |  Old silver laptop  |
+| Amphisbaena |     NixOS Dualboot      |     Main work device      |           ✅           |  Thin black laptop  |
+|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ⛔           |          ^          |
+|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ⛔           |          ^          |
+|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") | Large white desktop |
 
 ✅ yes
 
