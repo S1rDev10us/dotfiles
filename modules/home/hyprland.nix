@@ -281,6 +281,7 @@
             "SUPER, RETURN, exec, [float; center] foot"
             # Take screenshot
             ", Print, exec, grimblast copy area"
+            "SHIFT, Print, exec, XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots grimblast copysave area"
             "SHIFT SUPER, s, exec, grimblast copy area"
             "SHIFT SUPER, l, exec, hyprlock --immediate"
           ]
