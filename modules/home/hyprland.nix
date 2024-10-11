@@ -37,6 +37,25 @@
               brightness = 0.5;
             }
           ];
+          label = [
+            {
+              monitor = "";
+              text_align = "center";
+              halign = "center";
+              valign = "center";
+              text = "$LAYOUT";
+              position = "0, -75";
+              font_size = "12";
+            }
+            {
+              monitor = "";
+              text_align = "center";
+              halign = "center";
+              valign = "center";
+              text = "$USER";
+              position = "0, 25";
+            }
+          ];
         };
       };
       anyrun = {
