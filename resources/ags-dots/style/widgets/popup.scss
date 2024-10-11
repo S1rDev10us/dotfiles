@@ -1,0 +1,19 @@
+.popup-window {
+  background: transparent;
+  /* background: rgba(20, 20, 20, 0.75); */
+  padding: 20pt;
+  border: none;
+
+  .popup-padding {
+    border: none;
+    background: transparent;
+
+    > * {
+      min-height: 20pt;
+      min-width: 20pt;
+      * {
+        border: none;
+      }
+    }
+  }
+}

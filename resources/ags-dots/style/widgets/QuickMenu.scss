@@ -1,0 +1,10 @@
+.quick-menu {
+  .media-controls {
+    $height: 64pt * 1.5;
+    min-height: $height;
+    .media-icon {
+      font-size: $height;
+      min-height: $height;
+    }
+  }
+}

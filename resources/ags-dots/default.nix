@@ -34,7 +34,7 @@ stdenv.mkDerivation
   '';
 in rec {
   pname = "ags-dots";
-  version = "0.0.3";
+  version = "0.0.4";
   src = ./.;
   preBuild = ''
     echo "Linking ags types to local types"

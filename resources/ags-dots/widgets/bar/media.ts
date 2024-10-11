@@ -1,5 +1,7 @@
 import type { MprisPlayer } from "types/service/mpris";
-import { Visualiser } from "./visualiser";
+import { Visualiser } from "widgets/bar/visualiser";
+import { PlayerIcon } from "widgets/QuickMenu/media";
+import { ToggleQuickMenu } from "widgets/QuickMenu/index";
 
 const mpris = await Service.import("mpris");
 
@@ -23,12 +25,7 @@ const Player = (player: MprisPlayer) =>
                     : "media-playback-start",
                 ),
             }),
-            Widget.Icon({
-              className: "media-icon",
-              icon: player
-                .bind("track_cover_url")
-                .as((url) => (url.startsWith("file://") ? url.slice(7) : url)),
-            }),
+            PlayerIcon(player),
             Widget.Label({ label: player.bind("track_title") }),
           ],
         }),
@@ -41,12 +38,13 @@ const Player = (player: MprisPlayer) =>
   });
 
 export const Players = () =>
-  Widget.Box({
-    children: [
-      Visualiser(),
-      Widget.Box({
-        className: "horizontal mediaPlayers",
-        children: mpris.bind("players").as((players) => players.map(Player)),
-      }),
-    ],
-  });
+  Widget.EventBox(
+    {
+      onPrimaryClick(self) {
+        ToggleQuickMenu();
+      },
+    },
+    Widget.Overlay({
+      child: Visualiser(),
+    }),
+  );
