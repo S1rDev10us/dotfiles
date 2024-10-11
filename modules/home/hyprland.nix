@@ -251,6 +251,13 @@
             "float"
             # "move 100% 100%"
           ];
+        layerrule = let
+          barSelector = "bar\\d+";
+          mkRules = selector: rules: builtins.map (rule: rule + ", " + selector) rules;
+        in
+          ["noanim, ${barSelector}" "noanim, notifications"]
+          # Unfortunately, this is not currently implemented in the version but it will be when I update hyprland or use the flake version
+          ++ lib.optional (lib.versionAtLeast config.wayland.windowManager.hyprland.package.version "0.43.0") "order -1000, ${barSelector}";
         workspace = builtins.genList (i: "${builtins.toString (i + 1)}, persistent:true") 10;
 
         bind = let
