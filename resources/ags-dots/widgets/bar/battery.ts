@@ -11,17 +11,15 @@ export const BatteryProgress = () =>
           let icon = "battery-";
 
           // I have battery set to max out at 80/79 percent to help with battery health so we respect that here
-          if (percent > MAX_BAT - 5) {
-            icon += "full";
-          } else if (percent > (MAX_BAT * 3) / 4) {
-            icon += "good";
-          } else if (percent > 25) {
-            icon += "low";
-          } else if (percent > 10) {
-            icon += "caution";
-          } else {
-            icon += "empty";
+          const roundedPercent = Math.round(percent / 10);
+          if (roundedPercent < 10) {
+            // Needs to be 3 numbers long
+            icon += "0";
           }
+          // Add on battery value
+          icon += roundedPercent;
+          // Needs to be 3 numbers long
+          icon += "0";
 
           if (charging) {
             icon += "-charging";
