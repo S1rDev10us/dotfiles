@@ -243,7 +243,7 @@
             (onWorkspace 9 "class:discord")
             (onWorkspace 10 "initialClass:keepassxc")
           ]
-          ++ mkRules "class:\.blueman-applet-wrapped" notificationRules
+          ++ mkRules "class:\\.blueman-applet-wrapped" notificationRules
           # Place thunderbird notifications in the bottom right of the screen and don't focus it
           ++ mkRules "class:thunderbird, title:^$" notificationRules
           # Float windows that aren't the main window or email composition windows
