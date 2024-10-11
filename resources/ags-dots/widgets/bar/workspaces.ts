@@ -8,35 +8,49 @@ export const Workspaces = () =>
     onScrollUp: () => changeWorkspace("+1"),
     onScrollDown: () => changeWorkspace("-1"),
     "class-names": ["workspaces"],
-    child: Widget.Box({
-      children: Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
-        Widget.Button({
+    child: Widget.Box(
+      Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
+        Widget.EventBox({
           hpack: "center",
           vpack: "center",
           attribute: i,
-          child: Widget.Label({
-            hpack: "center",
-            vpack: "center",
-            justification: "center",
-            label: hyprland.active.workspace
+          child: Widget.Box({
+            child: hyprland.active.workspace
               .bind("id")
-              .as((workspaceId) =>
-                workspaceId != i
-                  ? hyprland.getWorkspace(i)?.name || i.toString()
-                  : "",
-              ),
+              .as((currentActiveWorkspace) => {
+                let workspaceActive = currentActiveWorkspace == i;
+
+                if (!workspaceActive && i == 9) {
+                  return Widget.Icon({
+                    icon: Utils.lookUpIcon("phone")!.load_icon(),
+
+                    hpack: "center",
+                    vpack: "center",
+                  });
+                }
+
+                return Widget.Label({
+                  hpack: "center",
+                  vpack: "center",
+                  justification: "center",
+                  label: workspaceActive
+                    ? ""
+                    : hyprland.getWorkspace(i)?.name || i.toString(),
+                });
+              }),
           }),
-          onClicked: () => changeWorkspace(i),
-          setup: (self) =>
+          onPrimaryClick: () => changeWorkspace(i),
+          setup: (self) => {
             self.hook(hyprland, () => {
               self.toggleClassName("active", hyprland.active.workspace.id == i);
               self.toggleClassName(
                 "hasWindows",
                 (hyprland.getWorkspace(i)?.windows || 0) > 0,
               );
-            }),
+            });
+          },
         }),
       ),
-    }),
+    ),
   });
 export default Workspaces;

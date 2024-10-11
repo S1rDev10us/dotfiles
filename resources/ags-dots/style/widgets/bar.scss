@@ -18,7 +18,7 @@
 
   .workspaces {
     min-width: 0;
-    button {
+    > * > * {
       background-color: transparent;
       background-image: none;
       border: none;
@@ -41,7 +41,7 @@
         font-size: $half-bar-height * $image-ratio;
       }
 
-      label {
+      > * > * {
         margin: 1.25pt;
         @include workspace-label(0.5);
         /* background-color: gray; */
@@ -54,23 +54,20 @@
         transition: all 0.25s ease-in-out;
       }
       &.hasWindows {
-        label {
-          background-color: lightgray;
-          color: black;
+        > * > * {
+          border-color: lightgray;
         }
       }
       &.active {
-        label {
+        > * > * {
           /* @include workspace-label(0.75); */
-          background-color: white;
-          color: black;
+          border-radius: 25%;
         }
       }
       &:hover {
-        label {
-          border-color: deepskyblue;
+        > * > * {
+          background-color: rgb(70, 70, 70);
           @include workspace-label(0.5, 0.25);
-          border-radius: 25%;
         }
       }
     }
