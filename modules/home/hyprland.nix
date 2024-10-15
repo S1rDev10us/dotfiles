@@ -267,33 +267,38 @@
           movewindow = binding "SUPER&CTRL" "movewindow";
           goToWorkspace = binding "SUPER" "workspace";
           moveWindowToWorkspace = binding "SUPER SHIFT" "movetoworkspace";
+          directionMapping = [["h" "l"] ["j" "d"] ["k" "u"] ["l" "r"]];
+          /*
+            *
+            Calls the passed in function on every direction, passing in the key and then the direction it represents
+          ```
+          fromDirections :: (key -> dir -> val) -> [val, val, val, val]
+          ```
+          */
+          fromDirections = f: builtins.map (val: f (builtins.head val) (lib.last val)) directionMapping;
         in
-          [
-            "SUPER, F, togglefloating"
-            "SUPER, space, exec, notify-send switch-layout"
-            # Move focus
-            (movefocus "k" "u")
-            (movefocus "j" "d")
-            (movefocus "l" "r")
-            (movefocus "h" "l")
-            # Move app
-            (movewindow "k" "u")
-            (movewindow "j" "d")
-            (movewindow "l" "r")
-            (movewindow "h" "l")
-            # Kill app
-            "SUPER, escape, killactive"
-            "ALT, F4, killactive"
-            # Open terminal
-            "SUPER, RETURN, exec, [float; center] foot"
-            # Take screenshot
-            ", Print, exec, grimblast copy area"
-            "SHIFT, Print, exec, XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots grimblast copysave area"
-            "SHIFT SUPER, s, exec, grimblast copy area"
-            "SHIFT SUPER, l, exec, hyprlock --immediate"
-          ]
-          ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
-          ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10);
+          lib.flatten (
+            [
+              "SUPER, F, togglefloating"
+              "SUPER, space, exec, notify-send switch-layout"
+              # Move focus
+              (fromDirections movefocus)
+              # Move app
+              (fromDirections movewindow)
+              # Kill app
+              "SUPER, escape, killactive"
+              "ALT, F4, killactive"
+              # Open terminal
+              "SUPER, RETURN, exec, [float; center] foot"
+              # Take screenshot
+              ", Print, exec, grimblast copy area"
+              "SHIFT, Print, exec, XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots grimblast copysave area"
+              "SHIFT SUPER, s, exec, grimblast copy area"
+              "SHIFT SUPER, l, exec, hyprlock --immediate"
+            ]
+            ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
+            ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
+          );
         bindm = [
           "SUPER, mouse:272, movewindow"
           "SUPER, mouse:273, resizewindow"
