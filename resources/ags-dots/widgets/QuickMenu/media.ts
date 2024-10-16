@@ -39,6 +39,27 @@ const PlayerControls = (player: MprisPlayer) =>
     }),
   );
 
+function formatSeconds(seconds: number) {
+  const durations = [60, 60, 24];
+  let formattedString = "";
+  for (let i = 0; i < durations.length; i++) {
+    const duration = durations[i];
+
+    let currentDurationSeconds = `${seconds % duration}`;
+
+    formattedString = `${currentDurationSeconds.padStart(2, "0")}${formattedString}`;
+
+    seconds = Math.trunc(seconds / duration);
+
+    if (seconds < 1) break;
+
+    if (i != durations.length - 1) {
+      formattedString = `:${formattedString}`;
+    }
+  }
+  return formattedString;
+}
+
 const Player = (player: MprisPlayer) =>
   Widget.Box(
     {},
@@ -52,16 +73,34 @@ const Player = (player: MprisPlayer) =>
           wrapMode: 2,
         }),
       ),
+      centerWidget: Widget.Slider({
+        value: player.bind("position"),
+        max: player.bind("length"),
+        drawValue: false,
+        on_change(self, _) {
+          player.position = self.value;
+        },
+      }).poll(1000, (self) => {
+        if (player.play_back_status != "Playing") return;
+
+        self.value = player.position;
+      }),
 
       endWidget: Widget.CenterBox({
         startWidget: Widget.Label({
-          label: player.bind("position").as((pos) => `${pos}`),
+          label: player.bind("position").as((pos) => formatSeconds(pos)),
           visible: player.bind("length").as((length) => length > 0),
+        }).poll(1000, (self) => {
+          if (player.play_back_status != "Playing") return;
+
+          self.label = formatSeconds(player.position);
         }),
         centerWidget: PlayerControls(player),
         endWidget: Widget.Label({
-          label: player.bind("length").as((length) => `${length}`),
+          label: player.bind("length").as((length) => formatSeconds(length)),
           visible: player.bind("length").as((length) => length > 0),
+        }).poll(10000, (self) => {
+          self.label = formatSeconds(player.length);
         }),
       }),
     }),
