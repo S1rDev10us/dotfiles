@@ -46,6 +46,7 @@ lib.mkIf opts.environment.hyprland.enable {
       enable = true;
       wayland.enable = true;
     };
+    displayManager.defaultSession = lib.mkForce "hyprland";
     blueman.enable = true;
 
     # Screensharing
