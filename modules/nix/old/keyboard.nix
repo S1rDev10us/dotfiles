@@ -18,7 +18,7 @@
           # Disable arrow keys to force to use rightalt + h/j/k/l
           // lib.genAttrs ["left" "down" "up" "right"] (_: "noop");
         # When the nav layer is active then hjkl should turn into arrow keys
-        nav = {
+        "nav:G" = {
           h = "left";
           j = "down";
           k = "up";
