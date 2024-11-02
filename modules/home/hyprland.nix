@@ -326,6 +326,9 @@
         bindl = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+          ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+          ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+          ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
           ", switch:Lid Switch, exec, hyprlock --immediate"
         ];
         bindr = [
