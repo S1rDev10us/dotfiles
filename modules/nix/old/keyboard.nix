@@ -12,7 +12,6 @@
           {
             # Use capslock for backspace
             capslock = "backspace";
-            backspace = "noop"; # To stop me from using the old backspace key accidentaly
             # Create the rightalt/nav layer and switch to it when pressing down right alt
             rightalt = "layer(nav)";
           }
