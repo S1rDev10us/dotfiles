@@ -228,7 +228,12 @@
         };
 
         misc = {
+          animate_manual_resizes = true;
+          animate_mouse_windowdragging = true;
           force_default_wallpaper = 0;
+          focus_on_activate = true;
+          new_window_takes_over_fullscreen = 2;
+          font_family = "JetbrainsMono NF";
         };
 
         windowrulev2 = let
