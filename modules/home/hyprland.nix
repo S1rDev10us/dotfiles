@@ -70,6 +70,7 @@
           layer = "overlay";
           closeOnClick = true;
           showResultsImmediately = true;
+          ignoreExclusiveZones = true;
           hidePluginInfo = false;
         };
         extraCss = ''
