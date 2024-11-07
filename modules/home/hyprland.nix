@@ -285,7 +285,11 @@
         in
           lib.flatten (
             [
+              "SUPER, T, layoutmsg, togglesplit"
+              "SUPER, S, layoutmsg, swapsplit"
+              "SUPER, P, pseudo"
               "SUPER, F, togglefloating"
+              # Send notification when changing keyboard layout (to colemak and back)
               "SUPER, space, exec, notify-send switch-layout"
               # Move focus
               (fromDirections movefocus)
