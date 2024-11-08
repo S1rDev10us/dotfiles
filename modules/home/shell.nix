@@ -1,8 +1,8 @@
-{...}: {
+{opts, ...}: {
   home.sessionVariables.TERMINAL = "foot";
   programs = {
     foot = {
-      enable = true;
+      enable = opts.GUI.enable;
       settings = {
         main = {
           font = "JetbrainsMonoNF:size=10";

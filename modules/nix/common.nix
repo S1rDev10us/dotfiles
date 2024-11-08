@@ -7,6 +7,8 @@
   opts,
   ...
 }: {
+  networking.networkmanager.enable = true;
+
   security.polkit = lib.mkIf opts.GUI.enable {enable = true;};
   hardware.opengl.enable = lib.mkForce opts.GUI.enable;
 
