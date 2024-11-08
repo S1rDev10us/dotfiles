@@ -109,6 +109,7 @@ const Player = (player: MprisPlayer) =>
 export const MediaControls = () =>
   Widget.Box<Gtk.Widget>({
     className: "background media-controls",
+    vertical: true,
     children: mpris
       .bind("players")
       .as((players) =>
