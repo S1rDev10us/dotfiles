@@ -21,6 +21,8 @@
   - [ ] Look at setting up hardware
     - https://old.reddit.com/r/NixOS/comments/cjgcih/installing_on_hp_proliant_gen8/
     - https://askubuntu.com/questions/524814/how-to-install-ubuntu-server-on-hp-proliant-microserver-gen8
+  - [ ] Look at [QEMU](https://www.qemu.org/)
+    - https://mynixos.com/nixpkgs/options/virtualisation.qemu
 
 ### Amphisbaena
 
@@ -89,6 +91,11 @@
   - [ ] [Secure boot](https://github.com/nix-community/lanzaboote) ([wiki](https://wiki.nixos.org/wiki/Secure_Boot))
   - [ ] [Systemd hardening](https://wiki.nixos.org/wiki/Systemd/Hardening)
   - [ ] https://github.com/cynicsketch/nix-mineral
+  - [ ] https://github.com/JayRovacsek/nix-config/blob/0f18ebf54033e291bee32bf52171676514563862/home-manager-modules/firefox/default.nix
+  - [ ] https://github.com/JayRovacsek/vulnix-pre-commit/blob/main/README.md
+  - [ ] https://apparmor.net/
+    - https://discourse.nixos.org/t/apparmor-default-profiles/16780
+  - [ ] https://wiki.nixos.org/wiki/Workgroup:SELinux
 
 ### Package additions
 
@@ -181,3 +188,14 @@
 - [/] replace hyprpaper with swww (Because swww has a cool background switch animation)
 - [ ] atuin https://mynixos.com/home-manager/options/programs.atuin
 - [x] GameMode https://wiki.nixos.org/wiki/GameMode
+- [ ] https://search.nixos.org/packages?query=vlc
+- [ ] https://search.nixos.org/packages?query=vital
+- [ ] https://search.nixos.org/packages?query=ludusavi
+- [ ] https://mynixos.com/nixpkgs/package/gnome.gnome-clocks
+- [ ] https://mynixos.com/nixpkgs/package/kdenlive
+- [ ] https://alternativeto.net/software/appflowy/about/
+- [ ] https://alternativeto.net/software/zotero/about/
+- [ ] https://alternativeto.net/software/natron/about/
+- [ ] nix-tree
+- [ ] ncdu (NCurses disk usage)
+- [ ] [NixOS generations trimmer](https://wiki.nixos.org/wiki/NixOS_Generations_Trimmer)
