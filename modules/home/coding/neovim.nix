@@ -7,6 +7,7 @@
 lib.mkIf opts.coding.enable {
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
     defaultEditor = true;
     # Mason dependencies
     extraPackages = with pkgs; [
