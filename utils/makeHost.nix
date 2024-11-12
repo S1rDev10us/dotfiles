@@ -1,8 +1,6 @@
 {
-  inputs,
   lib,
   libx,
-  options,
   ...
 } @ thisInputs: {
   host,
@@ -25,15 +23,6 @@ lib.nixosSystem {
     [
       {
         nixpkgs.hostPlatform = architecture;
-        nixpkgs.config = {
-          packageOverrides = pkgs: {
-            unstable = import inputs.nixpkgs-unstable {
-              config = pkgs.config;
-
-              system = architecture;
-            };
-          };
-        };
       }
     ]
     ++ (libx.allModulesFrom ../modules/nix)
