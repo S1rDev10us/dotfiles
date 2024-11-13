@@ -20,6 +20,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   time.timeZone = "Europe/London";
 
