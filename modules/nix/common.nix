@@ -7,6 +7,8 @@
   opts,
   ...
 }: {
+  services.xserver.excludePackages = with pkgs; [xterm];
+
   networking.networkmanager.enable = true;
 
   security.polkit = lib.mkIf opts.GUI.enable {enable = true;};
