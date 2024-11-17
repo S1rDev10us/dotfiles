@@ -1,20 +1,16 @@
-import Gdk from "types/@girs/gdk-3.0/gdk-3.0";
+// import Gdk from "types/@girs/gdk-3.0/gdk-3.0";
+import type { Monitor } from "types/service/hyprland";
 import { Bar } from "widgets/bar/index";
 import QuickMenu from "widgets/QuickMenu/index";
 
-const bars = {};
-
 App.applyCss(App.configDir + "/style.css");
 App.config({
-  windows: () =>
-    [
-      Array.from(
-        { length: Gdk.Display.get_default()?.get_n_monitors() ?? 0 },
-        (_, i) => Bar(i),
-      ),
-      QuickMenu(),
-    ].flat(),
+  windows: () => [QuickMenu()].flat(),
 });
+
+const hyprland = await Service.import("hyprland");
+
+const bars = {};
 
 function addMonitor(monitor: number) {
   if (bars[monitor]) return;
@@ -32,4 +28,13 @@ function removeMonitor(monitor: number) {
   bars[monitor] = undefined;
 }
 
+for (const monitor of hyprland.monitors) {
+  addMonitor(monitor.id);
+}
 
+hyprland.connect("monitor-added", (_, monitor: Monitor) =>
+  addMonitor(monitor.id),
+);
+hyprland.connect("monitor-removed", (_, monitor: Monitor) =>
+  removeMonitor(monitor.id),
+);
