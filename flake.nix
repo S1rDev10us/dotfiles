@@ -4,10 +4,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix = {
       url = "github:danth/stylix/release-24.05";
       inputs = {
@@ -15,19 +17,24 @@
         home-manager.follows = "home-manager";
       };
     };
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
     };
+
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:NixOs/nixos-hardware";
+
     anyrun = {
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +67,8 @@
       inherit inputs outputs libx;
     };
     options = libx.allModulesFrom ./options;
+    allSystems = lib.systems.flakeExposed;
+    forAllSystems = f: lib.genAttrs allSystems (system: f {systemPkgs = pkgs.legacyPackages.${system};});
   in {
     templates = lib.genAttrs (libx.allFrom ./resources/templates) (template: let
       templateFolder = ./resources/templates/${template};
@@ -109,23 +118,21 @@
       )
       hosts));
 
-    devShells = let
-      allSystems = ["x86_64-linux"];
-      forAllSystems = f: lib.genAttrs allSystems (system: f {systemPkgs = pkgs.legacyPackages.${system};});
-    in
-      forAllSystems ({systemPkgs}: {
-        default = systemPkgs.mkShell {
-          packages = with systemPkgs; [
-            just
-            alejandra
-            nodejs_22
-          ];
-          shellHook = ''
-            echo "linking types"
-            ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/
-          '';
-        };
-      });
-    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {ags = inputs.ags.packages.x86_64-linux.default;};
+    devShells = forAllSystems ({systemPkgs}: {
+      default = systemPkgs.mkShell {
+        packages = with systemPkgs; [
+          just
+          alejandra
+          nodejs_22
+        ];
+        shellHook = ''
+          echo "linking types"
+          ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/
+        '';
+      };
+    });
+    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {
+      ags = inputs.ags.packages.x86_64-linux.default;
+    };
   };
 }
