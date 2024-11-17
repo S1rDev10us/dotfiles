@@ -5,6 +5,7 @@ interface Padding {
   bottomPadding?: boolean;
   leftPadding?: boolean;
 }
+export type AnyPadding = Padding | [boolean, boolean, boolean, boolean];
 const Padding = (
   name: string,
   hexpand: boolean = true,
@@ -36,9 +37,7 @@ const Layout = (name: string, padding: Padding, child: Gtk.Widget) =>
     ].filter((x) => !!x),
   });
 
-function toPadding(
-  padding: Padding | [boolean, boolean, boolean, boolean],
-): Padding {
+function toPadding(padding: AnyPadding): Padding {
   if (!Array.isArray(padding)) {
     return padding;
   }
@@ -50,11 +49,7 @@ function toPadding(
   };
 }
 
-export const Popup = (
-  name: string,
-  padding: Padding | [boolean, boolean, boolean, boolean],
-  child: Gtk.Widget,
-) => {
+export const Popup = (name: string, padding: AnyPadding, child: Gtk.Widget) => {
   return Widget.Window({
     name,
     classNames: [name, "popup-window"],
