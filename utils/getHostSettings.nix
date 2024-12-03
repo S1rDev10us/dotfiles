@@ -1,6 +1,5 @@
 {
   lib,
-  libx,
   options,
   ...
 } @ inputs: host:
