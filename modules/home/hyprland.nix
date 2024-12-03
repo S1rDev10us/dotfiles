@@ -161,7 +161,7 @@
           (onWorkspace workspaces.communications "discord")
           (onWorkspace workspaces.communications "firefox -P comms --name 'firefox-comms'")
           # Starts in light mode if it spawns too quickly?
-          (onWorkspace workspaces.passwords "sleep 2 && keepassxc")
+          (onWorkspace workspaces.passwords "sleep 5 && keepassxc")
         ];
         monitor = [
           ",preferred,auto,1"
