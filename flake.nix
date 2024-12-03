@@ -48,17 +48,14 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    stylix,
+    ags,
     ...
   } @ inputs: let
     inherit (self) outputs;
-    pkgs = nixpkgs;
     lib = nixpkgs.lib;
     libx = import ./utils (parameters
       // {
-        inherit pkgs lib options;
+        inherit nixpkgs lib options;
       });
     hosts = libx.allFrom ./hosts;
     # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.allFrom ./hosts);
@@ -68,7 +65,12 @@
     };
     options = libx.allModulesFrom ./options;
     allSystems = lib.systems.flakeExposed;
-    forAllSystems = f: lib.genAttrs allSystems (system: f {systemPkgs = pkgs.legacyPackages.${system};});
+    forAllSystems = f:
+      lib.genAttrs allSystems (system:
+        f {
+          inherit system;
+          systemPkgs = nixpkgs.legacyPackages.${system};
+        });
   in {
     templates = lib.genAttrs (libx.allFrom ./resources/templates) (template: let
       templateFolder = ./resources/templates/${template};
@@ -118,7 +120,11 @@
       )
       hosts));
 
-    devShells = forAllSystems ({systemPkgs}: {
+    devShells = forAllSystems ({
+      systemPkgs,
+      system,
+      ...
+    }: {
       default = systemPkgs.mkShell {
         packages = with systemPkgs; [
           just
@@ -127,12 +133,17 @@
         ];
         shellHook = ''
           echo "linking types"
-          ln -sf ${systemPkgs.ags}/share/com.github.Aylur.ags/types ./resources/ags-dots/
+          ln -sf ${ags.packages.${system}.default}/share/com.github.Aylur.ags/types ./resources/ags-dots/
         '';
       };
     });
-    packages.x86_64-linux.ags = pkgs.legacyPackages.x86_64-linux.callPackage ./resources/ags-dots/default.nix {
-      ags = inputs.ags.packages.x86_64-linux.default;
-    };
+    packages = forAllSystems ({
+      systemPkgs,
+      system,
+    }: rec {
+      ags = systemPkgs.callPackage ./resources/ags-dots/default.nix {
+        ags = inputs.ags.packages.${system}.default;
+      };
+    });
   };
 }
