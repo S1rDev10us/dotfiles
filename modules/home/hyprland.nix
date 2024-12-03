@@ -188,6 +188,13 @@
 
         decoration = {
           rounding = 10;
+          inactive_opacity = 0.75;
+          fullscreen_opacity = 1;
+          drop_shadow = true;
+          shadow_range = 4;
+          shadow_render_power = 3;
+          "col.shadow" = "rgba(6a6a6aee)";
+          "col.shadow_inactive" = "0xee1a1a1a";
           blur = {
             enabled = true;
             size = 5;
@@ -195,9 +202,6 @@
             vibrancy = 0.1696;
             brightness = 0.5;
           };
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
         };
         animations = {
           enabled = true;
