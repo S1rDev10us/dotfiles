@@ -244,7 +244,7 @@
         in
           [
             "suppressevent maximize, class:.*"
-            # "workspace 2 silent, class:firefox"
+            (onWorkspace 2 "class:^firefox$")
             (onWorkspace 9 "class:thunderbird")
             (onWorkspace 9 "class:discord")
             (onWorkspace 10 "initialClass:keepassxc")
