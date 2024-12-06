@@ -14,8 +14,9 @@ const Padding = (
   Widget.EventBox({
     hexpand,
     vexpand,
+    can_focus: false,
     // For some reason apparently only frames can have a min-width? https://stackoverflow.com/a/33840289
-    child: new Gtk.Frame({}),
+    child: Widget.Box({}),
     className: "popup-padding",
     onPrimaryClick: () => {
       App.toggleWindow(name);
