@@ -144,7 +144,7 @@
       ags = systemPkgs.callPackage ./resources/ags-dots/default.nix {
         ags = inputs.ags.packages.${system}.default;
       };
-      onhomenetwork = systemPkgs.callPackage ./resources/onhomenetwork/default.nix {};
+      onhomenetwork = systemPkgs.callPackage ./resources/pkgs/onhomenetwork/default.nix {};
     });
   };
 }
