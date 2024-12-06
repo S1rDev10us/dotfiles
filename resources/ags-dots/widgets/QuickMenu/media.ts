@@ -69,8 +69,11 @@ const Player = (player: MprisPlayer) =>
       startWidget: Widget.Box(
         {},
         Widget.Label({
+          justification: "center",
           label: player.bind("track_title"),
           wrapMode: 2,
+          maxWidthChars: 45,
+          wrap: true,
         }),
       ),
       centerWidget: Widget.Slider({
