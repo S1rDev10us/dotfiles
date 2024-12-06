@@ -192,7 +192,7 @@
 - [ ] https://search.nixos.org/packages?query=vital
 - [ ] https://search.nixos.org/packages?query=ludusavi
 - [ ] https://mynixos.com/nixpkgs/package/gnome.gnome-clocks
-- [ ] https://mynixos.com/nixpkgs/package/kdenlive
+- [x] https://mynixos.com/nixpkgs/package/kdenlive
 - [ ] https://alternativeto.net/software/appflowy/about/
 - [ ] https://alternativeto.net/software/zotero/about/
 - [ ] https://alternativeto.net/software/natron/about/

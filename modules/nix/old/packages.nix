@@ -7,9 +7,11 @@
   environment.systemPackages = with pkgs;
     [
       btop
+      ffmpeg
       exiftool
     ]
     ++ (lib.optionals opts.GUI.enable [
+      kdenlive
       keepassxc
       obs-studio
       inkscape
