@@ -197,5 +197,6 @@
 - [ ] https://alternativeto.net/software/zotero/about/
 - [ ] https://alternativeto.net/software/natron/about/
 - [ ] nix-tree
-- [ ] ncdu (NCurses disk usage)
+- [ ] ncdu (NCurses disk usage) or Baobab (Gnome Disk Usage Manager)
 - [ ] [NixOS generations trimmer](https://wiki.nixos.org/wiki/NixOS_Generations_Trimmer)
+- [ ] [tldr](https://tldr.sh/)
