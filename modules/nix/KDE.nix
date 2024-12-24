@@ -11,5 +11,5 @@ lib.mkIf (opts.environment.KDE.enable && opts.GUI.enable) {
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
   };
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [konsole];
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [konsole xwaylandvideobridge];
 }

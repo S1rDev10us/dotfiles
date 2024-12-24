@@ -1,6 +1,6 @@
 {lib, ...}: {
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = lib.mkForce false; # This conflicts with the import in cerberus, I need to just pull in the config in that input so I don't need to do this here
   security.rtkit.enable = true;
   services.pipewire = {

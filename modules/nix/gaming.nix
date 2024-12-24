@@ -13,6 +13,7 @@
     programs.gamemode.enable = true;
     unfreePackages = [
       "steam"
+      "steam-unwrapped"
       "steam-original"
       "steam-run"
     ];

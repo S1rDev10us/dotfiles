@@ -12,7 +12,7 @@
   networking.networkmanager.enable = true;
 
   security.polkit = lib.mkIf opts.GUI.enable {enable = true;};
-  hardware.opengl.enable = lib.mkForce opts.GUI.enable;
+  hardware.graphics.enable = lib.mkForce opts.GUI.enable;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Packages required to run flakes (not to edit them)

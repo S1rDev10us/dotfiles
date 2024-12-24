@@ -7,11 +7,11 @@
 lib.mkIf opts.environment.hyprland.enable {
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
   environment.systemPackages = with pkgs; [
     xwayland
-    waybar
     meson
     wayland-protocols
     wayland-utils
@@ -37,7 +37,6 @@ lib.mkIf opts.environment.hyprland.enable {
     })
   ];
   fonts.packages = with pkgs; [
-    nerdfonts
     meslo-lgs-nf
   ];
   fonts.fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
@@ -46,7 +45,7 @@ lib.mkIf opts.environment.hyprland.enable {
       enable = true;
       wayland.enable = true;
     };
-    displayManager.defaultSession = lib.mkForce "hyprland";
+    displayManager.defaultSession = lib.mkForce "hyprland-uwsm";
     blueman.enable = true;
 
     # Screensharing

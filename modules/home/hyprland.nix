@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   opts,
@@ -135,7 +136,6 @@
     };
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = true;
       xwayland.enable = true;
       # plugins=[];
 
@@ -190,11 +190,13 @@
           rounding = 10;
           inactive_opacity = 0.75;
           fullscreen_opacity = 1;
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(6a6a6aee)";
-          "col.shadow_inactive" = "0xee1a1a1a";
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(6a6a6aee)";
+            color_inactive = "0xee1a1a1a";
+          };
           blur = {
             enabled = true;
             size = 5;
@@ -309,6 +311,7 @@
             ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
             ++ (builtins.genList (x: goToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
           );
+
         bindm = [
           "SUPER, mouse:272, movewindow"
           "SUPER, mouse:273, resizewindow"
@@ -316,6 +319,7 @@
           "SUPER, Control_L, movewindow"
           "SUPER, Alt_L, resizewindow"
         ];
+
         binde = let
           binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
           resizeactive = binding "SUPER&ALT" "resizeactive";
@@ -326,6 +330,7 @@
           (resizeactive "l" "20 0")
           (resizeactive "h" "-20 0")
         ];
+
         bindel = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise --max-volume 120"
@@ -333,6 +338,7 @@
           ", XF86MonBrightnessUp, exec, swayosd-client --brightness +10"
           ", XF86MonBrightnessDown, exec, swayosd-client --brightness -10"
         ];
+
         bindl = [
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
@@ -341,6 +347,7 @@
           ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
           ", switch:Lid Switch, exec, hyprlock --immediate"
         ];
+
         bindr = [
           # App launcher
           "SUPER, SUPER_L, exec, pkill anyrun || anyrun"
