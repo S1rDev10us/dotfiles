@@ -44,11 +44,17 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
     nixpkgs,
     ags,
+    nixvim,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -140,11 +146,18 @@
     packages = forAllSystems ({
       systemPkgs,
       system,
-    }: rec {
+    }: let
+      nixvim' = nixvim.legacyPackages.${system};
+    in rec {
       ags = systemPkgs.callPackage ./resources/ags-dots/default.nix {
         ags = inputs.ags.packages.${system}.default;
       };
       onhomenetwork = systemPkgs.callPackage ./resources/pkgs/onhomenetwork/default.nix {};
+      nvim = nixvim'.makeNixvimWithModule {
+        pkgs = systemPkgs;
+        module = {...}: {imports = libx.allModulesFrom ./resources/nixvim;};
+        extraSpecialArgs = parameters;
+      };
     });
   };
 }
