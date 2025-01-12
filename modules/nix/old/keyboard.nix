@@ -1,12 +1,12 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   services.keyd = {
     enable = true;
     keyboards.default = {
-      ids = ["*"];
+      ids = [
+        "*"
+        # don't apply to keyboard with id 9999
+        "-3297:1977"
+      ];
       settings = {
         main =
           {
