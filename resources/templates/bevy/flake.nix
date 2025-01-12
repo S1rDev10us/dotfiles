@@ -1,9 +1,9 @@
 {
   description = "A basic template for bevy projects";
   inputs = {
-    nixpkgs.url = "nixpkgs/24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     rust-overlay = {
-      src = "github:oxalica/rust-overlay";
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
