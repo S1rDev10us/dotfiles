@@ -248,6 +248,7 @@
           [
             "suppressevent maximize, class:.*"
             (onWorkspace 2 "class:^firefox$")
+            (onWorkspace 3 "class:^superProductivity$")
             (onWorkspace 9 "class:thunderbird")
             (onWorkspace 9 "class:discord")
             (onWorkspace 10 "initialClass:keepassxc")
