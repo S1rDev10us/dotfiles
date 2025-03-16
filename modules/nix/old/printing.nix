@@ -8,4 +8,5 @@
       openFirewall = true;
     };
   };
+  programs.system-config-printer.enable = true;
 }

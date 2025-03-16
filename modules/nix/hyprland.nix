@@ -29,13 +29,6 @@ lib.mkIf opts.environment.hyprland.enable {
   };
   qt.style = "adwaita-dark";
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-      });
-    })
-  ];
   fonts.packages = with pkgs; [
     meslo-lgs-nf
   ];
