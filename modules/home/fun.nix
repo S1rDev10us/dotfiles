@@ -11,13 +11,13 @@
     programs.fastfetch = {
       enable = true;
       settings = {
-        "display" = {
-          "size" = {
-            "maxPrefix" = "MB";
-            "ndigits" = 0;
+        display = {
+          size = {
+            maxPrefix = "MB";
+            ndigits = 0;
           };
         };
-        "modules" = [
+        modules = [
           "title"
           "separator"
           "os"
@@ -27,9 +27,9 @@
           "packages"
           "shell"
           {
-            "type" = "display";
-            "compactType" = "original";
-            "key" = "Resolution";
+            type = "display";
+            compactType = "original";
+            key = "Resolution";
           }
           "de"
           "wm"
@@ -40,17 +40,17 @@
           "cursor"
           "terminal"
           {
-            "type" = "terminalfont";
-            "format" = "{/2}{-}{/}{2}{?3} {3}{?}";
+            type = "terminalfont";
+            format = "{/2}{-}{/}{2}{?3} {3}{?}";
           }
           "cpu"
           {
-            "type" = "gpu";
-            "key" = "GPU";
+            type = "gpu";
+            key = "GPU";
           }
           {
-            "type" = "memory";
-            "format" = "{/1}{-}{/}{/2}{-}{/}{} / {}";
+            type = "memory";
+            format = "{/1}{-}{/}{/2}{-}{/}{} / {}";
           }
           "swap"
           "disk"
