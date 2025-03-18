@@ -83,4 +83,5 @@ lib.mkIf opts.GUI.enable {
       OfferToSaveLogins = false;
     };
   };
+  home.sessionVariables.BROWSER = "firefox";
 }
