@@ -81,7 +81,6 @@ dotfiles
 |    Hydra    |          NixOS          |   Linux learning device   |           ⛔           |  Old silver laptop  |
 | Amphisbaena |     NixOS Dualboot      |     Main work device      |           ✅           |  Thin black laptop  |
 |  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ⛔           |          ^          |
-|  Cerberus   | NixOS VM on Amphisbaena |  Using Linux more often   |           ⛔           |          ^          |
 |  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") | Large white desktop |
 
 ✅ yes
