@@ -309,6 +309,7 @@
               ", Print, exec, grimblast copy area"
               "SHIFT, Print, exec, XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots grimblast copysave area"
               "SHIFT SUPER, s, exec, grimblast copy area"
+              # Lock
               "SHIFT SUPER, l, exec, hyprlock --immediate"
             ]
             ++ (builtins.genList (x: moveWindowToWorkspace (lib.mod (x + 1) 10) (x + 1)) 10)
@@ -346,6 +347,7 @@
           # https://wiki.hyprland.org/Configuring/Binds/#media
           ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
           ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+          ", XF86TouchpadToggle, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
           ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
           ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
           ", switch:Lid Switch, exec, hyprlock --immediate"
