@@ -10,7 +10,6 @@
         lazygit
       ]
       ++ lib.optionals opts.GUI.enable [
-        vscode
         (
           unityhub.override {
             extraLibs = pkgs: [pkgs.openssl_1_1];
@@ -28,7 +27,6 @@
       "openssl-1.1.1w"
     ];
     unfreePackages = lib.optionals opts.GUI.enable (with pkgs; [
-      vscode
       unityhub
       jetbrains-toolbox
       jetbrains.rider
