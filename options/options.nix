@@ -34,7 +34,7 @@ in {
     };
     VM.enable = mkEnableOption "Virtual Box guest support";
     WSL.enable = mkEnableOption "WSL";
-    users = lib.genAttrs (libx.allFrom ../users) (user: {
+    users = lib.genAttrs (libx.listChildren ../users) (user: {
       enable = mkEnableOption "${user} user";
       admin = mkEnableOption "${user} admin";
     });

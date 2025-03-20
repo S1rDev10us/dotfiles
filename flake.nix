@@ -63,9 +63,9 @@
       // {
         inherit nixpkgs lib options;
       });
-    hosts = libx.allFrom ./hosts;
-    # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.allFrom ./hosts);
-    users = libx.allFrom ./users;
+    hosts = libx.listChildren ./hosts;
+    # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.listChildren ./hosts);
+    users = libx.listChildren ./users;
     parameters = {
       inherit inputs outputs libx;
     };
@@ -78,7 +78,7 @@
           systemPkgs = nixpkgs.legacyPackages.${system};
         });
   in {
-    templates = lib.genAttrs (libx.allFrom ./resources/templates) (template: let
+    templates = lib.genAttrs (libx.listChildren ./resources/templates) (template: let
       templateFolder = ./resources/templates/${template};
       templateFlake = templateFolder + "/flake.nix";
     in {
