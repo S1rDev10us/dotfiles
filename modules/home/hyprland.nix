@@ -140,17 +140,19 @@
       xwayland.enable = true;
       # plugins=[];
 
-      settings = {
+      settings = let
+        workspaces = {
+          web = 2;
+          taskManagement = 3;
+          notes = 4;
+          communications = 9;
+          passwords = 10;
+        };
+      in {
         exec-once = let
           withRules = rules: command: "[${builtins.concatStringsSep ";" rules}] ${command}";
           onWorkspaceWithRules = rules: workspace: command: withRules (["workspace ${builtins.toString workspace} silent"] ++ rules) command;
           onWorkspace = workspace: command: onWorkspaceWithRules [] workspace command;
-          workspaces = {
-            web = 2;
-            notes = 4;
-            communications = 9;
-            passwords = 10;
-          };
         in [
           "mako"
           "nm-applet"
@@ -248,11 +250,11 @@
         in
           [
             "suppressevent maximize, class:.*"
-            (onWorkspace 2 "class:^firefox$")
-            (onWorkspace 3 "class:^superProductivity$")
-            (onWorkspace 9 "class:thunderbird")
-            (onWorkspace 9 "class:discord")
-            (onWorkspace 10 "initialClass:keepassxc")
+            (onWorkspace workspaces.web "class:^firefox$")
+            (onWorkspace workspaces.taskManagement "class:^superProductivity$")
+            (onWorkspace workspaces.communications "class:thunderbird")
+            (onWorkspace workspaces.communications "class:discord")
+            (onWorkspace workspaces.passwords "initialClass:keepassxc")
           ]
           ++ mkRules "class:\\.blueman-applet-wrapped" notificationRules
           # Place thunderbird notifications in the bottom right of the screen and don't focus it
@@ -262,6 +264,7 @@
             "float"
             # "move 100% 100%"
           ];
+
         layerrule = let
           barSelector = "bar\\d+";
           mkRules = selector: rules: builtins.map (rule: rule + ", " + selector) rules;
