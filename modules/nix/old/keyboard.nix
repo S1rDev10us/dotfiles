@@ -4,7 +4,7 @@
     keyboards.default = {
       ids = [
         "*"
-        # don't apply to keyboard with id 9999
+        # don't apply to ZSA Voyager, it applies most of these in it's own way
         "-3297:1977"
       ];
       settings = {
