@@ -27,7 +27,7 @@ in {
     fileContents = import path;
     fileIsFunction = builtins.isFunction fileContents;
     calledModule =
-      if builtins.trace (lib.concatStringsSep ", " (builtins.attrNames inputs) + relativePath + inputs.env) fileIsFunction
+      if fileIsFunction
       then (fileContents inputs)
       else fileContents;
     filteredModule = lib.removeAttrs calledModule ["useOpts"];

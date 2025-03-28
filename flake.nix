@@ -63,10 +63,8 @@
       // {
         inherit nixpkgs lib options;
       });
-    hosts = libx.listChildren ./hosts;
-    # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.listChildren ./hosts);
-    users = libx.listChildren ./users;
     # hosts = libx.listChildren ./hosts;
+    hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra" "minotaur"])) (libx.listChildren ./hosts);
     parameters = {
       inherit inputs outputs libx;
     };
@@ -101,7 +99,7 @@
         in
           libx.makeHost {
             inherit host;
-            evaluatedOptions = evaluatedOptions.config;
+            opts = evaluatedOptions.config;
             stateVersion = evaluatedOptions.config.stateVersion;
             specialArgs = parameters;
           }
@@ -118,12 +116,12 @@
             name = user + "@" + host;
             value = libx.makeHome {
               inherit host user;
-              evaluatedOptions = evaluatedOptions.config;
+              opts = evaluatedOptions.config;
               stateVersion = evaluatedOptions.config.stateVersion;
               specialArgs = parameters;
             };
           })
-          (builtins.filter (user: hostOptions.config.users.${user}.enable) users))
+          (libx.getEnabledUsers hostOptions.config))
       )
       hosts));
 
