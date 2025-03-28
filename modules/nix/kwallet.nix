@@ -23,4 +23,5 @@
       package = pkgs.kdePackages.kwallet-pam;
     };
   };
+  environment.sessionVariables.GIT_ASKPASS = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
 }
