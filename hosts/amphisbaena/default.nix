@@ -33,6 +33,7 @@
     fun.enable = true;
     gaming.enable = true;
     grub.enable = true;
+    kwallet.enable = true;
   };
   GUI = true;
   grub.useEfi = true;
