@@ -28,6 +28,8 @@
     QT_STYLE_OVERRIDE = "adwaita-dark";
   };
   qt.style = "adwaita-dark";
+  qt.platformTheme = "gnome";
+  qt.enable = true;
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   fonts.packages = with pkgs; [
     meslo-lgs-nf
