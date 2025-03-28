@@ -23,6 +23,8 @@
           j = "down";
           k = "up";
           l = "right";
+          comma = "C-tab";
+          m = "C-S-tab";
         };
       };
     };
