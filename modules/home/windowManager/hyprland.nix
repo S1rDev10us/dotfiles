@@ -78,6 +78,12 @@
             background-color: rgba(0,0,0,0.5);
           }
         '';
+        extraConfigFiles."shell.ron".text = ''
+          Config(
+            prefix: "!",
+            shell: None,
+          )
+        '';
       };
     };
 
