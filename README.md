@@ -76,12 +76,13 @@ dotfiles
 
 ## Hosts
 
-|  Hostname   |       Environment       |         Use case          |         State          | Device description  |
-| :---------: | :---------------------: | :-----------------------: | :--------------------: | :-----------------: |
-|    Hydra    |          NixOS          |   Linux learning device   |           ⛔           |  Old silver laptop  |
-| Amphisbaena |     NixOS Dualboot      |     Main work device      |           ✅           |  Thin black laptop  |
-|  Minotaur   |   WSL on Amphisbaena    | Linux features on windows |           ⛔           |          ^          |
-|  Chimaera   |     NixOS Dualboot      |   Gaming and streaming    | [🚧](## "in progress") | Large white desktop |
+|  Hostname   |    Environment     |         Use case          |         State          | Device description  |
+| :---------: | :----------------: | :-----------------------: | :--------------------: | :-----------------: |
+|    Hydra    |       NixOS        |   Linux learning device   |           ⛔           |  Old silver laptop  |
+| Amphisbaena |   NixOS Dualboot   |     Main work device      |           ✅           |  Thin black laptop  |
+|  Minotaur   | WSL on Amphisbaena | Linux features on windows |           ⛔           |          ^          |
+|  Chimaera   |   NixOS Dualboot   |   Gaming and streaming    | [🚧](## "in progress") | Large white desktop |
+| Archimedes  |   RPi 400 Server   |          Server           |           ✅           |       RPi 400       |
 
 ✅ yes
 
