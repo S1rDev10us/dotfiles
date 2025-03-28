@@ -1,3 +1,3 @@
 {
-  fun.enable = true;
+  toggles.fun.enable = true;
 }

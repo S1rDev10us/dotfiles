@@ -66,6 +66,7 @@
     hosts = libx.listChildren ./hosts;
     # hosts = lib.filter (machine: ! (lib.elem machine ["hydra"])) (libx.listChildren ./hosts);
     users = libx.listChildren ./users;
+    # hosts = libx.listChildren ./hosts;
     parameters = {
       inherit inputs outputs libx;
     };
@@ -158,6 +159,9 @@
         module = {...}: {imports = libx.allModulesFrom ./resources/nixvim;};
         extraSpecialArgs = parameters;
       };
+      backup = systemPkgs.callPackage ./resources/backup/default.nix {inherit onhomenetwork;};
+      isolate_command = systemPkgs.callPackage ./resources/pkgs/isolate_command/default.nix {};
     });
+    inherit self libx;
   };
 }

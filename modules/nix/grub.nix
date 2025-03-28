@@ -1,9 +1,4 @@
-{
-  lib,
-  opts,
-  ...
-}:
-lib.mkIf (opts.grub.enable) {
+{opts, ...}: {
   assertions = [
     {
       assertion = opts.grub.windowsLocation != "" || !opts.grub.useEfi;

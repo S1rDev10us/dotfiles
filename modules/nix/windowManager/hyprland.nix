@@ -2,9 +2,9 @@
   pkgs,
   lib,
   opts,
+  config,
   ...
-}:
-lib.mkIf opts.environment.hyprland.enable {
+}: {
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -38,7 +38,7 @@ lib.mkIf opts.environment.hyprland.enable {
       enable = true;
       wayland.enable = true;
     };
-    displayManager.defaultSession = lib.mkForce "hyprland-uwsm";
+    displayManager.defaultSession = "hyprland-uwsm";
     blueman.enable = true;
 
     # Screensharing
@@ -51,5 +51,7 @@ lib.mkIf opts.environment.hyprland.enable {
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
+    # Bit of a hack. Need to work out what to do instead in the future
+    config.common.default = "*";
   };
 }

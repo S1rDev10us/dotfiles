@@ -31,6 +31,7 @@
   swapDevices = [
     {
       device = "/dev/disk/by-partuuid/b3d1d8dc-5904-40ab-82d2-1c514e8d856c";
+      # Having this enabled means that you cannot use hibernation because you cannot guarantee that you will still have access to the encryption key after it wakes back up
       randomEncryption.enable = true;
     }
   ];

@@ -126,6 +126,38 @@ This is because you have updated your WSL version without changing the mount pat
 To fix this go to the hardware-configuration for the system and change the line that has that mount path to respect your current WSL version.
 (You can get your WSL version with `WSL --version`, the line you're looking for is "Kernel version")
 
+## Custom module layout
+
+I've made a custom module layout which can be confusing
+
+```nix
+{
+  # Unless you use some recursive logic inside config you want
+  # to get the enable value from config instead of opts so
+  # that specializations can be used
+  #
+  # Defaults to false
+  useOpts = false;
+  # Same as usual. If it is a path under the basePath used
+  # by the current module (i.e. `modules/nix/`) then it will
+  # be processed by this module system as well. Otherwise it
+  # is just passed through opaquely
+  #
+  # Defaults to an empty list
+  imports = [...];
+  # Same as usual
+  options = {...};
+  # Same as usual. Unless options is defined this can be placed inline instead like usual
+  #
+  # Defaults to {}
+  config = {...};
+  # Same as usual
+  # See https://github.com/NixOS/nixpkgs/blob/master/lib/modules.nix for more details
+  key=...;
+  _file=...;
+}
+```
+
 ## Inspirations
 
 A few of the configs that I've taken ideas from include:

@@ -1,12 +1,6 @@
 {
-  lib,
-  opts,
-  ...
-}: {
-  config = lib.mkIf opts.VM.enable {
-    virtualisation.virtualbox.guest = {
-      enable = true;
-      clipboard = true;
-    };
+  virtualisation.virtualbox.guest = {
+    enable = true;
+    clipboard = true;
   };
 }

@@ -3,7 +3,7 @@
   opts,
   ...
 }: {
-  config = lib.mkIf opts.coding.enable {
+  config = {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;

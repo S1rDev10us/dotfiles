@@ -4,12 +4,12 @@
   opts,
   ...
 }: {
-  config = lib.mkIf opts.coding.enable {
+  config = {
     environment.systemPackages = with pkgs;
       [
         lazygit
       ]
-      ++ lib.optionals opts.GUI.enable [
+      ++ lib.optionals opts.GUI [
         (
           unityhub.override {
             extraLibs = pkgs: [pkgs.openssl_1_1];
@@ -26,7 +26,7 @@
     nixpkgs.config.permittedInsecurePackages = [
       "openssl-1.1.1w"
     ];
-    unfreePackages = lib.optionals opts.GUI.enable (with pkgs; [
+    unfreePackages = lib.optionals opts.GUI (with pkgs; [
       unityhub
       jetbrains-toolbox
       jetbrains.rider

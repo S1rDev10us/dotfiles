@@ -1,15 +1,42 @@
 {
   stateVersion = "24.05";
-  batteryManagement.enable = true;
-  coding.enable = true;
-  environment.hyprland.enable = true;
-  environment.KDE.enable = true;
-  fun.enable = true;
-  gamedev.enable = true;
-  gaming.enable = true;
+  toggles = {
+    unstable.enable = true;
+    unfree.enable = true;
+    common.enable = true;
+    users.enable = true;
+    old.packages.enable = true;
+    programs = {
+      communication.enable = true;
+      direnv.enable = true;
+      doas.enable = true;
+      office.enable = true;
+      ags.enable = true;
+      fileNavigation.enable = true;
+      firefox.enable = true;
+      neovim.enable = true;
+      terminal.enable = true;
+      waybar.enable = true;
+    };
+    services = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      keyboard.enable = true;
+      printing.enable = true;
+    };
+    windowManager = {
+      KDE.enable = true;
+      hyprland.enable = true;
+    };
+    batteryManagement.enable = true;
+    coding.enable = true;
+    fun.enable = true;
+    gaming.enable = true;
+    grub.enable = true;
+  };
+  GUI = true;
   grub.useEfi = true;
   grub.windowsLocation = "F4F3-9649";
-  GUI.enable = true;
   users.s1rdev10us = {
     enable = true;
     admin = true;

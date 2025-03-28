@@ -1,18 +1,21 @@
 {
   lib,
-  options,
+  libx,
   ...
 } @ inputs: host:
-lib.evalModules {
+lib.evalModules (let
+  inherit (libx.internal.getModules) optModules enableOptions;
+in {
   modules =
     [
       ../hosts/${host}
+      {options.toggles = enableOptions;}
     ]
-    ++ options;
+    ++ optModules;
   specialArgs =
     inputs
     // {
       inherit host;
       env = "nixos";
     };
-}
+})

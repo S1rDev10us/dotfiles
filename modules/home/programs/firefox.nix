@@ -5,8 +5,7 @@
   inputs,
   pkgs,
   ...
-}:
-lib.mkIf opts.GUI.enable {
+}: {
   programs.firefox = {
     enable = true;
     profiles = let

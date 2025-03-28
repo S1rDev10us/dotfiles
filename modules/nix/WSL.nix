@@ -4,9 +4,10 @@
   opts,
   ...
 }: {
-  imports = lib.optional opts.WSL.enable inputs.nixos-wsl.nixosModules.default;
+  useOpts = true;
+  imports = lib.optional opts.toggles.WSL.enable inputs.nixos-wsl.nixosModules.default;
   config =
-    if opts.WSL.enable
+    if opts.toggles.WSL.enable
     then {
       programs.nix-ld = {
         enable = true;

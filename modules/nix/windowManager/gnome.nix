@@ -1,11 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  opts,
-  ...
-}:
-lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
+{pkgs, ...}: {
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;

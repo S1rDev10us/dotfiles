@@ -3,8 +3,7 @@
   lib,
   opts,
   ...
-}:
-lib.mkIf opts.coding.enable {
+}: {
   programs.neovim = {
     enable = true;
     package = pkgs.unstable.neovim-unwrapped;

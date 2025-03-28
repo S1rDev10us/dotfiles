@@ -5,34 +5,37 @@
   ...
 }: {
   environment.systemPackages = with pkgs;
+  with kdePackages;
     [
+      # System monitor
       btop
-      ffmpeg
+      # Media commandline tools
       exiftool
+      ffmpeg
+      # Spelling
+      hunspellDicts.en-gb-large
+      # cmdline tools
       jq
       nix-output-monitor
-      hunspellDicts.en-gb-large
     ]
-    ++ (lib.optionals opts.GUI.enable [
-      wev
-      kdenlive
-      keepassxc
-      obs-studio
-      inkscape
-      gimp
-      blender
-      thunderbird # TODO: Replace this with programs.thunderbird
-      discord
-      unstable.obsidian
-      krita
-      libreoffice
+    ++ (lib.optionals opts.GUI [
+      # theme
+      breeze
+      breeze-gtk
+      breeze-icons
+      # disk management
+      baobab
       gparted
-      tenacity
-      super-productivity
-      signal-desktop
+      # Password store
+      keepassxc
+      # Video
+      obs-studio
+      kdenlive
+      # key/event viewer
+      wev
     ]);
-  unfreePackages = with pkgs; [
-    discord
-    obsidian
-  ];
+  # :TODO: replace with hyprcursor
+  xdg.icons.fallbackCursorThemes = lib.mkDefault ["breeze_cursors"];
+  # :TODO: only apply for git?
+  programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
 }

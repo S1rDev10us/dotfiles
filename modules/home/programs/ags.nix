@@ -9,11 +9,11 @@
   agsPackage = config.programs.ags.finalPackage;
 in {
   imports = [inputs.ags.homeManagerModules.default];
-  config = lib.mkIf opts.environment.hyprland.enable {
+  config = lib.mkIf config.toggles.windowManager.hyprland.enable {
     programs.ags = {
       enable = true;
-      configDir = "${pkgs.callPackage ../../resources/ags-dots/default.nix {ags = agsPackage;}}";
-      extraPackages = import ../../resources/ags-dots/dependencies.nix {inherit pkgs;};
+      configDir = "${pkgs.callPackage ../../../resources/ags-dots/default.nix {ags = agsPackage;}}";
+      extraPackages = import ../../../resources/ags-dots/dependencies.nix {inherit pkgs;};
     };
     systemd.user.services.ags = {
       Unit = {

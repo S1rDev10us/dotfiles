@@ -2,12 +2,11 @@
   config,
   lib,
   pkgs,
-  opts,
   inputs,
   ...
 }: {
   imports = [inputs.anyrun.homeManagerModules.default];
-  config = lib.mkIf opts.environment.hyprland.enable {
+  config = {
     home.packages = with pkgs; [
       swww
     ];

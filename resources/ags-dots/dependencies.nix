@@ -6,7 +6,7 @@ with pkgs; let
   # guiDependencies is for external GUIs that get called from the scripts
   #
   # Any buildtime dependencies should be specified in default.nix since that is where the build actually happens
-  runtimeDependencies = [webkitgtk];
+  runtimeDependencies = [webkitgtk_6_0];
   cmdDependencies = [];
   guiDependencies = [];
 in

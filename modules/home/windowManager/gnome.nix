@@ -4,8 +4,7 @@
   config,
   opts,
   ...
-}:
-lib.mkIf (opts.GUI.enable && opts.environment.gnome.enable) {
+}: {
   dconf = {
     enable = true;
     settings = {

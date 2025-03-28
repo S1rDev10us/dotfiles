@@ -1,9 +1,9 @@
 {
   lib,
-  opts,
+  config,
   ...
 }:
-lib.mkIf opts.environment.hyprland.enable {
+lib.mkIf config.toggles.windowManager.hyprland.enable {
   programs.waybar = {
     enable = true;
     systemd = {
