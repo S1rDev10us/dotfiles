@@ -11,6 +11,7 @@
       direnv.enable = true;
       doas.enable = true;
       office.enable = true;
+      zsa.enable = true;
       ags.enable = true;
       fileNavigation.enable = true;
       firefox.enable = true;
