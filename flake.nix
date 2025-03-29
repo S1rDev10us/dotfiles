@@ -98,6 +98,7 @@
           evaluatedOptions = libx.getHostSettings host;
         in
           libx.makeHost {
+            architecture = evaluatedOptions.config.architecture;
             inherit host;
             opts = evaluatedOptions.config;
             stateVersion = evaluatedOptions.config.stateVersion;
@@ -115,6 +116,7 @@
           in {
             name = user + "@" + host;
             value = libx.makeHome {
+              architecture = evaluatedOptions.config.architecture;
               inherit host user;
               opts = evaluatedOptions.config;
               stateVersion = evaluatedOptions.config.stateVersion;

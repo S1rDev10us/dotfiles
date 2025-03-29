@@ -8,6 +8,10 @@ with lib; let
   enable = option: option // {default = true;};
 in {
   options = {
+    architecture = mkOption {
+      type = lib.types.string;
+      default = "x86_64-linux";
+    };
     GUI = mkEnableOption "GUI";
     environment = {
     };

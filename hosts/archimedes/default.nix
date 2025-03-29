@@ -1,4 +1,5 @@
 {
+  architecture = "aarch64-linux";
   stateVersion = "24.11";
   toggles = {
     unstable.enable = true;
