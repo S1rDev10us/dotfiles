@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  imports = [inputs.nixos-hardware.nixosModules.raspberry-pi-4 ./k8s.nix];
+  imports = [inputs.nixos-hardware.nixosModules.raspberry-pi-4 ./k3s.nix];
 
   boot.loader.grub.enable = lib.mkForce false;
   boot.loader.generic-extlinux-compatible.enable = true;
