@@ -9,7 +9,7 @@ with lib; let
 in {
   options = {
     architecture = mkOption {
-      type = lib.types.string;
+      type = lib.types.singleLineStr;
       default = "x86_64-linux";
     };
     GUI = mkEnableOption "GUI";
