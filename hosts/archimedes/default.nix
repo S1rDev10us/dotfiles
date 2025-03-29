@@ -7,6 +7,8 @@
     common.enable = true;
     users.enable = true;
 
+    programs.doas.enable = true;
+
     services.ssh.enable = true;
   };
   users.nixos = {
