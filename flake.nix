@@ -49,12 +49,18 @@
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags-astal = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
     nixpkgs,
     ags,
     nixvim,
+    ags-astal,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -149,18 +155,25 @@
       system,
     }: let
       nixvim' = nixvim.legacyPackages.${system};
+      astal-packages = systemPkgs.callPackage ./resources/astal-dots/default.nix {ags = ags-astal;};
     in rec {
+      # Old AGS package
       ags = systemPkgs.callPackage ./resources/ags-dots/default.nix {
         ags = inputs.ags.packages.${system}.default;
       };
+
+      # Astal packages
+      inherit (astal-packages) audio-bar;
+
+      # Misc scripts
       onhomenetwork = systemPkgs.callPackage ./resources/pkgs/onhomenetwork/default.nix {};
+
+      # Nvim
       nvim = nixvim'.makeNixvimWithModule {
         pkgs = systemPkgs;
         module = {...}: {imports = libx.allModulesFrom ./resources/nixvim;};
         extraSpecialArgs = parameters;
       };
-      backup = systemPkgs.callPackage ./resources/backup/default.nix {inherit onhomenetwork;};
-      isolate_command = systemPkgs.callPackage ./resources/pkgs/isolate_command/default.nix {};
     });
     inherit self libx;
   };
