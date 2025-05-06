@@ -18,11 +18,6 @@
       };
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
@@ -32,8 +27,16 @@
       url = "github:Aylur/ags/v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags-astal = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-hardware.url = "github:NixOs/nixos-hardware";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     anyrun = {
       url = "github:anyrun-org/anyrun";
@@ -50,10 +53,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags-astal = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
   outputs = {
     self,
@@ -61,120 +61,65 @@
     ags,
     nixvim,
     ags-astal,
+    flake-parts,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib;
-    libx = import ./utils (parameters
-      // {
-        inherit nixpkgs lib options;
-      });
-    # hosts = libx.listChildren ./hosts;
-    hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra" "minotaur"])) (libx.listChildren ./hosts);
-    parameters = {
-      inherit inputs outputs libx;
-    };
-    options = libx.allModulesFrom ./options;
-    allSystems = lib.systems.flakeExposed;
-    forAllSystems = f:
-      lib.genAttrs allSystems (system:
-        f {
-          inherit system;
-          systemPkgs = nixpkgs.legacyPackages.${system};
-        });
-  in {
-    templates = lib.genAttrs (libx.listChildren ./resources/templates) (template: let
-      templateFolder = ./resources/templates/${template};
-      templateFlake = templateFolder + "/flake.nix";
-    in {
-      path = templateFolder;
-      description = let
-        templateFlakeExists = builtins.pathExists templateFlake;
-        placeholderDescription = "Template for ${template}";
-      in
-        if templateFlakeExists
-        then ({description = placeholderDescription;} // import templateFlake).description
-        else placeholderDescription;
-    });
-
-    nixosConfigurations =
-      lib.genAttrs hosts
-      (
-        host: let
-          evaluatedOptions = libx.getHostSettings host;
-        in
-          libx.makeHost {
-            architecture = evaluatedOptions.config.architecture;
-            inherit host;
-            opts = evaluatedOptions.config;
-            stateVersion = evaluatedOptions.config.stateVersion;
-            specialArgs = parameters;
-          }
-      );
-
-    homeConfigurations = builtins.listToAttrs (lib.flatten (builtins.map
-      (
-        host: let
-          hostOptions = libx.getHostSettings host;
-        in (builtins.map
-          (user: let
-            evaluatedOptions = libx.getHomeSettings host user;
-          in {
-            name = user + "@" + host;
-            value = libx.makeHome {
-              architecture = evaluatedOptions.config.architecture;
-              inherit host user;
-              opts = evaluatedOptions.config;
-              stateVersion = evaluatedOptions.config.stateVersion;
-              specialArgs = parameters;
-            };
-          })
-          (libx.getEnabledUsers hostOptions.config))
-      )
-      hosts));
-
-    devShells = forAllSystems ({
-      systemPkgs,
-      system,
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} (top @ {
+      config,
+      withSystem,
+      moduleWithSystem,
+      flake-parts-lib,
       ...
-    }: {
-      default = systemPkgs.mkShell {
-        packages = with systemPkgs; [
-          just
-          alejandra
-          nodejs_22
-        ];
-        shellHook = ''
-          echo "linking types"
-          ln -sf ${ags.packages.${system}.default}/share/com.github.Aylur.ags/types ./resources/ags-dots/
-        '';
-      };
-    });
-    packages = forAllSystems ({
-      systemPkgs,
-      system,
     }: let
-      nixvim' = nixvim.legacyPackages.${system};
-      astal-packages = systemPkgs.callPackage ./resources/astal-dots/default.nix {ags = ags-astal;};
-    in rec {
-      # Old AGS package
-      ags = systemPkgs.callPackage ./resources/ags-dots/default.nix {
-        ags = inputs.ags.packages.${system}.default;
+      inherit (nixpkgs) lib;
+      inherit (flake-parts-lib) importApply;
+      libx = import ./utils (parameters
+        // {
+          inherit lib options;
+        });
+
+      options = libx.allModulesFrom ./options;
+      parameters = {
+        inherit inputs libx;
+        inherit (self) outputs;
       };
+      hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra" "minotaur"])) (libx.listChildren ./hosts);
 
-      # Astal packages
-      inherit (astal-packages) audio-bar;
-
-      # Misc scripts
-      onhomenetwork = systemPkgs.callPackage ./resources/pkgs/onhomenetwork/default.nix {};
-
-      # Nvim
-      nvim = nixvim'.makeNixvimWithModule {
-        pkgs = systemPkgs;
-        module = {...}: {imports = libx.allModulesFrom ./resources/nixvim;};
-        extraSpecialArgs = parameters;
+      flakeModules = {
+        ags = importApply ./resources/ags-dots/flake-part.nix {inherit (inputs) ags;};
+        astal-packages = importApply ./resources/astal-dots/flake-part.nix {ags = ags-astal;};
+        myPkgs = ./resources/pkgs/flake-part.nix;
+        nixosConfigurations = importApply ./nixos-configurations.nix {inherit libx parameters hosts nixpkgs;};
+        homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
+        templates = importApply ./resources/templates/flake-part.nix {inherit libx;};
+        nixvim = importApply ./resources/nixvim/flake-part.nix {inherit libx nixvim parameters;};
+        # nvf = importApply ./resources/nvf/flake-part.nix {inherit libx nvf;};
+      };
+    in {
+      imports = [] ++ lib.attrValues flakeModules;
+      flake = {
+        inherit flakeModules libx self;
+      };
+      systems = ["x86_64-linux"];
+      perSystem = {
+        config,
+        system,
+        pkgs,
+        ...
+      }: {
+        devShells = {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              just
+              alejandra
+              nodejs_22
+            ];
+            shellHook = ''
+              echo "linking types"
+              ln -sf ${ags.packages.${system}.default}/share/com.github.Aylur.ags/types ./resources/ags-dots/
+            '';
+          };
+        };
       };
     });
-    inherit self libx;
-  };
 }
