@@ -19,8 +19,7 @@
   environment.systemPackages = with pkgs; [home-manager];
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nixpkgs.flake.source = lib.mkForce inputs.nixpkgs;
 
   time.timeZone = "Europe/London";
 
