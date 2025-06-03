@@ -6,7 +6,7 @@
 }: {
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     defaultEditor = true;
     # Mason dependencies
     extraPackages = with pkgs; [
