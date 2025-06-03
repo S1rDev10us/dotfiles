@@ -1,0 +1,15 @@
+theme = "new_moon"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "warning"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"

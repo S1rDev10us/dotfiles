@@ -7,17 +7,18 @@
     users.enable = true;
     old.packages.enable = true;
     programs = {
+      ags.enable = true;
       communication.enable = true;
       direnv.enable = true;
       doas.enable = true;
-      office.enable = true;
-      zsa.enable = true;
-      ags.enable = true;
       fileNavigation.enable = true;
       firefox.enable = true;
+      helix.enable = true;
       neovim.enable = true;
+      office.enable = true;
       terminal.enable = true;
       waybar.enable = true;
+      zsa.enable = true;
     };
     services = {
       audio.enable = true;
