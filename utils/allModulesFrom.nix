@@ -6,7 +6,12 @@
       if value == "directory"
       then (func (builtins.readDir newPath)) newPath
       else newPath)
-    (lib.filterAttrs (_: type: (builtins.elem type ["regular" "directory" ""])) obj)
+    (lib.pipe obj [
+      # Ignore symlinks/other abnormal file types
+      (lib.filterAttrs (_: type: (builtins.elem type ["regular" "directory" ""])))
+      # Filter out files that aren't nix modules (end with .nix)
+      (lib.filterAttrs (path: type: type != "regular" || lib.hasSuffix ".nix" (builtins.toString path)))
+    ])
   );
 in
   (lib.collect builtins.isPath) ((func (builtins.readDir path)) path)
