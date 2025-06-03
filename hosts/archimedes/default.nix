@@ -8,6 +8,7 @@
     users.enable = true;
 
     programs.doas.enable = true;
+    programs.helix.enable = true;
 
     services.ssh.enable = true;
   };
