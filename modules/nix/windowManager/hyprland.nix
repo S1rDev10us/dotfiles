@@ -24,19 +24,13 @@
     grimblast
     adwaita-qt
   ];
-  environment.sessionVariables = {
-    QT_STYLE_OVERRIDE = "adwaita-dark";
-  };
-  qt.style = "adwaita-dark";
-  qt.platformTheme = "gnome";
-  qt.enable = true;
   # https://josiahalenbrown.substack.com/p/installing-nixos-with-hyprland
   fonts.packages = with pkgs; [
     meslo-lgs-nf
   ];
   fonts.fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
   services = {
-    displayManager.sddm = {
+    displayManager.sddm = lib.mkIf (!config.toggles.windowManager.KDE.enable) {
       enable = true;
       wayland.enable = true;
     };
