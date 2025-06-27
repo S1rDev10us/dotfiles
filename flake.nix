@@ -48,18 +48,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
   outputs = {
     self,
     nixpkgs,
     ags,
-    nixvim,
     ags-astal,
     flake-parts,
     ...
@@ -92,8 +86,6 @@
         nixosConfigurations = importApply ./nixos-configurations.nix {inherit libx parameters hosts nixpkgs;};
         homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
         templates = importApply ./resources/templates/flake-part.nix {inherit libx;};
-        nixvim = importApply ./resources/nixvim/flake-part.nix {inherit libx nixvim parameters;};
-        # nvf = importApply ./resources/nvf/flake-part.nix {inherit libx nvf;};
       };
     in {
       imports = [] ++ lib.attrValues flakeModules;
