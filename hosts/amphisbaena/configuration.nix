@@ -16,4 +16,7 @@
     kdePackages.kalgebra
     rink
   ];
+
+  # nixos-hardware options
+  hardware.asus.battery.chargeUpto = 80;
 }
