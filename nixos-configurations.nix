@@ -2,6 +2,7 @@
   libx,
   parameters,
   hosts,
+  nixpkgs,
 }: {lib, ...}: {
   flake = {
     nixosConfigurations =

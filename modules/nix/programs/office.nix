@@ -9,7 +9,7 @@
     ++ (lib.optionals opts.GUI [
       ark
       kate
-      libreoffice
+      libreoffice-qt
       okular
       super-productivity
       unstable.obsidian
