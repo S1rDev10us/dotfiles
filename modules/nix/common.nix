@@ -49,4 +49,12 @@
   system.stateVersion = lib.mkForce stateVersion;
   # Make it very slightly above the normal value so you do have to use mkForce
   networking.hostName = lib.mkOverride 99 host;
+
+  # Automatic garbage collection and optimisation
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  nix.optimise.automatic = true;
 }
