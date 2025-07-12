@@ -104,12 +104,13 @@
             packages = with pkgs; [
               just
               alejandra
-              nodejs_22
               commitlint-rs
             ];
             shellHook = ''
               echo "linking types"
               ln -sf ${ags.packages.${system}.default}/share/com.github.Aylur.ags/types ./resources/ags-dots/
+              echo "setting up git hooks"
+              ${pkgs.husky}/bin/husky install
             '';
           };
         };
