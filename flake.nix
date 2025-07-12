@@ -105,6 +105,7 @@
               just
               alejandra
               nodejs_22
+              commitlint-rs
             ];
             shellHook = ''
               echo "linking types"

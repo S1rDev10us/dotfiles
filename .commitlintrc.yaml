@@ -1,0 +1,21 @@
+rules:
+  footers-empty:
+    level: ignore
+  scope:
+    level: error
+    optional: true
+    options:
+      - readme
+      - user
+      - host
+      - tasks
+      - template
+  type:
+    level: error
+    options:
+      - feat
+      - fix
+      - chore
+      - fix!
+      - feat!
+      - chore!
