@@ -1,10 +1,8 @@
-{opts, ...}: {
-  assertions = [
-    {
-      assertion = opts.grub.windowsLocation != "" || !opts.grub.useEfi;
-      message = "If using efi mode for grub, windowsLocation MUST be set";
-    }
-  ];
+{
+  opts,
+  lib,
+  ...
+}: {
   boot.loader =
     if (! opts.grub.useEfi)
     then {
@@ -23,7 +21,7 @@
         devices = ["nodev"];
         efiSupport = true;
         enable = true;
-        extraEntries = ''
+        extraEntries = lib.mkIf (opts.grub.windowsLocation != "") ''
           menuentry "Windows" {
             insmod part_gpt
             insmod fat

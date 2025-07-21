@@ -77,7 +77,7 @@
         inherit inputs libx;
         inherit (self) outputs;
       };
-      hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra" "minotaur"])) (libx.listChildren ./hosts);
+      hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra"])) (libx.listChildren ./hosts);
 
       flakeModules = {
         ags = importApply ./resources/ags-dots/flake-part.nix {inherit (inputs) ags;};

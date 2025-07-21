@@ -38,7 +38,6 @@
   };
   GUI = true;
   grub.useEfi = true;
-  grub.windowsLocation = "F4F3-9649";
   users.s1rdev10us = {
     enable = true;
     admin = true;
