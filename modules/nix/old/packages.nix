@@ -23,16 +23,6 @@
       breeze
       breeze-gtk
       breeze-icons
-      # disk management
-      baobab
-      gparted
-      # Password store
-      keepassxc
-      # Video
-      obs-studio
-      kdenlive
-      # key/event viewer
-      wev
     ]);
   # :TODO: replace with hyprcursor
   xdg.icons.fallbackCursorThemes = lib.mkDefault ["breeze_cursors"];

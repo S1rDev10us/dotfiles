@@ -23,6 +23,21 @@
     ]
     ++ (with pkgs; [
       unstable.beeref
+      # disk management
+      baobab
+      gparted
+      # Password store
+      keepassxc
+      # Video
+      obs-studio
+      kdePackages.kdenlive
+      # key/event viewer
+      wev
+      # Calculator
+      kdePackages.kalgebra
+      rink
+      # Camera image processing
+      darktable
     ]);
   xdg.desktopEntries = {
     beeref = {
