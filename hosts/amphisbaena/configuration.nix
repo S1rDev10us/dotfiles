@@ -11,6 +11,9 @@
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.8") pkgs.linuxPackages_6_12;
   services.avahi.enable = true;
 
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 40;
+  };
 
   # nixos-hardware options
   hardware.asus.battery.chargeUpto = 80;
