@@ -14,4 +14,13 @@
 
   # nixos-hardware options
   hardware.asus.battery.chargeUpto = 80;
+  services.postgresql = {
+    ensureDatabases = ["s1rdev10us"];
+    ensureUsers = [
+      {
+        name = "s1rdev10us";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
 }
