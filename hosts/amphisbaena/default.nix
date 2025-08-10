@@ -30,8 +30,8 @@
     };
     windowManager = {
       KDE.enable = true;
-      hyprland.enable = true;
     };
+    batteryManagement.enable = true;
     coding.enable = true;
     fun.enable = true;
     gaming.enable = true;

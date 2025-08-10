@@ -5,7 +5,6 @@
   inputs,
   ...
 }: {
-  imports = [inputs.anyrun.homeManagerModules.default];
   config = {
     home.packages = with pkgs; [
       swww
@@ -90,7 +89,7 @@
     services = {
       mako = {
         enable = true;
-        defaultTimeout = 30 * 1000;
+        settings.default-timeout = 30 * 1000;
       };
       hypridle = {
         enable = true;

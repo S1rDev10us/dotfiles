@@ -6,20 +6,22 @@
 }: {
   environment.systemPackages = with pkgs;
     []
-    ++ (lib.optionals opts.GUI [
-      ark
-      kate
-      libreoffice-qt
-      okular
-      super-productivity
-      unstable.obsidian
-      # Should media creators be included in office?
-      inkscape
-      gimp
-      krita
-      blender
-      tenacity
-    ]);
+    ++ (lib.optionals opts.GUI ([
+        libreoffice-qt
+        super-productivity
+        unstable.obsidian
+        # Should media creators be included in office?
+        inkscape
+        gimp
+        krita
+        blender
+        tenacity
+      ]
+      ++ (with kdePackages; [
+        ark
+        kate
+        okular
+      ])));
   unfreePackages = with pkgs; [
     unstable.obsidian
   ];

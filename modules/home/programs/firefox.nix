@@ -19,18 +19,18 @@
         # google containers # Uh, I might need to add this one manually or raise an issue for it
       ];
       baseSettings = {
-        inherit extensions;
+        extensions.packages = extensions;
         settings = {
           "extensions.autoDisableScopes" = 0;
         };
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           force = true;
           engines = {
-            Bing.metaData.hidden = true;
-            Google.metaData.hidden = true;
-            eBay.metaData.hidden = true;
-            Github = {
+            bing.metaData.hidden = true;
+            google.metaData.hidden = true;
+            ebay.metaData.hidden = true;
+            github = {
               urls = [
                 {
                   template = "https://github.com/search";
