@@ -40,10 +40,6 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
-  ];
-
   # These shouldn't be overridden from config files, it should be set from the other modules system.
   # Hostname is slightly higher priority because there might be *some* reasons you want to override it but you probably shouldn't
   system.stateVersion = lib.mkForce stateVersion;

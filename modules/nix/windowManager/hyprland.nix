@@ -28,7 +28,6 @@
   fonts.packages = with pkgs; [
     meslo-lgs-nf
   ];
-  fonts.fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
   services = {
     displayManager.sddm = lib.mkIf (!config.toggles.windowManager.KDE.enable) {
       enable = true;

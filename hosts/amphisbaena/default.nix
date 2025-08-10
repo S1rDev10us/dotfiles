@@ -1,6 +1,7 @@
 {
   stateVersion = "24.05";
   toggles = {
+    fonts.enable = true;
     unstable.enable = true;
     unfree.enable = true;
     common.enable = true;
