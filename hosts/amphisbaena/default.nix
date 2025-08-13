@@ -15,7 +15,6 @@
       fileNavigation.enable = true;
       firefox.enable = true;
       helix.enable = true;
-      neovim.enable = true;
       office.enable = true;
       terminal.enable = true;
       waybar.enable = true;
