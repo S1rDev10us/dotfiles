@@ -7,7 +7,6 @@
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
-    defaultEditor = true;
     # Mason dependencies
     extraPackages = with pkgs; [
       dotnetCorePackages.dotnet_8.sdk
