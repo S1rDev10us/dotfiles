@@ -4,6 +4,7 @@
     fonts.enable = true;
     unstable.enable = true;
     unfree.enable = true;
+    permittedInsecurePackages.enable = true;
     common.enable = true;
     users.enable = true;
     old.packages.enable = true;

@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     beekeeper-studio
   ];
-  nixpkgs.config.permittedInsecurePackages = [
+  permittedInsecurePackages = [
     "beekeeper-studio-5.1.5"
   ];
 }
