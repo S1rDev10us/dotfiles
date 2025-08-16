@@ -40,7 +40,7 @@ in {
 
     moduleEnabled = libx.internal.moduleShouldBeEnabled components configSource;
 
-    unifiedModule = lib.unifyModuleSyntax path relativePath filteredModule;
+    unifiedModule = libx.internal.unifyModuleSyntax path relativePath filteredModule;
     config = lib.mkIf moduleEnabled unifiedModule.config;
   in
     unifiedModule // {inherit config;};
