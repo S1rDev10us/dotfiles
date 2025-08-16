@@ -11,7 +11,6 @@
 
     exec-once = lib.mkAfter [
       "[workspace 5 silent] foot -D ~/Documents/repos/pvp_spaceship_game/"
-      "${outputs.packages.${pkgs.system}.audio-bar}/bin/audio-bar"
     ];
   };
   home.packages =

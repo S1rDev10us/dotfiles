@@ -9,7 +9,6 @@
     users.enable = true;
     old.packages.enable = true;
     programs = {
-      ags.enable = true;
       communication.enable = true;
       direnv.enable = true;
       doas.enable = true;

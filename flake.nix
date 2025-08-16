@@ -22,15 +22,6 @@
       flake = false;
     };
 
-    ags = {
-      url = "github:Aylur/ags/v1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags-astal = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware.url = "github:NixOs/nixos-hardware";
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
@@ -52,8 +43,6 @@
   outputs = {
     self,
     nixpkgs,
-    ags,
-    ags-astal,
     flake-parts,
     ...
   } @ inputs:
@@ -79,8 +68,6 @@
       hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra"])) (libx.listChildren ./hosts);
 
       flakeModules = {
-        ags = importApply ./resources/ags-dots/flake-part.nix {inherit (inputs) ags;};
-        astal-packages = importApply ./resources/astal-dots/flake-part.nix {ags = ags-astal;};
         myPkgs = ./resources/pkgs/flake-part.nix;
         nixosConfigurations = importApply ./nixos-configurations.nix {inherit libx parameters hosts nixpkgs;};
         homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
@@ -106,8 +93,6 @@
               commitlint-rs
             ];
             shellHook = ''
-              echo "linking types"
-              ln -sf ${ags.packages.${system}.default}/share/com.github.Aylur.ags/types ./resources/ags-dots/
               echo "setting up git hooks"
               ${pkgs.husky}/bin/husky install
             '';
