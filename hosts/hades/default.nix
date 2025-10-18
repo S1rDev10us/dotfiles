@@ -1,5 +1,5 @@
 {
-  stateVersion = "24.05";
+  stateVersion = "25.05";
   toggles = {
     fonts.enable = true;
     unstable.enable = true;
@@ -31,7 +31,6 @@
     windowManager = {
       KDE.enable = true;
     };
-    batteryManagement.enable = true;
     coding.enable = true;
     fun.enable = true;
     gaming.enable = true;
@@ -39,7 +38,6 @@
     kwallet.enable = true;
   };
   GUI = true;
-  grub.useEfi = true;
   users.s1rdev10us = {
     enable = true;
     admin = true;

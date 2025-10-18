@@ -1,0 +1,3 @@
+{
+  home.sessionVariables.EDITOR = "hx";
+}

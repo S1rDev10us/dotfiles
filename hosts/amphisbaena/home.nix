@@ -13,32 +13,6 @@
       "[workspace 5 silent] foot -D ~/Documents/repos/pvp_spaceship_game/"
     ];
   };
-  home.packages =
-    [
-      (pkgs.writeShellScriptBin "cls" ''
-        clear
-        fastfetch
-      '')
-      outputs.packages.${pkgs.system}.audio-bar
-    ]
-    ++ (with pkgs; [
-      unstable.beeref
-      # disk management
-      baobab
-      gparted
-      # Password store
-      keepassxc
-      # Video
-      obs-studio
-      kdePackages.kdenlive
-      # key/event viewer
-      wev
-      # Calculator
-      kdePackages.kalgebra
-      rink
-      # Camera image processing
-      darktable
-    ]);
   xdg.desktopEntries = {
     beeref = {
       name = "Beeref";
