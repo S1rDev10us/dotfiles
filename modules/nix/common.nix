@@ -20,6 +20,10 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs.flake.source = lib.mkForce inputs.nixpkgs;
+  nix.registry = lib.pipe inputs [
+    (lib.filterAttrs (_: input: input ? _type && input._type == "flake"))
+    (lib.mapAttrs' (name: value: lib.nameValuePair ("pinned-" + name) {flake = value;}))
+  ];
 
   time.timeZone = "Europe/London";
 
