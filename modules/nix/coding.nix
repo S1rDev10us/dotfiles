@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs;
     [
       lazygit
+      ripgrep
     ]
     ++ lib.optionals opts.GUI [
       (
