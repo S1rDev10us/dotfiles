@@ -34,7 +34,6 @@
     coding.enable = true;
     fun.enable = true;
     gaming.enable = true;
-    grub.enable = true;
     kwallet.enable = true;
   };
   GUI = true;
