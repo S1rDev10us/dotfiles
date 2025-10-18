@@ -17,4 +17,5 @@
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true; # see the note above
+  unfreePackages = with pkgs; [nvidia-x11 nvidia-settings nvidia-persistenced];
 }
