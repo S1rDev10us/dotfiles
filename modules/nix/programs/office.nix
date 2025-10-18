@@ -10,6 +10,7 @@
         libreoffice-qt
         super-productivity
         unstable.obsidian
+        logseq
         # Should media creators be included in office?
         inkscape
         gimp
