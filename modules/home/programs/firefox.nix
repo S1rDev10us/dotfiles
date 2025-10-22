@@ -85,6 +85,7 @@
         Locked = false;
       };
       HttpsOnlyMode = "force_enabled";
+      NetworkPrediction = false;
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
     };
