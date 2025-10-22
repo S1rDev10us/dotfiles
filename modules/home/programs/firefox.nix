@@ -43,8 +43,7 @@
                   ];
                 }
               ];
-              iconUpdateUrl = "https://github.com/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000; # every day
+              iconMapObj."16" = "https://github.com/favicon.ico";
               aliases = ["@gh"];
             };
           };
