@@ -30,6 +30,7 @@
             bing.metaData.hidden = true;
             google.metaData.hidden = true;
             ebay.metaData.hidden = true;
+            perplexity.metaData.hidden = true;
             github = {
               urls = [
                 {
@@ -76,6 +77,12 @@
         Highlights = false;
         Pocket = false;
         Snippets = false;
+      };
+      GenerativeAI = {
+        Chatbot = false;
+        LinkPreviews = false;
+        TabGroups = false;
+        Locked = false;
       };
       HttpsOnlyMode = "force_enabled";
       NoDefaultBookmarks = true;
