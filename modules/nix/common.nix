@@ -57,4 +57,7 @@
     options = "--delete-older-than 30d";
   };
   nix.optimise.automatic = true;
+
+  # Include flake source in /etc so that the state of the flake can be inspected in /nix/var/nix/profiles/system-*-link/etc
+  environment.etc."system-flake-state".source = ./../../.;
 }
