@@ -6,8 +6,8 @@ bufferline = "multiple"
 end-of-line-diagnostics = "hint"
 
 [editor.inline-diagnostics]
-cursor-line="error"
-other-lines="warning"
+cursor-line = "error"
+other-lines = "warning"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -16,3 +16,13 @@ select = "underline"
 
 [editor.lsp]
 display-progress-messages = true
+
+[keys.normal]
+C-g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]

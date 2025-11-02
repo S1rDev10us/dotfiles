@@ -5,3 +5,20 @@ command = "clippy"
 auto-format = true
 name = "nix"
 formatter = { command = "alejandra" }
+
+[[language]]
+auto-format=true
+name = "tsx"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+[[language]]
+auto-format=true
+name = "jsx"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+[[language]]
+auto-format=true
+name = "typescript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+[[language]]
+auto-format=true
+name = "javascript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
