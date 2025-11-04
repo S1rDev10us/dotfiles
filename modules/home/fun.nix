@@ -1,7 +1,10 @@
 {
   programs.bash = {
     enable = true;
-    bashrcExtra = "fastfetch";
+    bashrcExtra = "
+      if [ -t 1 ]; then
+        fastfetch
+      fi";
   };
   programs.fastfetch = {
     enable = true;
