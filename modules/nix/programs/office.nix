@@ -8,7 +8,7 @@
     []
     ++ (lib.optionals opts.GUI ([
         libreoffice-qt
-        super-productivity
+        unstable.super-productivity
         unstable.obsidian
         logseq
         # Should media creators be included in office?
