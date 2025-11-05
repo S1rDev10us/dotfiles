@@ -9,7 +9,7 @@ default:
 
 switch host=currentHost user=currentUser: (rebuild "switch" host user)
 
-rebuild method="switch" host="{{ currentHost }}" user="{{ currentUser }}": (rebuild-system method host) (rebuild-home user host)
+rebuild method="switch" host=currentHost user=currentUser: format (rebuild-system method host) (rebuild-home user host)
 
 rebuild-system method="switch" host=currentHost: format
     sudo nixos-rebuild {{method}} --flake '.#{{ host  }}'
