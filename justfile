@@ -25,7 +25,7 @@ update-only:
     @nix flake update nixpkgs home-manager nixpkgs-unstable firefox-extensions
 
 # Update all flake inputs
-update-all: && rebuild
+update-all:
     @nix flake update
 
 format:
