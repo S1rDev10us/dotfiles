@@ -22,6 +22,7 @@
       dotnetPackages.Nuget
       mono
       # msbuild
+      waypipe
     ];
   permittedInsecurePackages = [
     "openssl-1.1.1w"
