@@ -29,6 +29,7 @@
       homelab-client.enable = true;
       keyboard.enable = true;
       printing.enable = true;
+      ssh.enable = true;
     };
     windowManager = {
       KDE.enable = true;
