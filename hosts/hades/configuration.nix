@@ -18,4 +18,10 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true; # see the note above
   unfreePackages = [config.boot.kernelPackages.nvidia_x11 "nvidia-settings"];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      btop = prev.btop.override {cudaSupport = true;};
+    })
+  ];
 }
