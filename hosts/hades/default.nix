@@ -9,6 +9,7 @@
     users.enable = true;
     old.packages.enable = true;
     programs = {
+      art.enable = true;
       communication.enable = true;
       direnv.enable = true;
       doas.enable = true;

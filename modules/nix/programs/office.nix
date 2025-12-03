@@ -12,10 +12,6 @@
         unstable.obsidian
         logseq
         # Should media creators be included in office?
-        inkscape
-        gimp
-        krita
-        blender
         tenacity
       ]
       ++ (with kdePackages; [

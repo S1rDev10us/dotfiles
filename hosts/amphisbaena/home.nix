@@ -13,17 +13,4 @@
       "[workspace 5 silent] foot -D ~/Documents/repos/pvp_spaceship_game/"
     ];
   };
-  xdg.desktopEntries = {
-    beeref = {
-      name = "Beeref";
-      genericName = "Image Viewer";
-      comment = "A simple reference image viewer";
-      exec = "beeref %f";
-      terminal = false;
-      type = "Application";
-      categories = ["Application" "Graphics" "Qt" "KDE"];
-      icon = "${pkgs.unstable.beeref}/lib/python3.13/site-packages/beeref/assets/logo.png";
-      mimeType = ["application/x-beeref"];
-    };
-  };
 }

@@ -14,7 +14,6 @@
       libnotify
     ]
     ++ (lib.optionals opts.GUI [
-      unstable.beeref
       brightnessctl
       element-desktop
       # disk management
