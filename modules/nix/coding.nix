@@ -28,6 +28,7 @@
     "openssl-1.1.1w"
   ];
   unfreePackages = lib.optionals opts.GUI (with pkgs; [
+    corefonts
     unityhub
     jetbrains-toolbox
     jetbrains.rider
