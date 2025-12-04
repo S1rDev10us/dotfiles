@@ -46,6 +46,5 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    # Bit of a hack. Need to work out what to do instead in the future
   };
 }
