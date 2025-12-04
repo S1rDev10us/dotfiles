@@ -1,4 +1,4 @@
-set shell := ["sh", "-c"]
+set shell := ["bash", "-c"]
 set quiet
 
 currentUser := `whoami`
@@ -9,13 +9,86 @@ default:
 
 switch host=currentHost user=currentUser: (rebuild "switch" host user)
 
-rebuild method="switch" host=currentHost user=currentUser: format (rebuild-system method host) (rebuild-home user host)
+rebuild method="switch" host=currentHost user=currentUser: format && (rebuild-system method host) (rebuild-home user host)
+    #!/usr/bin/env bash
+    isolate_command "\
+        echo 'ensuring home manager has no issues before switching nixos';\
+        echo 'home-manager instantiate';\
+        home-manager switch -n --flake '.#{{ user }}@{{ host }}'\
+    "
+    exit_code="${PIPESTATUS[0]}"
+    mv isolated.log home-manager-instantiate.log
+
+    test "$exit_code" -eq 0 || exit $exit_code
 
 rebuild-system method="switch" host=currentHost: format
-    sudo nixos-rebuild {{method}} --flake '.#{{ host  }}'
+    #!/usr/bin/env bash
+    echo "Rebuilding NixOS..."
+    
+    if command -v "isolate_command" &> /dev/null; then 
+        isolate_command "\
+            echo 'sudo nixos-rebuild {{method}}';\
+            sudo nixos-rebuild {{method}} --flake '.#{{ host }}' \
+        "
+        exit_code="${PIPESTATUS[0]}"
+        mv isolated.log nixos.log
+    else
+        # Fallback if isolate_command is not present (i.e. on first install)
+        echo "sudo nixos-rebuild {{method}}"
+        sudo nixos-rebuild {{method}} --flake '.#{{ host }}' 2>&1 | tee nixos.log
+        exit_code="${PIPESTATUS[0]}"
+    fi
+    
+    if [[ $(cat nixos.log) =~ "authentification failed" ]]; then
+        echo "Authentification failed!"
+        exit 1
+    fi
+
+    if [[ $(cat nixos.log) =~ "Exited due to user input" ]]; then
+        # Error message handled by isolate_command
+        exit 1
+    fi
+    
+    if [[ $exit_code != 0 ]]; then
+        echo "NixOS rebuild failed with exit code \`$exit_code\` (log in nixos.log)"
+        cat nixos.log | less
+        exit $exit_code
+    fi
 
 rebuild-home user=currentUser host=currentHost: format
-    home-manager switch --flake '.#{{ user }}@{{ host }}'
+    #!/usr/bin/env bash
+    echo "Rebuilding Home Manager..."
+    
+    if command -v "isolate_command" &> /dev/null; then 
+        isolate_command "\
+            echo 'home-manager switch';\
+            home-manager switch --flake '.#{{ user }}@{{ host }}'\
+        "
+        exit_code="${PIPESTATUS[0]}"
+        mv isolated.log home-manager.log
+    else
+        # Fallback if isolate_command is not present (i.e. on first install)
+        echo 'home-manager switch'
+        home-manager switch --flake '.#{{ user }}@{{ host }}' 2>&1 | tee home-manager.log
+        exit_code="${PIPESTATUS[0]}"
+    fi
+
+    # Check output
+    if [[ $(cat home-manager.log) =~ "Suggested commands:" ]]; then
+        echo "Additional actions may be required"
+        cat home-manager.log | grep -i '^systemctl' | sed 's/^/• /'
+    fi
+
+    if [[ $(cat home-manager.log) =~ "Exited due to user input" ]]; then
+        # Error message handled by isolate_command
+        exit 1
+    fi
+    
+    if [[ $exit_code != 0 ]]; then
+        echo "Home Manager switch failed with exit code \`$exit_code\` (log in home-manager.log)"
+        cat home-manager.log | less
+        exit $exit_code
+    fi
 
 # Update specific inputs and rebuild
 update: update-all && rebuild
@@ -35,10 +108,13 @@ format:
 check: format
    nix flake check 
 
+# Collect store garbage
 clean-light:
+    sudo nix-collect-garbage
     nix-collect-garbage
     nix-store --optimise -v
 
+# Delete generations then collect garbage
 clean: && clean-light
     nix-env --delete-generations +10
     home-manager expire-generations 5d

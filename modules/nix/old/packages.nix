@@ -9,6 +9,8 @@
     [
       # System monitor
       btop
+      # Don't use once rebuild command is rebuilt
+      (callPackage ../../../resources/pkgs/isolate_command/default.nix {})
       # Media commandline tools
       exiftool
       ffmpeg
