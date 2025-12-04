@@ -122,10 +122,10 @@ clean: && clean-light
 # contains various subcommands for manipulating rc2nix and plasma manager
 plasma operation="help":
     #! /usr/bin/env nix
-    #! nix shell github:nix-community/plasma-manager#rc2nix --command bash
-
+    #! nix shell github:nix-community/plasma-manager#rc2nix nixpkgs#alejandra --command bash
+    
     CONFIG=$(rc2nix)
-
+    
     exclusions=(
         'kate/anonymous\.katesession'
         '"spectaclerc"\."ImageSave"\."lastImageSaveLocation"'
@@ -141,19 +141,31 @@ plasma operation="help":
         '"kdeglobals"\."DirSelect Dialog"'
         '"kdeglobals"\."KScreen"\."ScreenScaleFactors"'
     )
-
+    
     for exclusion in "${exclusions[@]}"; do
         CONFIG=$(echo "$CONFIG" | grep -v "$exclusion")
     done
-
+    
+    format_config()
+    {
+        TEXT_INNER="[[:alpha:]_][[:alnum:]_-]*?"
+        cat - \
+          | sed -E 's/"('"$TEXT_INNER"')"(\.)/\1\2/g' \
+          | sed -E 's/(\.)"('"$TEXT_INNER"')"/\1\2/g' \
+          | alejandra --quiet
+    }
+    
     OLD_CONFIG_FD="/dev/null"
     if [[ -f ./.plasmaconfig-cache.nix ]]; then
-        OLD_CONFIG_FD="./.plasmaconfig-cache.nix"
+        OLD_CONFIG_FD=<(cat "./.plasmaconfig-cache.nix" | format_config)
     fi
-
+    
+    
+    CONFIG=$(echo "$CONFIG" | format_config)
+    
     show_diff()
     {
-        echo "$CONFIG" | diff "$OLD_CONFIG_FD" - -u -s --color --ignore-all-space
+        echo "$CONFIG" | diff "$OLD_CONFIG_FD" - -u -s --color -b
     }
     
     case '{{ operation }}' in
@@ -170,15 +182,15 @@ plasma operation="help":
             ;;
         "diff-applied-cached")
             CONFIG=$(cat modules/home/windowManager/KDE.nix) show_diff
-            echo "This is showing the difference between the applied and .plasmaconfig-cache.nix"
+            echo "This is showing the difference between .plasmaconfig-cache.nix and the applied config"
             ;;
         "help")
             cat <<EOF
     > just plasma help
-
+    
     Usage: just plasma SUBCOMMAND
     Contains various subcommands for manipulating rc2nix and plasma manager
-
+    
     \`> just plasma diff\` shows the diff between the current system config and a cached config
     \`> just plasma commit\` updates the current cached config
     \`> just plasma diff-applied\` shows the diff between the current system config and the manually managed \`modules/home/windowManager/KDE.nix\`
