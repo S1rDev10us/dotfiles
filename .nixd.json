@@ -1,20 +1,20 @@
 
 {
-    "$schema": "https://github.com/nix-community/nixd/raw/release/1.2/nixd/docs/nixd-schema.json",
+    "$schema": "https://github.com/nix-community/nixd/raw/release/2.5.0/nixd/docs/nixd-schema.json",
     "eval": {
         "target": {
             "args": [
                 "-f",
                 "default.nix"
             ],
-            "installable": "nixosConfigurations.minotaur.options"
+            "installable": "nixosConfigurations.amphisbaena.options"
         },
 		"home": {
             "args": [
                 "-f",
                 "default.nix"
             ],
-            "installable": "homeConfigurations.minotaur.options"
+            "installable": "homeConfigurations.amphisbaena.options"
         },
         "depth": 20
 
@@ -26,11 +26,11 @@
         "enable": true,
         "target": {
             "args": [],
-            "installable": ".#nixosConfigurations.minotaur.options"
+            "installable": ".#nixosConfigurations.amphisbaena.options"
         },
 		"home": {
             "args": [],
-            "installable": ".#homeConfigurations.minotaur.options"
+            "installable": ".#homeConfigurations.amphisbaena.options"
         }
     }
 }
