@@ -32,6 +32,7 @@
     };
     windowManager = {
       KDE.enable = true;
+      niri.enable = true;
     };
     batteryManagement.enable = true;
     coding.enable = true;
