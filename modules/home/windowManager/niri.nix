@@ -47,59 +47,7 @@
 
       hotkey-overlay.skip-at-startup = true;
 
-      binds = let
-        inherit (lib) stringToCharacters optionalString;
-        rHome.qwerty = stringToCharacters "HJKL";
-        rHome.colemak = stringToCharacters "HNEI";
-        rArrow.qwerty = stringToCharacters "JKIL";
-        rArrow.colemak = stringToCharacters "NEUI";
-        directions.chars = stringToCharacters "ldur";
-        directions.full = map (key:
-          {
-            r = "Right";
-            d = "Down";
-            u = "Up";
-            l = "Left";
-          }.${
-            key
-          })
-        directions.chars;
-        directionsToHorizontalWindows = {
-          Right = "window";
-          Down = "column";
-          Up = "column";
-          Left = "window";
-        };
-        directionsToHorizontalColumns = lib.mapAttrs (name: value:
-          if value == "window"
-          then "column"
-          else "window")
-        directionsToHorizontalWindows;
-        # fromDirections :: (key-> dir -> val) -> [val]
-        mapDirections = f:
-          lib.map
-          ({
-            fst,
-            snd,
-          }:
-            f fst snd)
-          ((lib.zipLists rHome.qwerty directions.full) ++ (lib.zipLists directions.full directions.full));
-        # fromDirections :: (key-> dir -> {name: string;value;}) -> {<name>=...;}
-        mapDirectionsToAttrs = f: lib.listToAttrs (mapDirections f);
-        genDirectionalBinds = mods: genAction:
-          mapDirectionsToAttrs (key: dir: {
-            name = "${mods}+${key}";
-            value = genAction rec {
-              inherit key dir;
-              hor-win = directionsToHorizontalWindows.${dir};
-              hor-col = directionsToHorizontalColumns.${dir};
-              is-hor = hor-win == "window";
-              is-ver = !is-hor;
-              dir-low = lib.toLower dir;
-            };
-          });
-        genSimpleDirectionalBinds = mods: genActionName: genDirectionalBinds mods (args: {action.${genActionName args} = [];});
-      in
+      binds =
         {
           # Keys consist of modifiers separated by + signs, followed by an XKB key name
           # in the end. To find an XKB name for a particular key, you may use a program
@@ -225,30 +173,78 @@
           # moving the mouse or pressing any other key.
           "Mod+Shift+P".action.power-off-monitors = [];
         }
-        # Mod+J=focus-window-or-workspace-down
-        // (genSimpleDirectionalBinds "Mod" ({
-          hor-col,
-          is-ver,
-          dir-low,
-          ...
-        }: "focus-${hor-col}${optionalString is-ver "-or-workspace"}-${dir-low}"))
-        # Mod+Ctrl+J=move-window-down-or-to-workspace-down
-        // (genSimpleDirectionalBinds "Mod+Ctrl" ({
-          hor-col,
-          is-ver,
-          dir-low,
-          ...
-        }:
-          "move-${hor-col}-${dir-low}" + optionalString is-ver "-or-to-workspace-${dir-low}"))
-        # Mod+Shift+J=focus-monitor-down
-        // (genSimpleDirectionalBinds "Mod+Shift" ({dir-low, ...}: "focus-monitor-${dir-low}"))
-        # Mod+Shift+Ctrl+J=move-column-to-monitor-down
-        // (genSimpleDirectionalBinds "Mod+Shift+Ctrl" ({dir-low, ...}: "move-column-to-monitor-${dir-low}"))
         // (lib.listToAttrs (lib.flatten (let
+          inherit (lib) stringToCharacters;
+
+          rHome.qwerty = stringToCharacters "HJKL";
+          rHome.colemak = stringToCharacters "HNEI";
+
+          rArrow.qwerty = stringToCharacters "JKIL";
+          rArrow.colemak = stringToCharacters "NEUI";
+
+          directions.chars = stringToCharacters "ldur";
+          directions.full = map (key:
+            {
+              r = "Right";
+              d = "Down";
+              u = "Up";
+              l = "Left";
+            }.${
+              key
+            })
+          directions.chars;
+
+          dirIsHorizontal = {
+            Right = true;
+            Down = false;
+            Up = false;
+            Left = true;
+          };
+
           bind = key: value: {
             name = key;
             inherit value;
           };
+
+          # fromDirections :: (key-> dir -> val) -> [val]
+          mapDirections = f:
+            lib.map
+            ({
+              fst,
+              snd,
+            }:
+              f fst snd)
+            ((lib.zipLists rHome.qwerty directions.full) ++ (lib.zipLists directions.full directions.full));
+
+          # gengenDirectionalBinds :: mods: ({key,dir,hor-win,hor-col,is-ver,dir-low} -> val) -> [{name=mods+"...";value=val;}]
+          genDirectionalBinds = mods: genAction:
+            mapDirections (
+              key: dir:
+                bind "${mods}+${key}" (genAction rec {
+                  inherit key dir;
+                  is-hor = dirIsHorizontal.${dir};
+                  is-ver = !is-hor;
+                  hor-win =
+                    if is-hor
+                    then "window"
+                    else "column";
+                  hor-col =
+                    if is-hor
+                    then "column"
+                    else "window";
+                  hor-width =
+                    if is-hor
+                    then "width"
+                    else "height";
+                  hor-mon-ver-work =
+                    if is-ver
+                    then "workspace"
+                    else "monitor";
+                  dir-low = lib.toLower dir;
+                })
+            );
+          # genSimpleDirectionalBinds :: mods: ({key,dir,hor-win,hor-col,is-ver,dir-low} -> action) -> [{name=mods+"...";value.action.${action}=[];}]
+          genSimpleDirectionalBinds = mods: genActionName: genDirectionalBinds mods (args: {action.${genActionName args} = [];});
         in [
           (lib.map (
             code:
@@ -258,6 +254,50 @@
                 repeat = false;
               }
           ) ["Mod+Escape" "Alt+F4"])
+
+          (lib.genList (i: bind "Mod+${builtins.toString (lib.mod (i + 1) 10)}" {action.focus-workspace = [(i + 1)];}) 10)
+
+          # Mod+J=focus-window-or-workspace-down
+          # Mod+H=focus-column-or-monitor-left
+          (genSimpleDirectionalBinds "Mod" ({
+            hor-col,
+            is-ver,
+            hor-mon-ver-work,
+            dir-low,
+            ...
+          }: "focus-${hor-col}-or-${hor-mon-ver-work}-${dir-low}"))
+
+          # Mod+Ctrl+J=set-window-width +10%
+          (genDirectionalBinds "Mod+Ctrl" ({
+            dir,
+            is-ver,
+            hor-col,
+            hor-width,
+            dir-low,
+            ...
+          }: let
+            amount = "${
+              if dir == "Right" || dir == "Down"
+              then "+"
+              else "-"
+            }10%";
+          in {action."set-${hor-col}-${hor-width}" = [amount];}))
+
+          # Mod+Shift+J=move-column-down-or-to-workspace-down
+          # Mod+Shift+L=move-column-right-or-to-monitor-right
+          (genSimpleDirectionalBinds "Mod+Shift" ({
+            hor-col,
+            dir-low,
+            hor-mon-ver-work,
+            ...
+          }: "move-${hor-col}-${dir-low}-or-to-${hor-mon-ver-work}-${dir-low}"))
+
+          # Mod+Shift+Ctrl+J=move-column-to-monitor-down
+          (genSimpleDirectionalBinds "Mod+Shift+Ctrl" ({
+            dir-low,
+            hor-mon-ver-work,
+            ...
+          }: "move-column-to-${hor-mon-ver-work}-${dir-low}"))
         ])));
 
       window-rules = [
