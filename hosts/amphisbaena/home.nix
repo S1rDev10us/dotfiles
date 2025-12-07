@@ -13,4 +13,5 @@
       "[workspace 5 silent] foot -D ~/Documents/repos/pvp_spaceship_game/"
     ];
   };
+  programs.niri.settings.outputs."eDP-1".scale = 1.75;
 }
