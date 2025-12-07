@@ -29,8 +29,6 @@
       };
     };
   };
-  services.xserver.xkb.layout = "gb,gb";
-  services.xserver.xkb.variant = ",colemak";
-  services.xserver.xkb.options = "grp:win_space_toggle";
+  services.xserver.xkb.layout = "gb";
   console.keyMap = "uk";
 }
