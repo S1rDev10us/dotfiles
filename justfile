@@ -9,17 +9,7 @@ default:
 
 switch host=currentHost user=currentUser: (rebuild "switch" host user)
 
-rebuild method="switch" host=currentHost user=currentUser: format && (rebuild-system method host) (rebuild-home user host)
-    #!/usr/bin/env bash
-    isolate_command "\
-        echo 'ensuring home manager has no issues before switching nixos';\
-        echo 'home-manager instantiate';\
-        home-manager switch -n --flake '.#{{ user }}@{{ host }}'\
-    "
-    exit_code="${PIPESTATUS[0]}"
-    mv isolated.log home-manager-instantiate.log
-
-    test "$exit_code" -eq 0 || exit $exit_code
+rebuild method="switch" host=currentHost user=currentUser: format check-hm && (rebuild-system method host) (rebuild-home user host)
 
 rebuild-system method="switch" host=currentHost: format
     #!/usr/bin/env bash
@@ -105,8 +95,35 @@ format:
     echo "Formatting ..."
     alejandra . &> alejandra.log || (echo "Formatting failed! Error:"; cat alejandra.log | sed 's/^/  /'; exit 1)
 
-check: format
-   nix flake check 
+check: format && check-hm
+    nix flake check 
+
+check-hm host=currentHost user=currentUser:
+    #!/usr/bin/env bash
+    isolate_command "\
+        echo 'ensuring home manager has no issues before switching nixos';\
+        echo 'home-manager instantiate';\
+        home-manager switch -n --show-trace --flake '.#{{ user }}@{{ host }}'\
+    "
+    exit_code="${PIPESTATUS[0]}"
+    mv isolated.log home-manager-instantiate.log
+
+    # Check output
+    if [[ $(cat home-manager-instantiate.log) =~ "Suggested commands:" ]]; then
+        echo "Additional actions may be required"
+        cat home-manager-instantiate.log | grep -i '^systemctl' | sed 's/^/• /'
+    fi
+
+    if [[ $(cat home-manager-instatiate.log) =~ "Exited due to user input" ]]; then
+        # Error message handled by isolate_command
+        exit 1
+    fi
+    
+    if [[ $exit_code != 0 ]]; then
+        echo "Home Manager switch failed with exit code \`$exit_code\` (log in home-manager-instantiate.log)"
+        cat home-manager-instantiate.log | less
+        exit $exit_code
+    fi
 
 # Collect store garbage
 clean-light:
