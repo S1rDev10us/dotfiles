@@ -23,6 +23,11 @@
         extensions.packages = extensions;
         settings = {
           "extensions.autoDisableScopes" = 0;
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = false;
+          "browser.newtabpage.activity-stream.system.showSponsoredCheckboxes" = false;
         };
         search = {
           default = "ddg";
