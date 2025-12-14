@@ -174,7 +174,7 @@
           "Mod+Shift+P".action.power-off-monitors = [];
         }
         // (lib.listToAttrs (lib.flatten (let
-          inherit (lib) stringToCharacters;
+          inherit (lib) stringToCharacters nameValuePair;
 
           rHome.qwerty = stringToCharacters "HJKL";
           rHome.colemak = stringToCharacters "HNEI";
@@ -201,11 +201,6 @@
             Left = true;
           };
 
-          bind = key: value: {
-            name = key;
-            inherit value;
-          };
-
           # fromDirections :: (key-> dir -> val) -> [val]
           mapDirections = f:
             lib.map
@@ -220,7 +215,7 @@
           genDirectionalBinds = mods: genAction:
             mapDirections (
               key: dir:
-                bind "${mods}+${key}" (genAction rec {
+                nameValuePair "${mods}+${key}" (genAction rec {
                   inherit key dir;
                   is-hor = dirIsHorizontal.${dir};
                   is-ver = !is-hor;
@@ -248,14 +243,14 @@
         in [
           (lib.map (
             code:
-              bind code
+              nameValuePair code
               {
                 action.close-window = [];
                 repeat = false;
               }
           ) ["Mod+Escape" "Alt+F4"])
 
-          (lib.genList (i: bind "Mod+${builtins.toString (lib.mod (i + 1) 10)}" {action.focus-workspace = [(i + 1)];}) 10)
+          (lib.genList (i: nameValuePair "Mod+${builtins.toString (lib.mod (i + 1) 10)}" {action.focus-workspace = [(i + 1)];}) 10)
 
           # Mod+J=focus-window-or-workspace-down
           # Mod+H=focus-column-or-monitor-left
