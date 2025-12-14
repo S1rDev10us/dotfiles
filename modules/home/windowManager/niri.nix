@@ -279,7 +279,7 @@
             }10%";
           in {action."set-${hor-col}-${hor-width}" = [amount];}))
 
-          # Mod+Shift+J=move-column-down-or-to-workspace-down
+          # Mod+Shift+J=move-window-down-or-to-workspace-down
           # Mod+Shift+L=move-column-right-or-to-monitor-right
           (genSimpleDirectionalBinds "Mod+Shift" ({
             hor-col,
@@ -288,7 +288,7 @@
             ...
           }: "move-${hor-col}-${dir-low}-or-to-${hor-mon-ver-work}-${dir-low}"))
 
-          # Mod+Shift+Ctrl+J=move-column-to-monitor-down
+          # Mod+Shift+Ctrl+J=move-column-to-workspace-down
           (genSimpleDirectionalBinds "Mod+Shift+Ctrl" ({
             dir-low,
             hor-mon-ver-work,
