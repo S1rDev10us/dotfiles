@@ -4,6 +4,7 @@
   user,
   inputs,
   pkgs,
+  config,
   ...
 }: {
   programs.firefox = {
@@ -91,4 +92,24 @@
     };
   };
   home.sessionVariables.BROWSER = "firefox";
+  xdg = {
+    desktopEntries = lib.mapAttrs' (id: config:
+      lib.nameValuePair "firefox_${id}" {
+        name = "Firefox (${config.name})";
+        genericName = "Web Browser";
+        icon = "firefox";
+        exec = "firefox -P ${id} --name firefox-${config.name} %U";
+        terminal = false;
+        categories = ["Network" "WebBrowser"];
+        mimeType = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "application/vnd.mozilla.xul+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
+      })
+    (lib.removeAttrs config.programs.firefox.profiles ["default"]);
+  };
 }
