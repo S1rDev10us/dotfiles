@@ -92,7 +92,12 @@
     };
   };
   home.sessionVariables.BROWSER = "firefox";
+  home.sessionVariables.DEFAULT_BROWSER = "firefox";
   xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = lib.genAttrs (["text/html"] ++ (lib.map (scheme: "x-scheme-handler/" + scheme) ["http" "https" "about" "unknown"])) (lib.const "firefox.desktop");
+    };
     desktopEntries = lib.mapAttrs' (id: config:
       lib.nameValuePair "firefox_${id}" {
         name = "Firefox (${config.name})";
