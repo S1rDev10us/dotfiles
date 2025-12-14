@@ -89,6 +89,9 @@
           "Mod+Page_Down".action.focus-workspace-down = [];
           "Mod+Shift+Page_Up".action.move-column-to-workspace-up = [];
           "Mod+Shift+Page_Down".action.move-column-to-workspace-down = [];
+          # Move workspace Up+Down
+          "Mod+Alt+Page_Up".action.move-workspace-up = [];
+          "Mod+Alt+Page_Down".action.move-workspace-down = [];
 
           # Move focus UDLR (scrollwheel)
           "Mod+WheelScrollUp" = {
