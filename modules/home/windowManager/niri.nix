@@ -319,6 +319,14 @@
             block-out-from = "screen-capture";
           }
           {
+            matches = [
+              {app-id = "discord";}
+              {app-id = "thunderbird";}
+              {app-id = "firefox-comms";}
+            ];
+            block-out-from = "screencast";
+          }
+          {
             geometry-corner-radius = let
               rad = 12.;
             in {
