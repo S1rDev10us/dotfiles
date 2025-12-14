@@ -251,6 +251,7 @@
           ) ["Mod+Escape" "Alt+F4"])
 
           (lib.genList (i: nameValuePair "Mod+${builtins.toString (lib.mod (i + 1) 10)}" {action.focus-workspace = [(i + 1)];}) 10)
+          (lib.genList (i: nameValuePair "Mod+Shift+${builtins.toString (lib.mod (i + 1) 10)}" {action.move-window-to-workspace = [(i + 1)];}) 10)
 
           # Mod+J=focus-window-or-workspace-down
           # Mod+H=focus-column-or-monitor-left
