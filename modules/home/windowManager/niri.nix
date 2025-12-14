@@ -299,35 +299,37 @@
           }: "move-column-to-${hor-mon-ver-work}-${dir-low}"))
         ])));
 
-      window-rules = [
-        {
-          matches = [
-            {
-              app-id = "firefox$";
-              title = "^Picture-in-Picture$";
-            }
-          ];
-          open-floating = true;
-        }
-        {
-          matches = [
-            {app-id = "^org\\.keepassxc\\.KeePassXC$";}
-            {app-id = "^org\\.gnome\\.World\\.Secrets$";}
-          ];
-          block-out-from = "screen-capture";
-        }
-        {
-          geometry-corner-radius = let
-            rad = 12.;
-          in {
-            bottom-left = rad;
-            bottom-right = rad;
-            top-left = rad;
-            top-right = rad;
-          };
-          clip-to-geometry = true;
-        }
-      ];
+      window-rules =
+        lib.flatten [
+          {
+            matches = [
+              {
+                app-id = "firefox$";
+                title = "^Picture-in-Picture$";
+              }
+            ];
+            open-floating = true;
+          }
+          {
+            matches = [
+              {app-id = "^org\\.keepassxc\\.KeePassXC$";}
+              {app-id = "^org\\.gnome\\.World\\.Secrets$";}
+              {app-id = "^org\\.kde\\.kwalletmanager$";}
+            ];
+            block-out-from = "screen-capture";
+          }
+          {
+            geometry-corner-radius = let
+              rad = 12.;
+            in {
+              bottom-left = rad;
+              bottom-right = rad;
+              top-left = rad;
+              top-right = rad;
+            };
+            clip-to-geometry = true;
+          }
+        ];
     };
   };
   programs.dankMaterialShell = {
