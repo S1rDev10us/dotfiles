@@ -175,6 +175,9 @@
           # Powers off the monitors. To turn them back on, do any input like
           # moving the mouse or pressing any other key.
           "Mod+Shift+P".action.power-off-monitors = [];
+
+          # Toggle autohide on DMS
+          "Mod+BackSpace".action.spawn = ["dms" "ipc" "call" "bar" "toggleAutoHide" "name" "Main Bar"];
         }
         // (lib.listToAttrs (lib.flatten (let
           inherit (lib) stringToCharacters nameValuePair;
