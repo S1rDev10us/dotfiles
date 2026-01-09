@@ -126,6 +126,7 @@
 
           "Mod+F11".action.maximize-column = [];
           "Mod+Shift+F11".action.fullscreen-window = [];
+          "Mod+Alt+F11".action.toggle-windowed-fullscreen = [];
 
           # Expand the focused column to space not taken up by other fully visible columns.
           # Makes the column "fill the rest of the space".
@@ -178,6 +179,12 @@
 
           # Toggle autohide on DMS
           "Mod+BackSpace".action.spawn = ["dms" "ipc" "call" "bar" "toggleAutoHide" "name" "Main Bar"];
+
+          # Colour picker
+          "Mod+Shift+C" = {
+            action.spawn = ["dms" "color" "pick" "-a"];
+            repeat = false;
+          };
         }
         // (lib.listToAttrs (lib.flatten (let
           inherit (lib) stringToCharacters nameValuePair;
