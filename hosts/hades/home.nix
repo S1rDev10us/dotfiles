@@ -1,3 +1,3 @@
 {
-  home.sessionVariables.EDITOR = "hx";
+  programs.helix.defaultEditor = true;
 }
