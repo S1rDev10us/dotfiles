@@ -1,0 +1,3 @@
+{
+  programs.helix.defaultEditor = true;
+}
