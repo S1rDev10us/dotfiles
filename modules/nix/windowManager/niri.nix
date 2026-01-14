@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.niri.nixosModules.niri
   ];
@@ -7,5 +11,7 @@
     enable = true;
   };
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
   systemd.user.services.niri-flake-polkit.enable = false;
 }
