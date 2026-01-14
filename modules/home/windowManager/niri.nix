@@ -153,8 +153,11 @@
           "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = [];
 
           "Print".action.screenshot = [];
+          "Mod+Shift+S".action.screenshot = [];
           "Ctrl+Print".action.screenshot-screen = [];
+          "Mod+Shift+Ctrl+S".action.screenshot-screen = [];
           "Alt+Print".action.screenshot-window = [];
+          "Mod+Shift+Alt+S".action.screenshot-window = [];
 
           # Applications such as remote-desktop clients and software KVM switches may
           # request that niri stops processing the keyboard shortcuts defined here
