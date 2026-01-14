@@ -16,12 +16,8 @@ in {
     pkgs.kdePackages.kwallet
   ];
   # Auto unlock with pam
-  security.pam.services = lib.mkIf notInKDE {
-    login.kwallet = {
-      enable = lib.mkDefault true;
-      package = lib.mkDefault pkgs.kdePackages.kwallet-pam;
-    };
-    sddm.kwallet = {
+  security.pam.services = lib.mkIf (notInKDE && opts.users.s1rdev10us.enable) {
+    s1rdev10us.kwallet = {
       enable = true;
       package = pkgs.kdePackages.kwallet-pam;
     };
