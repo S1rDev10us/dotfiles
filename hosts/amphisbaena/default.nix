@@ -18,7 +18,6 @@
       helix.enable = true;
       office.enable = true;
       terminal.enable = true;
-      waybar.enable = true;
       zsa.enable = true;
       postgresql.enable = true;
       miscDesktop.enable = true;

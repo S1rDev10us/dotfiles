@@ -19,7 +19,6 @@
       office.enable = true;
       terminal.enable = true;
       VR.enable = true;
-      waybar.enable = true;
       zsa.enable = true;
       miscDesktop.enable = true;
     };
