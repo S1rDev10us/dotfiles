@@ -2,6 +2,7 @@
   lib,
   pkgs,
   opts,
+  outputs,
   ...
 }: {
   environment.systemPackages = with pkgs;
@@ -10,7 +11,7 @@
       # System monitor
       btop
       # Don't use once rebuild command is rebuilt
-      (callPackage ../../../resources/pkgs/isolate_command/default.nix {})
+      outputs.packages.${pkgs.stdenv.hostPlatform.system}.isolate_command
       # Media commandline tools
       exiftool
       ffmpeg
