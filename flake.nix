@@ -83,7 +83,7 @@
         inherit inputs libx;
         inherit (self) outputs;
       };
-      hosts = lib.filter (machine: ! (lib.elem machine ["chimera" "hydra"])) (libx.listChildren ./hosts);
+      hosts = lib.filter (machine: ! (lib.elem machine ["chimaera" "hydra"])) (libx.listChildren ./hosts);
 
       flakeModules = {
         myPkgs = ./resources/pkgs/flake-part.nix;
