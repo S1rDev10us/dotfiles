@@ -55,6 +55,8 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
   outputs = {
     self,

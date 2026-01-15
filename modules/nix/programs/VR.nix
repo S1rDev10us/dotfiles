@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nixpkgs-xr.nixosModules.nixpkgs-xr];
   programs.steam.remotePlay.openFirewall = true;
   environment.systemPackages = [
     (let
