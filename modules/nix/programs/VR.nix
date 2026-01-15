@@ -13,4 +13,8 @@
     in
       wayvr)
   ];
+  services.wivrn = {
+    enable = true;
+    openFirewall = true;
+  };
 }
