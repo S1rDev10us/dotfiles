@@ -6,8 +6,8 @@
 }: {
   imports = [
     inputs.niri.homeModules.config
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    inputs.dankMaterialShell.homeModules.dank-material-shell
+    inputs.dankMaterialShell.homeModules.niri
   ];
   programs.niri = {
     settings = {
@@ -353,19 +353,19 @@
         ];
     };
   };
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
 
-    niri.enableKeybinds = true;
-    niri.enableSpawn = true;
+    dgop.package = pkgs.unstable.dgop;
+    niri = {
+      enableKeybinds = true;
+      enableSpawn = true;
+      includes.enable = false;
+    };
 
     # Core features
     enableSystemMonitoring = true; # System monitoring widgets (dgop)
-    enableClipboard = true; # Clipboard history manager
-    enableBrightnessControl = true; # Backlight/brightness controls
-    enableColorPicker = true; # Color picker tool
     enableDynamicTheming = true; # Wallpaper-based theming (matugen)
     enableAudioWavelength = true; # Audio visualizer (cava)
-    enableSystemSound = true; # System sound effects
   };
 }
