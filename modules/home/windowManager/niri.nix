@@ -188,6 +188,10 @@
             action.spawn = ["dms" "color" "pick" "-a"];
             repeat = false;
           };
+          "XF86AudioPlay".action.spawn = ["${pkgs.playerctl}/bin/playerctl" "play-pause"];
+          "XF86TouchpadToggle".action.spawn = ["${pkgs.playerctl}/bin/playerctl" "play-pause"];
+          "XF86AudioPrev".action.spawn = ["${pkgs.playerctl}/bin/playerctl" "previous"];
+          "XF86AudioNext".action.spawn = ["${pkgs.playerctl}/bin/playerctl" "next"];
         }
         // (lib.listToAttrs (lib.flatten (let
           inherit (lib) stringToCharacters nameValuePair;
