@@ -24,6 +24,7 @@
     };
     services = {
       audio.enable = true;
+      backups.enable = true;
       bluetooth.enable = true;
       homelab-client.enable = true;
       keyboard.enable = true;
