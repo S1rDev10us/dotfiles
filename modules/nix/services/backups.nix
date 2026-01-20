@@ -1,3 +1,5 @@
+# https://nixos.org/manual/nixos/stable/#module-borgbase
+# https://wiki.nixos.org/wiki/Borg_backup
 {
   config,
   lib,
@@ -82,9 +84,9 @@ in {
     repo = "borgbackup@archimedes:/home/borgbackup/borg/${hostname}";
     encryption = {
       mode = "repokey";
-      passCommand = "cat /run/keys/${hostname}_borgbackup_passphrase";
+      passCommand = "cat /etc/borg-backup/${hostname}_borgbackup_passphrase";
     };
-    environment.BORG_RSH = "${pkgs.openssh}/bin/ssh -i /run/keys/id_${hostname}_borgbackup";
+    environment.BORG_RSH = "${pkgs.openssh}/bin/ssh -i /etc/borg-backup/id_${hostname}_borgbackup";
     # manually set to true initially
     doInit = lib.mkDefault false;
     compression = "auto,lzma";
