@@ -15,7 +15,10 @@
         enable = true;
         path = lib.getExe pkgs.xwayland-satellite;
       };
-      input = {focus-follows-mouse.enable = true;};
+      input = {
+        focus-follows-mouse.enable = true;
+        warp-mouse-to-focus.enable = true;
+      };
       layout = rec {
         gaps = 8;
         focus-ring = {
