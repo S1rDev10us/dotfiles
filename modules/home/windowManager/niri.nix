@@ -20,14 +20,21 @@
         warp-mouse-to-focus.enable = true;
       };
       layout = rec {
-        gaps = 8;
-        focus-ring = {
+        gaps = 0;
+        struts = lib.listToAttrs (lib.map (dir: lib.nameValuePair dir 8) ["bottom" "top" "left" "right"]);
+
+        focus-ring.enable = false;
+        border = {
           enable = true;
           width = 4;
-
           active.color = "white";
-          inactive.color = "grey";
-
+          inactive.gradient = {
+            angle = 135;
+            from = "#536878";
+            to = "#0C3F66";
+            in' = "srgb";
+            relative-to = "workspace-view";
+          };
           urgent.gradient = {
             from = "#C20F21";
             to = "#ECEB29";
