@@ -365,6 +365,56 @@
             clip-to-geometry = true;
           }
         ];
+
+      animations = {
+        window-close = {
+          kind.easing = {
+            duration-ms = 500;
+            curve = "linear";
+          };
+
+          custom-shader = "
+            #define PI 3.14159
+            #define CURVE_REPEAT 8.0
+            #define TURN_RATE 5.0
+            
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+              // Find distance to corner
+              float max_rad = length(size_geo);
+            
+              // Coords in pixel space centered on the window
+              vec2 cuv = (coords_geo.xy - 0.5) * size_geo.xy;
+
+              // Polar co-ordinates
+              float radius = length(cuv)/max_rad;
+              float angle = atan(cuv.x, cuv.y) / PI + 0.5;
+
+              // 1-0-1 along the width of each spiral
+              float spiral = mod(radius * TURN_RATE + angle, 2.0 / CURVE_REPEAT) / (2.0 / CURVE_REPEAT);
+              spiral = abs(spiral * 2.0 - 1.0);
+
+              // Combine the spiral with the distance from the center
+              float val = 1.0 - radius + spiral / 5.0;
+
+              // Decrease value over time towards 0
+              val = val * pow(1.0 - niri_clamped_progress, 2.0);
+              // Create harsh boundary
+              val = floor(val+0.5);
+              // Clamp val to 0-1 to stop issues when multiplying val by color
+              val = clamp(val, 0.0, 1.0);
+              
+              // Fade to half opacity by the end
+              val *= 1.0 - niri_clamped_progress / 2.0;
+              
+              // Current pixel data
+              vec3 coords_tex = niri_geo_to_tex * coords_geo;
+              vec4 color = texture2D(niri_tex, coords_tex.st);
+
+              return color * val;
+            }
+          ";
+        };
+      };
     };
   };
   programs.dank-material-shell = {
