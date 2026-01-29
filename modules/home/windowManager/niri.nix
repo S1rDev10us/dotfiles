@@ -46,6 +46,8 @@
         shadow.enable = true;
         insert-hint.display.color = "#01495E50";
 
+        always-center-single-column = true;
+
         preset-column-widths = [
           {proportion = 1. / 3.;}
           {proportion = 1. / 2.;}
