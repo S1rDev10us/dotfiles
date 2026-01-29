@@ -363,14 +363,6 @@
             block-out-from = "screencast";
           }
           {
-            geometry-corner-radius = let
-              rad = 12.;
-            in {
-              bottom-left = rad;
-              bottom-right = rad;
-              top-left = rad;
-              top-right = rad;
-            };
             clip-to-geometry = true;
           }
         ];
