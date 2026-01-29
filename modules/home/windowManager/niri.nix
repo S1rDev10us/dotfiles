@@ -366,6 +366,17 @@
           }
         ];
 
+      layer-rules = [
+        {
+          matches = [
+            {
+              namespace = "dms:blurwallpaper";
+            }
+          ];
+          place-within-backdrop = true;
+        }
+      ];
+
       animations = {
         window-close = {
           kind.easing = {
