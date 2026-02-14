@@ -10,4 +10,6 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true; # see the note above
   unfreePackages = [config.boot.kernelPackages.nvidia_x11 "nvidia-settings"];
+  # Required for Wayland?
+  hardware.nvidia.modesetting.enable = true;
 }
