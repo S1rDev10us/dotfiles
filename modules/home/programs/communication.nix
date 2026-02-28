@@ -4,9 +4,10 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; (lib.optionals opts.GUI [
+  home.packages = with pkgs; (lib.optionals opts.GUI [
     discord
     signal-desktop
+    element-desktop
     # TODO: Replace this with programs.thunderbird
     thunderbird
   ]);

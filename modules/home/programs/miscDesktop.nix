@@ -15,7 +15,6 @@
     ]
     ++ (lib.optionals opts.GUI [
       brightnessctl
-      element-desktop
       # disk management
       baobab
       gparted

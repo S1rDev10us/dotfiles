@@ -4,7 +4,7 @@
   opts,
   ...
 }: {
-  environment.systemPackages = with pkgs;
+  home.packages = with pkgs;
     []
     ++ (lib.optionals opts.GUI ([
         libreoffice-qt
