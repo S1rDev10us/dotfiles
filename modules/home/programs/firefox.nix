@@ -10,7 +10,7 @@
   programs.firefox = {
     enable = true;
     profiles = let
-      extensions = with inputs.firefox-extensions.packages.${pkgs.system}; [
+      extensions = with inputs.firefox-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
         noscript
         redirector
         keepassxc-browser
