@@ -21,22 +21,30 @@ in {
           else v) (lib.flatten (lib.toList val)));
     in
       freeformPathlist {
-        "/home/*" = [
+        "sh:home/*" = [
           # Caches
-          ".cache/"
+          ".cache"
           "**/.cache"
           "**/cache"
           "**/Code Cache"
           "**/GPUCache"
           "**/cache2"
           "**/Cache"
-          "**/__pycache__/"
+          "**/__pycache__"
+          # Unity
+          {
+            "**/Library" = [
+              "PackageCache"
+              "Artifacts"
+              "BurstCache"
+            ];
+          }
           # Trash
           ".local/share/Trash"
           "**/.caltrash"
           #
-          ".bash_history"
-          ".cargo/"
+          # ".bash_history"
+          ".cargo"
           {
             ".config" = [
               {
@@ -48,7 +56,7 @@ in {
               "discord"
             ];
           }
-          ".debug/"
+          ".debug"
           {
             ".local" = {
               "share" = [
@@ -67,14 +75,17 @@ in {
           ".rustup/toolchains"
           {
             "Documents/repos/*" = [
-              "target/"
-              ".direnv/"
-              "node_modules/"
+              "target"
+              ".direnv"
+              "node_modules"
             ];
           }
-          "Downloads/ISOs/"
+          "Downloads/ISOs"
           "Downloads/enwiki*"
-          "Unity/"
+          "Unity"
+
+          "Music/YTMusic"
+          "Videos/Yt"
         ];
       };
     extraArgs = "--verbose --progress --show-rc";
