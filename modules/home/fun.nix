@@ -1,10 +1,9 @@
-{
+{lib, ...}: {
   programs.bash = {
     enable = true;
-    bashrcExtra = "
-      if [ -t 1 ]; then
-        fastfetch
-      fi";
+    initExtra = lib.mkBefore ''
+      fastfetch
+    '';
   };
   programs.fastfetch = {
     enable = true;
