@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -15,4 +19,11 @@
 
   # Stream Deck
   programs.streamcontroller.enable = true;
+
+  # alt display manager. SDDM may be causing me issues
+  # :WARN: keyboard layout is US on first load atm.
+  services.displayManager = {
+    sddm.enable = lib.mkForce false;
+    cosmic-greeter.enable = true;
+  };
 }
