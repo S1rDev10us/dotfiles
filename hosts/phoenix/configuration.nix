@@ -12,4 +12,7 @@
   unfreePackages = [config.boot.kernelPackages.nvidia_x11 "nvidia-settings"];
   # Required for Wayland?
   hardware.nvidia.modesetting.enable = true;
+
+  # Stream Deck
+  programs.streamcontroller.enable = true;
 }
