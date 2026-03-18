@@ -28,20 +28,22 @@ rebuild-system method="switch" host=currentHost: format
         sudo nixos-rebuild {{method}} --flake '.#{{ host }}' 2>&1 | tee nixos.log
         exit_code="${PIPESTATUS[0]}"
     fi
+
+    output=$(cat nixos.log)
     
-    if [[ $(cat nixos.log) =~ "authentification failed" ]]; then
+    if [[ "$output" == *"authentification failed"* ]]; then
         echo "Authentification failed!"
         exit 1
     fi
 
-    if [[ $(cat nixos.log) =~ "Exited due to user input" ]]; then
+    if [[ "$output" == *"Exited due to user input"* ]]; then
         # Error message handled by isolate_command
         exit 1
     fi
     
     if [[ $exit_code != 0 ]]; then
         echo "NixOS rebuild failed with exit code \`$exit_code\` (log in nixos.log)"
-        cat nixos.log | less
+        echo "$output" | less
         exit $exit_code
     fi
 
@@ -63,20 +65,22 @@ rebuild-home user=currentUser host=currentHost: format
         exit_code="${PIPESTATUS[0]}"
     fi
 
+    output=$(cat home-manager.log)
+
     # Check output
-    if [[ $(cat home-manager.log) =~ "Suggested commands:" ]]; then
+    if [[ "$output" == *"Suggested commands:"* ]]; then
         echo "Additional actions may be required"
-        cat home-manager.log | grep -i '^systemctl' | sed 's/^/• /'
+        echo "$output" | grep -i '^systemctl' | sed 's/^/• /'
     fi
 
-    if [[ $(cat home-manager.log) =~ "Exited due to user input" ]]; then
+    if [[ "$output" == *"Exited due to user input"* ]]; then
         # Error message handled by isolate_command
         exit 1
     fi
     
     if [[ $exit_code != 0 ]]; then
         echo "Home Manager switch failed with exit code \`$exit_code\` (log in home-manager.log)"
-        cat home-manager.log | less
+        echo "$output" | less
         exit $exit_code
     fi
 
@@ -106,22 +110,24 @@ check-hm host=currentHost user=currentUser:
         home-manager switch -n --show-trace --flake '.#{{ user }}@{{ host }}'\
     "
     exit_code="${PIPESTATUS[0]}"
+
+    output=$(cat isolated.log)
     mv isolated.log home-manager-instantiate.log
 
     # Check output
-    if [[ $(cat home-manager-instantiate.log) =~ "Suggested commands:" ]]; then
+    if [[ "$output" =~ "Suggested commands:" ]]; then
         echo "Additional actions may be required"
-        cat home-manager-instantiate.log | grep -i '^systemctl' | sed 's/^/• /'
+        echo "$output" | grep -i '^systemctl' | sed 's/^/• /'
     fi
 
-    if [[ $(cat home-manager-instatiate.log) =~ "Exited due to user input" ]]; then
+    if [[ "$output" == *"Exited due to user input"* ]]; then
         # Error message handled by isolate_command
         exit 1
     fi
     
     if [[ $exit_code != 0 ]]; then
         echo "Home Manager switch failed with exit code \`$exit_code\` (log in home-manager-instantiate.log)"
-        cat home-manager-instantiate.log | less
+        echo "$output" | less
         exit $exit_code
     fi
 
