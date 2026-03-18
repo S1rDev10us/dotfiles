@@ -11,7 +11,14 @@
     enable = true;
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde pkgs.xdg-desktop-portal-gtk];
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = with pkgs; [
+      kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-gtk
+    ];
+    configPackages = with pkgs; [kdePackages.xdg-desktop-portal-kde];
+  };
   systemd.user.services.niri-flake-polkit.enable = false;
 }
