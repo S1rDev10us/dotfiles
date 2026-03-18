@@ -57,6 +57,11 @@
     };
 
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+
+    tagstudio = {
+      url = "github:TagStudioDev/TagStudio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
