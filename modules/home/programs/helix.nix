@@ -15,6 +15,7 @@
       nil
       prettier
       ripgrep
+      lldb
     ];
   };
 }
