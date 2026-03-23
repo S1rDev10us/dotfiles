@@ -2,7 +2,6 @@
   pkgs,
   lib,
   opts,
-  inputs,
   ...
 }: {
   home.packages = with pkgs;
@@ -13,7 +12,6 @@
       gimp
       krita
       blender
-      inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio-jxl
     ]);
   xdg.enable = true;
   xdg.desktopEntries = {
