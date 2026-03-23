@@ -13,9 +13,14 @@
     pkgs.kdePackages.kwallet
   ];
   # Auto unlock with pam
-  security.pam.services = {
-    login.kwallet.enable = true;
-    sddm.kwallet.enable = true;
+  security.pam.services = let
+    kwalletEnable = {
+      enable = true;
+      package = lib.mkForce pkgs.kdePackages.kwallet-pam;
+    };
+  in {
+    login.kwallet = kwalletEnable;
+    sddm.kwallet = kwalletEnable;
   };
   environment.sessionVariables.GIT_ASKPASS = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
 }

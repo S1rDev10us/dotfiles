@@ -17,9 +17,11 @@
   ];
   xdg.portal = {
     config = {
-      kde.default = ["kde" "gtk" "gnome"];
-      kde."org.freedesktop.portal.FileChooser" = ["kde"];
-      kde."org.freedesktop.portal.OpenURI" = ["kde"];
+      kde = {
+        default = ["kde" "gtk"];
+        "org.freedesktop.portal.FileChooser" = ["kde"];
+        "org.freedesktop.portal.OpenURI" = ["kde"];
+      };
     };
 
     extraPortals = with pkgs.kdePackages; [
