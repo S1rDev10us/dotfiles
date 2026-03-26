@@ -3,8 +3,12 @@
   lib,
   ...
 }: {
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
-  fonts.fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      inter
+    ];
+    fontconfig.defaultFonts = {monospace = lib.mkBefore ["JetBrainsMono NF" "Jetbrains Mono" "Fira Code"];};
+    enableDefaultPackages = true;
+  };
 }
