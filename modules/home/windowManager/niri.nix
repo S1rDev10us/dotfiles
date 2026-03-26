@@ -454,7 +454,12 @@
       "org.freedesktop.impl.portal.Access" = "gtk";
       "org.freedesktop.impl.portal.Notification" = "gtk";
       "org.freedesktop.impl.portal.Secret" = "kwallet";
+      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
     };
-    extraPortals = with pkgs; [xdg-desktop-portal-gtk kdePackages.kwallet];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      kdePackages.kwallet
+      xdg-desktop-portal-gnome
+    ];
   };
 }
