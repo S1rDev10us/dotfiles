@@ -100,8 +100,8 @@
           # Move focus/column to first column
           "Mod+Home".action.focus-column-first = [];
           "Mod+End".action.focus-column-last = [];
-          "Mod+Ctrl+Home".action.move-column-to-first = [];
-          "Mod+Ctrl+End".action.move-column-to-last = [];
+          "Mod+Shift+Home".action.move-column-to-first = [];
+          "Mod+Shift+End".action.move-column-to-last = [];
 
           # Move focus/column Up+Down
           "Mod+Page_Up".action.focus-workspace-up = [];
@@ -338,37 +338,36 @@
           }: "move-column-to-${hor-mon-ver-work}-${dir-low}"))
         ])));
 
-      window-rules =
-        lib.flatten [
-          {
-            matches = [
-              {
-                app-id = "firefox$";
-                title = "^Picture-in-Picture$";
-              }
-            ];
-            open-floating = true;
-          }
-          {
-            matches = [
-              {app-id = "^org\\.keepassxc\\.KeePassXC$";}
-              {app-id = "^org\\.gnome\\.World\\.Secrets$";}
-              {app-id = "^org\\.kde\\.kwalletmanager$";}
-            ];
-            block-out-from = "screen-capture";
-          }
-          {
-            matches = [
-              {app-id = "discord";}
-              {app-id = "thunderbird";}
-              {app-id = "firefox-comms";}
-            ];
-            block-out-from = "screencast";
-          }
-          {
-            clip-to-geometry = true;
-          }
-        ];
+      window-rules = lib.flatten [
+        {
+          matches = [
+            {
+              app-id = "firefox$";
+              title = "^Picture-in-Picture$";
+            }
+          ];
+          open-floating = true;
+        }
+        {
+          matches = [
+            {app-id = "^org\\.keepassxc\\.KeePassXC$";}
+            {app-id = "^org\\.gnome\\.World\\.Secrets$";}
+            {app-id = "^org\\.kde\\.kwalletmanager$";}
+          ];
+          block-out-from = "screen-capture";
+        }
+        {
+          matches = [
+            {app-id = "discord";}
+            {app-id = "thunderbird";}
+            {app-id = "firefox-comms";}
+          ];
+          block-out-from = "screencast";
+        }
+        {
+          clip-to-geometry = true;
+        }
+      ];
 
       layer-rules = [
         {
