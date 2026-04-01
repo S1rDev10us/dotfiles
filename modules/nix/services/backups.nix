@@ -106,4 +106,18 @@ in {
       until ${outputs.packages.${pkgs.stdenv.hostPlatform.system}.onhomenetwork}/bin/onhomenetwork.bash; do sleep 10; done
     '';
   };
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "backup-listen" ''
+      journalctl -u borgbackup-job-backupToArchimedes.service -f -o short-iso --no-hostname
+    '')
+    (pkgs.writeShellScriptBin "backup-history" ''
+      journalctl -u borgbackup-job-backupToArchimedes.service -o short-iso --no-hostname
+    '')
+    (pkgs.writeShellScriptBin "backup-start" ''
+      systemctl restart borgbackup-job-backupToArchimedes.service
+    '')
+    (pkgs.writeShellScriptBin "backup-status" ''
+      systemctl status borgbackup-job-backupToArchimedes.service
+    '')
+  ];
 }
