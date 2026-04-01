@@ -67,20 +67,17 @@
     make-shell.url = "github:nicknovitski/make-shell";
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
-  outputs =
-    inputs:
-    let
-      inherit (inputs) self nixpkgs flake-parts;
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      top@{
+  outputs = inputs: let
+    inherit (inputs) self nixpkgs flake-parts;
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} (
+      top @ {
         config,
         withSystem,
         moduleWithSystem,
         flake-parts-lib,
         ...
-      }:
-      let
+      }: let
         inherit (nixpkgs) lib;
         inherit (flake-parts-lib) importApply;
         libx = import ./utils (
@@ -97,10 +94,10 @@
         };
         hosts = lib.filter (
           machine:
-          !(lib.elem machine [
-            "chimaera"
-            "hydra"
-          ])
+            !(lib.elem machine [
+              "chimaera"
+              "hydra"
+            ])
         ) (libx.listChildren ./hosts);
 
         flakeModules = {
@@ -113,39 +110,32 @@
               nixpkgs
               ;
           };
-          homeConfigurations = importApply ./home-configurations.nix { inherit libx parameters hosts; };
-          templates = importApply ./resources/templates/flake-part.nix { inherit libx; };
-          flakeModules = importApply ./resources/flake-parts/flake-part.nix { inherit libx inputs self; };
+          homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
+          templates = importApply ./resources/templates/flake-part.nix {inherit libx;};
+          flakeModules = importApply ./resources/flake-parts/flake-part.nix {inherit libx inputs self;};
         };
-      in
-      {
-        imports = [ ] ++ lib.attrValues flakeModules;
+      in {
+        imports = [] ++ lib.attrValues flakeModules;
         flake = {
           inherit flakeModules libx self;
         };
-        systems = [ "x86_64-linux" ];
-        perSystem =
-          {
-            config,
-            system,
-            pkgs,
-            ...
-          }:
-          {
-            devShells = {
-              default = pkgs.mkShell {
-                packages = with pkgs; [
-                  just
-                  alejandra
-                  commitlint-rs
-                ];
-                shellHook = ''
-                  echo "setting up git hooks"
-                  ${pkgs.husky}/bin/husky install
-                '';
-              };
+        systems = ["x86_64-linux"];
+        perSystem = {
+          config,
+          system,
+          pkgs,
+          ...
+        }: {
+          devShells = {
+            default = pkgs.mkShell {
+              packages = with pkgs; [
+                just
+                alejandra
+                commitlint-rs
+              ];
             };
           };
+        };
       }
     );
 }
