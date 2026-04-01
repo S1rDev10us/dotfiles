@@ -16,6 +16,7 @@
       prettier
       ripgrep
       lldb
+      taplo
     ];
   };
 }
