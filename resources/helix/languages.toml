@@ -22,3 +22,8 @@ formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format=true
 name = "javascript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+
+[[language]]
+auto-format=true
+name="css"
+formatter={command="prettier", args=["--parser", "css"]}
