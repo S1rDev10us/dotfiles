@@ -1,0 +1,21 @@
+# for Linux
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = [
+  "-C", "link-arg=-fuse-ld=lld",
+  # (Nightly) Make the current crate share its generic instantiation
+  "-Zshare-generics=y"
+]
+
+# for Windows
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld.exe"
+
+[unstable]
+codegen-backend = true
+
+[profile.dev]
+codegen-backend = "cranelift"
+
+[profile.dev.package."*"]
+codegen-backend = "llvm"

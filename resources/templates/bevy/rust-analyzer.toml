@@ -1,0 +1,4 @@
+cargo.features=[
+  "dev_tools",
+  "bevy/dynamic_linking"
+]

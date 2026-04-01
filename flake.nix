@@ -62,65 +62,90 @@
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # imports for flakeModules
+    make-shell.url = "github:nicknovitski/make-shell";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    flake-parts,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} (top @ {
-      config,
-      withSystem,
-      moduleWithSystem,
-      flake-parts-lib,
-      ...
-    }: let
-      inherit (nixpkgs) lib;
-      inherit (flake-parts-lib) importApply;
-      libx = import ./utils (parameters
-        // {
-          inherit lib options;
-        });
-
-      options = libx.allModulesFrom ./options;
-      parameters = {
-        inherit inputs libx;
-        inherit (self) outputs;
-      };
-      hosts = lib.filter (machine: ! (lib.elem machine ["chimaera" "hydra"])) (libx.listChildren ./hosts);
-
-      flakeModules = {
-        myPkgs = ./resources/pkgs/flake-part.nix;
-        nixosConfigurations = importApply ./nixos-configurations.nix {inherit libx parameters hosts nixpkgs;};
-        homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
-        templates = importApply ./resources/templates/flake-part.nix {inherit libx;};
-      };
-    in {
-      imports = [] ++ lib.attrValues flakeModules;
-      flake = {
-        inherit flakeModules libx self;
-      };
-      systems = ["x86_64-linux"];
-      perSystem = {
+  outputs =
+    inputs:
+    let
+      inherit (inputs) self nixpkgs flake-parts;
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      top@{
         config,
-        system,
-        pkgs,
+        withSystem,
+        moduleWithSystem,
+        flake-parts-lib,
         ...
-      }: {
-        devShells = {
-          default = pkgs.mkShell {
-            packages = with pkgs; [
-              just
-              alejandra
-              commitlint-rs
-            ];
-            shellHook = ''
-              echo "setting up git hooks"
-              ${pkgs.husky}/bin/husky install
-            '';
-          };
+      }:
+      let
+        inherit (nixpkgs) lib;
+        inherit (flake-parts-lib) importApply;
+        libx = import ./utils (
+          parameters
+          // {
+            inherit lib options;
+          }
+        );
+
+        options = libx.allModulesFrom ./options;
+        parameters = {
+          inherit inputs libx;
+          inherit (self) outputs;
         };
-      };
-    });
+        hosts = lib.filter (
+          machine:
+          !(lib.elem machine [
+            "chimaera"
+            "hydra"
+          ])
+        ) (libx.listChildren ./hosts);
+
+        flakeModules = {
+          myPkgs = ./resources/pkgs/flake-part.nix;
+          nixosConfigurations = importApply ./nixos-configurations.nix {
+            inherit
+              libx
+              parameters
+              hosts
+              nixpkgs
+              ;
+          };
+          homeConfigurations = importApply ./home-configurations.nix { inherit libx parameters hosts; };
+          templates = importApply ./resources/templates/flake-part.nix { inherit libx; };
+          flakeModules = importApply ./resources/flake-parts/flake-part.nix { inherit libx inputs self; };
+        };
+      in
+      {
+        imports = [ ] ++ lib.attrValues flakeModules;
+        flake = {
+          inherit flakeModules libx self;
+        };
+        systems = [ "x86_64-linux" ];
+        perSystem =
+          {
+            config,
+            system,
+            pkgs,
+            ...
+          }:
+          {
+            devShells = {
+              default = pkgs.mkShell {
+                packages = with pkgs; [
+                  just
+                  alejandra
+                  commitlint-rs
+                ];
+                shellHook = ''
+                  echo "setting up git hooks"
+                  ${pkgs.husky}/bin/husky install
+                '';
+              };
+            };
+          };
+      }
+    );
 }

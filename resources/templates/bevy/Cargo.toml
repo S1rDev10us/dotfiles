@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = { version = "0.14.0", features = ["dynamic_linking", "wayland"] }
+bevy = { version = "0.18.0", features = ["wayland"] }
 
+[features]
+dev_tools=["bevy/bevy_dev_tools"]
 
 [profile.dev]
 opt-level = 1

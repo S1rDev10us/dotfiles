@@ -1,0 +1,17 @@
+rules:
+  footers-empty:
+    level: ignore
+  type:
+    options:
+      - feat
+      - fix
+      - chore
+      - fix!
+      - feat!
+      - chore!
+  scope:
+    level: error
+    optional: true
+    options:
+      - merge
+      - nix
