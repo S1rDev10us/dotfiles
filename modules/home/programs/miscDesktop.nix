@@ -21,7 +21,6 @@
       # Password store
       keepassxc
       # Video
-      obs-studio
       kdePackages.kdenlive
       vlc
       # key/event viewer

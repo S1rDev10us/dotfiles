@@ -31,4 +31,9 @@
   xdg.icons.fallbackCursorThemes = lib.mkDefault ["breeze_cursors"];
   # :TODO: only apply for git?
   programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+  };
 }
