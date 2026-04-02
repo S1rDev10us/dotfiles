@@ -17,6 +17,7 @@
       ripgrep
       lldb
       taplo
+      alejandra
     ];
   };
 }
