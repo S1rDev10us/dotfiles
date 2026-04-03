@@ -4,6 +4,9 @@
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
+      AcceptEnv = [
+        "COLORTERM"
+      ];
     };
   };
 }
