@@ -16,6 +16,7 @@ select = "underline"
 
 [editor.lsp]
 display-progress-messages = true
+display-inlay-hints = true
 
 [keys.normal]
 C-g = [
