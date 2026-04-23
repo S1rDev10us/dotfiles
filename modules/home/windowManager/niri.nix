@@ -413,15 +413,17 @@
     xdg.portal = {
       enable = true;
       config.niri = {
-        default = ["kde" "gtk"];
+        default = ["kde" "gtk" "gnome"];
         "org.freedesktop.impl.portal.Access" = "gtk";
         "org.freedesktop.impl.portal.Notification" = "gtk";
         "org.freedesktop.impl.portal.Secret" = "kwallet";
         "org.freedesktop.impl.portal.ScreenCast" = "gnome";
       };
       extraPortals = with pkgs; [
+        xdg-desktop-portal
         xdg-desktop-portal-gtk
         kdePackages.kwallet
+        kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-gnome
       ];
     };
