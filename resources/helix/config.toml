@@ -18,6 +18,9 @@ select = "underline"
 display-progress-messages = true
 display-inlay-hints = true
 
+[editor.statusline]
+center = ["version-control"]
+
 [keys.normal]
 C-g = [
   ":write-all",
