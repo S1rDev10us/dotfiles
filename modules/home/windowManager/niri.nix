@@ -202,8 +202,8 @@
           XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "audio" "increment" "3"; }
 
           // Brightness controls
-          XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "brightness" "decrement" "5"; }
-          XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "brightness" "increment" "5"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "brightness" "decrement" "5" ""; }
+          XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "brightness" "increment" "5" ""; }
 
           // Tab controls
           Mod+W { toggle-column-tabbed-display; }
