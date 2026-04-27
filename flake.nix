@@ -58,10 +58,6 @@
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # imports for flakeModules
-    make-shell.url = "github:nicknovitski/make-shell";
-    rust-overlay.url = "github:oxalica/rust-overlay";
   };
   outputs = inputs: let
     inherit (inputs) self nixpkgs flake-parts;
@@ -108,7 +104,7 @@
           };
           homeConfigurations = importApply ./home-configurations.nix {inherit libx parameters hosts;};
           templates = importApply ./resources/templates/flake-part.nix {inherit libx;};
-          flakeModules = importApply ./resources/flake-parts/flake-part.nix {inherit libx inputs self;};
+          # flakeModules = importApply ./resources/flake-parts/flake-part.nix {inherit libx inputs self;};
         };
       in {
         imports = [] ++ lib.attrValues flakeModules;

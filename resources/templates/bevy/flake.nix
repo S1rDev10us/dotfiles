@@ -1,20 +1,21 @@
 {
   description = "A basic template for bevy projects";
   inputs = {
-    dotfiles.url = "github:s1rdev10us/dotfiles";
+    bevy-template.url = "github:s1rdev10us/dotfiles?dir=resources/flake-parts/bevy";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
-  outputs = {
-    nixpkgs,
-    dotfiles,
+  outputs = inputs @ {
+    bevy-template,
     flake-parts,
+    self,
     ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} (
+  }:
+    flake-parts.lib.mkFlake {inputs = bevy-template.mkInputs self inputs;} (
       {...}: {
         systems = ["x86_64-linux"];
         rustToolchain = ./rust-toolchain.toml;
-        imports = [dotfiles.flakeModules.bevy];
+        imports = [bevy-template.flakeModules.bevy];
+        flake.self = self;
       }
     );
 }

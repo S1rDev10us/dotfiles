@@ -6,9 +6,9 @@
         LD_LIBRARY_PATH = lib.makeLibraryPath (
           with pkgs; [
             vulkan-loader
-            libX11
-            libXi
-            libXcursor
+            libx11
+            libxi
+            libxcursor
             libxkbcommon
             wayland
             alsa-lib
@@ -26,10 +26,10 @@
         vulkan-tools
         # Other dependencies
         libudev-zero
-        libX11
-        libXcursor
-        libXi
-        libXrandr
+        libx11
+        libxcursor
+        libxi
+        libxrandr
         libxkbcommon
         wayland
       ];
