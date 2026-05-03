@@ -63,4 +63,7 @@
 
   # Automatically stop intel cpus from overheating
   services.thermald.enable = true;
+
+  # https://discourse.nixos.org/t/is-nixos-affected-by-copy-fail-edit-yes-it-is/77317/42
+  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.18.22") (lib.mkDefault pkgs.linuxPackages_6_18);
 }

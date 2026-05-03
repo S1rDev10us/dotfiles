@@ -92,8 +92,11 @@ update-only:
     @nix flake update nixpkgs home-manager nixpkgs-unstable firefox-extensions
 
 # Update all flake inputs
-update-all:
+update-all: && update-templates
     @nix flake update
+
+update-templates:
+    @cd resources/flake-parts/bevy; nix flake update
 
 format:
     echo "Formatting ..."

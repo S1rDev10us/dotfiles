@@ -10,7 +10,7 @@ rules:
       - host
       - tasks
       - template
-      - chore
+      - update
   type:
     level: error
     options:
