@@ -119,5 +119,13 @@ in {
     (pkgs.writeShellScriptBin "backup-status" ''
       systemctl status borgbackup-job-backupToArchimedes.service
     '')
+
+    (pkgs.writeShellScriptBin "backup-mount" ''
+      BORG_PASSCOMMAND="cat /etc/borg-backup/${hostname}_borgbackup_passphrase" BORG_RSH="ssh -i /etc/borg-backup/id_${hostname}_borgbackup" doas borg mount borgbackup@archimedes:/home/borgbackup/borg/${hostname} /mnt/backup
+    '')
+    (pkgs.writeShellScriptBin "backup-umount" ''
+      doas borg umount /mnt/backup
+      doas rmdir /mnt/backup
+    '')
   ];
 }
