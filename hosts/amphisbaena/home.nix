@@ -56,6 +56,7 @@
         ''
           window-rule {
             match title="Obsidian"
+            match title="Super Productivity"
 
             open-on-workspace "${workspace.notes}"
           }
