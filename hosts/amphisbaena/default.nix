@@ -18,7 +18,6 @@
       office.enable = true;
       terminal.enable = true;
       zsa.enable = true;
-      postgresql.enable = true;
       miscDesktop.enable = true;
     };
     services = {
