@@ -140,6 +140,7 @@
 
           Mod+F11         { maximize-column; }
           Mod+Shift+F11   { fullscreen-window; }
+          Mod+Ctrl+F11    { maximize-window-to-edges; }
           Super+Alt+F11   { toggle-windowed-fullscreen; }
 
           Mod+Minus       { set-column-width "-10%"; }
