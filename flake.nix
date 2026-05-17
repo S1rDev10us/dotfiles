@@ -48,7 +48,7 @@
 
     # Niri + DMS
     dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:AvengeMedia/DankMaterialShell?rev=c1cbd0994f5a3585dded85069f2c9103c54f5285";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
