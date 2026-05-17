@@ -24,6 +24,19 @@
   # :WARN: keyboard layout is US on first load atm.
   services.displayManager = {
     sddm.enable = lib.mkForce false;
-    cosmic-greeter.enable = true;
+    ly = {
+      enable = true;
+      settings = {
+        animate = true;
+        animation = "gameoflife";
+
+        bigclock = true;
+
+        show_tty = true;
+        # Disable X11
+        xinitrc = null;
+        xsessions = null;
+      };
+    };
   };
 }
