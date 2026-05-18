@@ -8,7 +8,7 @@
   services.udisks2.enable = true;
   # Trash, ... support in thunar
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs.kdePackages; [
     dolphin
     baloo-widgets # baloo information in Dolphin
     dolphin-plugins
