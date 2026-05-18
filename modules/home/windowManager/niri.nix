@@ -213,6 +213,11 @@
           Mod+Escape repeat=false { close-window; }
           Alt+F4     repeat=false { close-window; }
 
+          // Dynamic cast
+          Super+Alt+C { set-dynamic-cast-window; }
+          Mod+Ctrl+C { set-dynamic-cast-monitor; }
+          Super+Alt+Ctrl+C { clear-dynamic-cast-target; }
+
           // Begin programmatic binds
           ${lib.join "\n    " (let
           homeKeys.qwerty = lib.stringToCharacters "HJKL";
@@ -330,6 +335,19 @@
 
           default-floating-position x=25 y=25 relative-to="bottom-right"
           open-focused false
+        }
+
+        window-rule {
+          match is-window-cast-target=true
+
+          border {
+            active-color "#ffaaaa"
+            inactive-color "#7d0d2d"
+          }
+
+          shadow {
+            color "#7d0d2d60"
+          }
         }
 
         layer-rule {
