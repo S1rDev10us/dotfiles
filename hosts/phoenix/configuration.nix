@@ -27,11 +27,15 @@
     ly = {
       enable = true;
       settings = {
+        clear_password = true;
+        # Animation
         animate = true;
-        animation = "gameoflife";
-
-        bigclock = true;
-
+        animation = "colormix";
+        colormix_col1 = "0x00B85700";
+        colormix_col2 = "0x00005DB8";
+        colormix_col3 = "0x0000B89C";
+        # UI
+        bigclock = "en";
         show_tty = true;
         # Disable X11
         xinitrc = null;
