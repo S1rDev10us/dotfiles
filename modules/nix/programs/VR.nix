@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nixpkgs-xr.nixosModules.nixpkgs-xr];
+  nixpkgs.overlays = [inputs.nixpkgs-xr.overlays.default];
   programs.steam.remotePlay.openFirewall = true;
   environment.systemPackages = [
     (let
