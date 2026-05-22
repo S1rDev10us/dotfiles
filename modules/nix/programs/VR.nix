@@ -23,6 +23,7 @@
   services.wivrn = {
     enable = true;
     openFirewall = true;
+    package = pkgs.wivrn.override {cudaSupport = true;};
   };
   # services.wivern.openFirewall doesn't open 5353
   # https://discord.com/channels/1332686329800294462/1455795662108098631/1455821071671627827
