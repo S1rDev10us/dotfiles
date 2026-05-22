@@ -6,7 +6,17 @@
   nixpkgs.overlays = [
     (final: prev: builtins.removeAttrs (inputs.nixpkgs-xr.overlays.default final prev) ["wivrn"])
   ];
-  programs.steam.remotePlay.openFirewall = true;
+  programs.steam = {
+    # https://wiki.vronlinux.org/docs/distros/nixos/#steam-games-and-openvr-apps
+    # Set PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES by default
+    package = pkgs.steam.override {
+      extraProfile = ''
+        export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
+      '';
+    };
+
+    remotePlay.openFirewall = true;
+  };
   environment.systemPackages = with pkgs; [
     wayvr
   ];
