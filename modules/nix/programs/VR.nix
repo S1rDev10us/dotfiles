@@ -20,6 +20,16 @@
   environment.systemPackages = with pkgs; [
     wayvr
   ];
+  # Until https://github.com/WiVRn/WiVRn/issues/826 is patched, you need to run the following commands in order to fix Rumble not picking up tracking
+  # cd ~/.local/share/Steam/steamapps/common/RUMBLE/RUMBLE_Data
+  # nix shell nixpkgs#bbe
+  # # Same number of 'A's as the length of the original string
+  # bbe -e 's/XR_META_touch_controller_plus/AAAAAAAAAAAAAAAAAAAAAAAA/' globalgamemanagers.assets > globalgamemanagers.assets.2
+  # mv globalgamemanagers.assets globalgamemanagers.assets.bak
+  # mv globalgamemanagers.assets.2 globalgamemanagers.assets
+  # stat globalgamemanagers.assets.bak
+  # # Copy file permissions to new file
+  # doas chmod 0755 globalgamemanagers.assets
   services.wivrn = {
     enable = true;
     openFirewall = true;
