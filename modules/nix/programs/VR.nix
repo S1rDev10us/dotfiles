@@ -3,23 +3,18 @@
   inputs,
   ...
 }: {
-  nixpkgs.overlays = [inputs.nixpkgs-xr.overlays.default];
+  nixpkgs.overlays = [
+    (final: prev: builtins.removeAttrs (inputs.nixpkgs-xr.overlays.default final prev) ["wivrn"])
+  ];
   programs.steam.remotePlay.openFirewall = true;
-  environment.systemPackages = [
-    (let
-      wayvr =
-        pkgs.callPackage (builtins.import "${pkgs.fetchFromGitHub {
-          owner = "NixOS";
-          repo = "nixpkgs";
-          rev = "6234254a9bffd106b244d2bb73ca1bf76bd152c3";
-          hash = "sha256-NKXK1/xb89r2pAtusGg8HWRRBLZ6/4vguA4Uzzme/F0=";
-        }}/pkgs/by-name/wa/wayvr/package.nix")
-        {inherit wayvr;};
-    in
-      wayvr)
+  environment.systemPackages = with pkgs; [
+    wayvr
   ];
   services.wivrn = {
     enable = true;
     openFirewall = true;
   };
+  # services.wivern.openFirewall doesn't open 5353
+  # https://discord.com/channels/1332686329800294462/1455795662108098631/1455821071671627827
+  networking.firewall.allowedUDPPorts = [5353];
 }
