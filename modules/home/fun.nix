@@ -10,8 +10,8 @@
     settings = {
       display = {
         size = {
-          maxPrefix = "MB";
-          ndigits = 0;
+          maxPrefix = "TB";
+          ndigits = 2;
         };
       };
       modules = [
