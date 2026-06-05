@@ -1,1 +1,13 @@
-commitlint --edit $1
+#!/usr/bin/env bash
+
+if [[ $(cat "$1") =~ ^"fixup" ]]; then
+    exit 0
+elif [[ $(cat "$1") =~ ^"rebase" ]]; then
+    exit 0
+fi
+
+if ! commitlint --edit $1 &>/dev/null; then
+    cat $1
+    commitlint --edit $1
+    exit 1
+fi
