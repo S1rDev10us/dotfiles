@@ -12,6 +12,9 @@
         }
       }
     ''
+    ''
+      spawn-at-startup "streamcontroller" "-b"
+    ''
   ];
   home.packages = [
     inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio-jxl
