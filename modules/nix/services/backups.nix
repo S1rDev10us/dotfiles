@@ -138,5 +138,8 @@ in {
       (pkgs.writeShellScriptBin "backup-list" ''
         ${borg} list ${repo}
       '')
+      (pkgs.writeShellScriptBin "backup-check" ''
+        ${borg} check ${repo} -p -v
+      '')
     ]);
 }
