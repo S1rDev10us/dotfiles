@@ -1,5 +1,17 @@
 # https://nixos.org/manual/nixos/stable/#module-borgbase
 # https://wiki.nixos.org/wiki/Borg_backup
+#
+# To setup a new server
+# Create the /etc/borg-backup folder
+# Generate ssh key at /etc/borg-backup/id_$host_borgbackup with ssh-keygen
+# Generate passphrase using PWM then save it in /etc/borg-backup/$host_borgbackup_passphrase
+# `chmod go-r /etc/borg-backup/*`
+#
+# On the server
+# Add the ssh public key to .ssh/authorised_keys with the same format as at https://borgbackup.readthedocs.io/en/stable/usage/serve.html#examples (or like the existing lines in the file)
+# Create the repo using `borg init borg/$host -e repokey`. Paste in the passphrase from the PWM when requested
+#
+# Enable services.backups.enable in hosts/$host/default.nix
 {
   config,
   lib,
@@ -83,9 +95,12 @@ in {
               ".direnv"
               "node_modules"
             ];
+            "Downloads" = [
+              "ISOs"
+              "enwiki*"
+              "Amphi backup drive backup"
+            ];
           }
-          "Downloads/ISOs"
-          "Downloads/enwiki*"
           "Unity"
 
           "Music/YTMusic"
@@ -107,7 +122,9 @@ in {
     compression = "auto,lzma";
     startAt = "daily";
     preHook = ''
-      until ${outputs.packages.${pkgs.stdenv.hostPlatform.system}.onhomenetwork}/bin/onhomenetwork.bash; do sleep 10; done
+      if [ -z "$disable_network_check" ]; then
+          until ${outputs.packages.${pkgs.stdenv.hostPlatform.system}.onhomenetwork}/bin/onhomenetwork.bash; do sleep 10; done
+      fi
     '';
   };
   environment.systemPackages =

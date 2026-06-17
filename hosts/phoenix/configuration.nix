@@ -43,4 +43,9 @@
       };
     };
   };
+
+  # Phoenix is on Ethernet, disable
+  services.borgbackup.jobs.backupToArchimedes.preHook = lib.mkBefore ''
+    disable_network_check=1
+  '';
 }
