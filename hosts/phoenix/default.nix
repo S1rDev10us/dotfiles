@@ -36,7 +36,10 @@
     };
     coding.enable = true;
     fun.enable = true;
-    gaming.enable = true;
+    gaming = {
+      enable = true;
+      minecraft.enable = true;
+    };
     kwallet.enable = true;
   };
   GUI = true;
