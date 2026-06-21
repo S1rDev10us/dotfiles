@@ -129,7 +129,10 @@ in {
       borg = ''BORG_PASSCOMMAND="${BORG_PASSCOMMAND}" BORG_RSH="${BORG_RSH}" doas borg'';
     in [
       (pkgs.writeShellScriptBin "backup-mount" ''
+        doas bash - << EOF
+        mkdir /mnt/backup
         ${borg} mount ${repo} /mnt/backup
+        EOF
       '')
       (pkgs.writeShellScriptBin "backup-umount" ''
         doas borg umount /mnt/backup
