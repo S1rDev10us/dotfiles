@@ -10,7 +10,8 @@
         libreoffice-qt
         unstable.super-productivity
         unstable.obsidian
-        logseq
+        # TODO: re-add when electron version is not marked insecure
+        # logseq
         # Should media creators be included in office?
         tenacity
       ]
