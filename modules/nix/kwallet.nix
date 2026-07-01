@@ -9,9 +9,13 @@
   with kdePackages;
     [kwallet kwallet-pam]
     ++ (lib.optional opts.GUI kwalletmanager);
-  xdg.portal.extraPortals = [
-    pkgs.kdePackages.kwallet
-  ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.kdePackages.kwallet
+      pkgs.kdePackages.ksshaskpass.out
+    ];
+  };
   # Auto unlock with pam
   security.pam.services = let
     kwalletEnable = {

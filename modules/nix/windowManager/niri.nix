@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   programs.niri.enable = true;
 
+  services.gnome.gnome-keyring.enable = false;
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
