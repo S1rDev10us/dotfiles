@@ -13,9 +13,23 @@
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true; # see the note above
-  unfreePackages = [config.boot.kernelPackages.nvidia_x11 "nvidia-settings"];
+  unfreePackages = [
+    config.boot.kernelPackages.nvidia_x11
+    "nvidia-settings"
+    # CUDA support (below)
+    (pkg: pkg ? "meta" && pkg.meta ? "license" && lib.lists.all (license: license.shortName == "CUDA EULA") (lib.lists.toList pkg.meta.license))
+    "cudnn"
+  ];
   # Required for Wayland?
   hardware.nvidia.modesetting.enable = true;
+  # CUDA support
+  # WARN: without a cache this will build every package with CUDA support
+  #       since Hydra (the nix ci, not the host) doesn't build CUDA packages
+  nixpkgs.config.cudaSupport = true;
+  nix.settings = {
+    substituters = ["https://cache.nixos-cuda.org"];
+    trusted-public-keys = ["cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="];
+  };
 
   # Stream Deck
   programs.streamcontroller.enable = true;
