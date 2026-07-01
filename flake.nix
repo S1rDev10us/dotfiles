@@ -56,7 +56,6 @@
 
     tagstudio = {
       url = "github:TagStudioDev/TagStudio";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = inputs: let
