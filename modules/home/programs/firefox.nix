@@ -66,9 +66,17 @@
         name = user;
         isDefault = true;
       };
+      youtube = settingsFrom {
+        id = 1;
+        name = "youtube";
+      };
       comms = settingsFrom {
         id = 2;
         name = "comms";
+      };
+      banking = settingsFrom {
+        id = 3;
+        name = "banking";
       };
     };
     policies = {
