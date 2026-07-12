@@ -1,5 +1,8 @@
 # Tasks
 
+- [ ] Replace current pattern with dendritic pattern
+  - https://github.com/denful/den
+
 ## Hosts
 
 ### Homelab
