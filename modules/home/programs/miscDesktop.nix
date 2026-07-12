@@ -34,7 +34,6 @@
       darktable
       # 3d printing
       orca-slicer
-      freecad
       # kindle
       calibre
     ]);
