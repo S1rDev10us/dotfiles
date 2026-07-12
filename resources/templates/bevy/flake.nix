@@ -15,7 +15,6 @@
         systems = ["x86_64-linux"];
         rustToolchain = ./rust-toolchain.toml;
         imports = [bevy-template.flakeModules.bevy];
-        flake.self = self;
       }
     );
 }
