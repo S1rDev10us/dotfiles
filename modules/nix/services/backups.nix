@@ -105,6 +105,9 @@ in {
 
           "Music/YTMusic"
           "Videos/Yt"
+
+          # Backup of failed laptop
+          "amphisbaena"
         ];
       };
     extraArgs = "--verbose --progress --show-rc";
