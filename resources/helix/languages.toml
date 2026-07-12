@@ -31,3 +31,7 @@ formatter = { command = "prettier", args = ["--parser", "css"] }
 [[language]]
 auto-format = true
 name = "toml"
+
+[[language]]
+name = "html"
+file-types = [{ glob = "*.html.hbs" }]
