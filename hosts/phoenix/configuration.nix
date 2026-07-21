@@ -1,6 +1,7 @@
 {
-  config,
   lib,
+  pkgs,
+  config,
   ...
 }: {
   # Bootloader.
@@ -62,4 +63,26 @@
   services.borgbackup.jobs.backupToArchimedes.preHook = lib.mkBefore ''
     disable_network_check=1
   '';
+
+  environment.systemPackages = lib.flatten [
+    (let
+      apps-to-run = [
+        "firefox"
+        "thunderbird"
+        "discord"
+        "obsidian"
+        "super-productivity"
+      ];
+      open-preset-apps = pkgs.writeShellScriptBin "open-preset-apps" (
+        lib.join "\n" (lib.map (app: "niri msg action spawn -- ${app}") apps-to-run)
+      );
+    in [
+      open-preset-apps
+      (pkgs.makeDesktopItem {
+        name = "open-preset-apps-desktop";
+        desktopName = "Open preset apps (run once on most startups)";
+        exec = lib.getExe open-preset-apps;
+      })
+    ])
+  ];
 }
