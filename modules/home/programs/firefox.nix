@@ -92,11 +92,12 @@
         Pocket = false;
         Snippets = false;
       };
+      AIControls = {
+        Default.Value = "blocked";
+      };
       GenerativeAI = {
-        Chatbot = false;
-        LinkPreviews = false;
-        TabGroups = false;
-        Locked = false;
+        Enabled = false;
+        Locked = true;
       };
       HttpsOnlyMode = "force_enabled";
       NetworkPrediction = false;
