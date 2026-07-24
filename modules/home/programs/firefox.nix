@@ -107,13 +107,26 @@
   };
   home.sessionVariables.BROWSER = "firefox";
   home.sessionVariables.DEFAULT_BROWSER = "firefox";
+
+  home.packages = lib.map ({
+    name,
+    value,
+  }: let
+    profile = name;
+    windowTitle = "firefox-${value.name}";
+  in
+    pkgs.writeShellScriptBin "firefox-${name}"
+    ''
+      exec firefox -P ${lib.escapeShellArg profile} --name ${lib.escapeShellArg windowTitle} "$@"
+    '')
+  (lib.attrsToList (lib.removeAttrs config.programs.firefox.profiles ["default"]));
   xdg = {
     desktopEntries = lib.mapAttrs' (id: config:
       lib.nameValuePair "firefox_${id}" {
         name = "Firefox (${config.name})";
         genericName = "Web Browser";
         icon = "firefox";
-        exec = "firefox -P ${id} --name firefox-${config.name} %U";
+        exec = "firefox-${id} %U";
         terminal = false;
         categories = ["Network" "WebBrowser"];
         mimeType = [
