@@ -12,9 +12,9 @@
         }
       }
     ''
-    ''
-      spawn-at-startup "streamcontroller" "-b"
-    ''
+    # ''
+    #   spawn-at-startup "streamcontroller" "-b"
+    # ''
     ''
       output "DP-2" {
         layout {
