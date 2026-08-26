@@ -312,16 +312,6 @@
       "klipperrc"."General"."KeepClipboardContents" = false;
       "krunnerrc"."Plugins"."baloosearchEnabled" = true;
       "krunnerrc"."Plugins/Favorites"."plugins" = "krunner_webshortcuts,krunner_services,krunner_systemsettings";
-      "ktrashrc"."\\/home\\/s1rdev10us\\/.local\\/share\\/Trash"."Days" = 7;
-      "ktrashrc"."\\/home\\/s1rdev10us\\/.local\\/share\\/Trash"."LimitReachedAction" = 0;
-      "ktrashrc"."\\/home\\/s1rdev10us\\/.local\\/share\\/Trash"."Percent" = 10;
-      "ktrashrc"."\\/home\\/s1rdev10us\\/.local\\/share\\/Trash"."UseSizeLimit" = true;
-      "ktrashrc"."\\/home\\/s1rdev10us\\/.local\\/share\\/Trash"."UseTimeLimit" = false;
-      "kuriikwsfilterrc"."General"."DefaultWebShortcut" = "duckduckgo";
-      "kuriikwsfilterrc"."General"."EnableWebShortcuts" = true;
-      "kuriikwsfilterrc"."General"."KeywordDelimiter" = "\s";
-      "kuriikwsfilterrc"."General"."PreferredWebShortcuts" = "wikit,yahoo,youtube,wikipedia,google";
-      "kuriikwsfilterrc"."General"."UsePreferredWebShortcutsOnly" = false;
       "kwalletrc"."Wallet"."First Use" = false;
       "kwinrc"."Activities/LastVirtualDesktop"."871d149e-109f-4134-8f1c-09673040a5ce" = "3f6d690a-5e2e-457c-bbf7-83dcae77098a";
       "kwinrc"."Desktops"."Id_1" = "7b682169-70ef-4f5f-9c90-ee31f9146709";
