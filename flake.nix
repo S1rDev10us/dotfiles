@@ -55,7 +55,7 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     tagstudio = {
-      url = "github:TagStudioDev/TagStudio";
+      url = "github:TagStudioDev/TagStudio?rev=5852c59f1c6adb10cbcd7b29b820af219b3a847a";
     };
   };
   outputs = inputs: let
