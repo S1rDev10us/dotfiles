@@ -8,15 +8,12 @@
         "-3297:1977"
       ];
       settings = {
-        main =
-          {
-            # Use capslock for backspace
-            capslock = "backspace";
-            # Create the rightalt/nav layer and switch to it when pressing down right alt
-            rightalt = "layer(nav)";
-          }
-          # Disable arrow keys to force to use rightalt + h/j/k/l
-          // lib.genAttrs ["left" "down" "up" "right"] (_: "noop");
+        main = {
+          # Use capslock for backspace
+          capslock = "backspace";
+          # Create the rightalt/nav layer and switch to it when pressing down right alt
+          rightalt = "layer(nav)";
+        };
         # When the nav layer is active then hjkl should turn into arrow keys
         "nav:G" = {
           h = "left";
