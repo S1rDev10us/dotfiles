@@ -231,3 +231,6 @@ plasma operation="help":
             ;; 
     esac
     exit 0
+
+trust-dotfiles:
+    doas git config --global --add safe.directory $(pwd)
