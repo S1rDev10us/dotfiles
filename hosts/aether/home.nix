@@ -6,10 +6,11 @@
   ...
 }: {
   programs.niri.extraRules = [
-    # ''
-    #   // output "eDP-1" {
-    #   //   scale 1.75
-    #   // }
+    ''
+      output "eDP-1" {
+        scale 1.25
+      }
+    ''
 
     #   spawn-at-startup "obsidian"
     #   // spawn-at-startup "super-productivity"
