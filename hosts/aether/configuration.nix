@@ -2,6 +2,7 @@
   imports = [
     ./legion.nix
     ./nvidia.nix
+    ./unity.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
