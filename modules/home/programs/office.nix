@@ -14,6 +14,7 @@
         # logseq
         # Should media creators be included in office?
         tenacity
+        snapshot
       ]
       ++ (with kdePackages; [
         ark
