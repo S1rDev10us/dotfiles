@@ -30,7 +30,10 @@
     ksshaskpass = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   in {
     GIT_ASKPASS = ksshaskpass;
-    SSH_ASKPASS = ksshaskpass;
     SSH_ASKPASS_REQUIRE = "prefer";
+  };
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   };
 }
