@@ -26,5 +26,11 @@
     login.kwallet = kwalletEnable;
     sddm.kwallet = kwalletEnable;
   };
-  environment.sessionVariables.GIT_ASKPASS = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+  environment.sessionVariables = let
+    ksshaskpass = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+  in {
+    GIT_ASKPASS = ksshaskpass;
+    SSH_ASKPASS = ksshaskpass;
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
 }
