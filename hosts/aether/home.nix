@@ -9,6 +9,14 @@
     ''
       output "eDP-1" {
         scale 1.25
+        layout {
+          preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+            proportion 1.0
+          }
+        }
       }
     ''
 
