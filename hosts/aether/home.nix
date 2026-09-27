@@ -17,7 +17,7 @@
   programs.niri.extraRules = [
     ''
       output "eDP-1" {
-        scale 1.25
+        scale 1.0
         layout {
           preset-column-widths {
             proportion 0.33333
