@@ -5,6 +5,15 @@
   outputs,
   ...
 }: {
+  nixpkgs.overlays = [
+    (final: prev: {
+      blender = prev.blender.override {
+        config.cudaSupport = true;
+        config.rocmSupport = false;
+      };
+    })
+  ];
+  unfreePackages = [pkgs.blender (pkg: pkg ? "meta" && pkg.meta ? "license" && lib.lists.all (license: license.shortName == "CUDA EULA") (lib.lists.toList pkg.meta.license))];
   programs.niri.extraRules = [
     ''
       output "eDP-1" {
