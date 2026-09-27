@@ -12,7 +12,6 @@ in {
       type = lib.types.singleLineStr;
       default = "x86_64-linux";
     };
-    GUI = mkEnableOption "GUI";
     environment = {
     };
     grub = {
@@ -22,10 +21,19 @@ in {
         default = "";
       };
     };
-    # Automatically enables the default if one of the desktop environments (/window manager) is enabled
+    GUI = mkEnableOption "GUI";
     stateVersion = mkOption {
       type = types.str;
       default = "23.11";
+    };
+    toggles.programs.open-preset-apps = {
+      apps-to-run = mkOption {
+        type = types.listOf types.str;
+        default = [];
+      };
+      spawn-app = mkOption {
+        type = types.functionTo types.str;
+      };
     };
     users = lib.genAttrs (libx.listChildren ../users) (user: {
       enable = mkEnableOption "${user} user";

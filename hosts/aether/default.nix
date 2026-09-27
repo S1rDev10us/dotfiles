@@ -16,6 +16,17 @@
       firefox.enable = true;
       helix.enable = true;
       office.enable = true;
+      open-preset-apps = {
+        enable = true;
+        apps-to-run = [
+          "firefox"
+          "thunderbird"
+          "discord"
+          "obsidian"
+          "super-productivity"
+        ];
+        spawn-app = app: "niri msg action spawn -- ${app}";
+      };
       terminal.enable = true;
       zsa.enable = true;
       miscDesktop.enable = true;
