@@ -3,7 +3,6 @@
   inputs,
   ...
 }: {
-  programs.helix.defaultEditor = true;
   programs.niri.extraRules = [
     ''
       input {

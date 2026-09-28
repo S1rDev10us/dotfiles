@@ -5,6 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     settings = lib.importTOML ../../../resources/helix/config.toml;
     languages = lib.importTOML ../../../resources/helix/languages.toml;
     ignores = [
