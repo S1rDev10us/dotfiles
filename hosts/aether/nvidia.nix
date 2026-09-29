@@ -5,7 +5,8 @@
 }: {
   assertions = [
     {
-      assertion = config.boot.kernelPackages.kernel.version == "7.2.4";
+      # assertion = config.boot.kernelPackages.kernel.version == "7.2.4";
+      assertion = config.boot.kernelPackages.kernel.version == "7.2.8";
       message = "Nvidia driver patch reminder for aether";
     }
   ];
