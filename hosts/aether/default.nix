@@ -22,7 +22,6 @@
           "firefox"
           "thunderbird"
           "discord"
-          "obsidian"
           "super-productivity"
         ];
         spawn-app = app: "niri msg action spawn -- ${app}";

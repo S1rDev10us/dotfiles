@@ -37,15 +37,10 @@
       output "eDP-1" {
         scale 1.0
       }
+
+      spawn-at-startup "obsidian"
     ''
 
-    #   spawn-at-startup "obsidian"
-    #   // spawn-at-startup "super-productivity"
-
-    #   // spawn-at-startup "element-desktop"
-    #   // spawn-at-startup "firefox" "-P" "comms" "--name" "firefox-comms"
-    #   spawn-at-startup "discord"
-    # ''
     # (let
     #   workspaces = ["web" "comms" "notes"];
     #   workspace = lib.listToAttrs (lib.map (ws: lib.nameValuePair ws ws) workspaces);
