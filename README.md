@@ -8,8 +8,6 @@ This repo contains the dotfiles for my NixOS config.
 
 If you want to try it out you need to create a new host and potentially a new user account and then run `just switch`
 
-If you want to setup a Windows dualboot you need to set Windows to use [UTC time instead of local time](https://wiki.archlinux.org/title/System_time#UTC_in_Microsoft_Windows)
-
 This configuration is constantly in development and may also not reflect the current state of my config.
 
 Feel free to take elements and inspiration from this config in order to create your own
@@ -30,7 +28,6 @@ This means that that config's settings can be used to get the `stateVersion`
 Modules for NixOS and home manager as well as shared modules are stored in the `modules` folder (under the `nix`, `home` and `common` folders respectively)
 
 The options for the aforementioned system config are stored in the `options` directory and are recursively gathered.
-The options that they generate are documented [below](#host-config-options)
 
 The NixOS and home manager configs also gather a few specific files for their config so that
 if you need to specify configuration that is unique to that computer or user then
@@ -74,57 +71,11 @@ dotfiles
     ⌞ _home.nix
 ```
 
-## Hosts
-
-|  Hostname   |    Environment     |         Use case          |         State          | Device description  |
-| :---------: | :----------------: | :-----------------------: | :--------------------: | :-----------------: |
-|    Hydra    |       NixOS        |   Linux learning device   |           ⛔           |  Old silver laptop  |
-| Amphisbaena |   NixOS Dualboot   |     Main work device      |           ✅           |  Thin black laptop  |
-|  Chimaera   |   NixOS Dualboot   |   Gaming and streaming    | [🚧](## "in progress") | Large white desktop |
-| Archimedes  |   RPi 400 Server   |          Server           |           ✅           |       RPi 400       |
-
-✅ yes
-
-⛔ no
-
-🚧 in progress
-
 ## Features
 
 - Individual configs for different machines by customizing data in the hosts folder
 - Update home manager and NixOS together or separately
 - Templates for various project types in resources/templates
-
-## Host config options
-
-- `stateVersion` = a string that is used for the stateVersion
-- `batteryManagement.enable` = enable battery management
-- `coding.enable` = enable generic code editors
-- `environment`
-  - `hyprland.enable` = enable hyprland
-  - `gnome.enable` = enable gnome
-  - `KDE.enable` = enable KDE
-- `fun.enable` = enable fun tools like fastfetch
-- `gamedev.enable` = enable game development tools
-- `gaming.enable` = enable games
-- `grub`
-  - `enable` = enable grub
-  - `useEfi` = enable grub EFI support
-  - `windowsLocation` = uuid of windows partition
-- `GUI.enable` = enable GUI packages
-- `WSL.enable` = enable WSL support
-- `VM.enable` = enable vm support
-- `users.${user}`
-  - `enable` = enable this user
-  - `admin` = give this user admin permissions
-
-## Potential issues
-
-When using a wsl config like `minotaur` it may occasionally throw an error along the lines of
-`Failed to mount /lib/modules/5.15.146.1-microsoft-standard-WSL2.`.
-This is because you have updated your WSL version without changing the mount path of the wsl config.
-To fix this go to the hardware-configuration for the system and change the line that has that mount path to respect your current WSL version.
-(You can get your WSL version with `WSL --version`, the line you're looking for is "Kernel version")
 
 ## Custom module layout
 
