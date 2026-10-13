@@ -15,6 +15,24 @@
   # ];
   # unfreePackages = [pkgs.blender (pkg: pkg ? "meta" && pkg.meta ? "license" && lib.lists.all (license: license.shortName == "CUDA EULA") (lib.lists.toList pkg.meta.license))];
   programs.niri.extraRules = [
+    # Why does the same monitor show up as different sometimes??
+    (let
+      display-settings = "{
+          mode \"3840x1080@59.940\"
+          layout {
+            default-column-width { proportion 0.33333; }
+            preset-column-widths {
+              proportion 0.25
+              proportion 0.33333
+              proportion 0.5
+            }
+          }
+        }";
+    in ''
+      output "Samsung Electric Company CJG9S H1AK500000" ${display-settings}
+      output "Samsung Electric Company C49RG9x H4ZN101463" ${display-settings}
+    '')
+
     ''
       output "eDP-1" {
         scale 1.0
