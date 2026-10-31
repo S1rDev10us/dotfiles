@@ -47,8 +47,8 @@
     };
 
     # Niri + DMS
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell?rev=c1cbd0994f5a3585dded85069f2c9103c54f5285";
+    dux-shell = {
+      url = "github:duxlabs-dev/dux-shell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    inputs.dankMaterialShell.homeModules.dank-material-shell
+    inputs.dux-shell.homeModules.dank-material-shell
   ];
   options.programs.niri = {
     extraRules = lib.mkOption {
@@ -421,8 +421,6 @@
 
     programs.dank-material-shell = {
       enable = true;
-
-      dgop.package = pkgs.unstable.dgop;
 
       # Core features
       enableSystemMonitoring = true; # System monitoring widgets (dgop)
