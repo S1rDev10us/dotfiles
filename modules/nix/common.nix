@@ -66,4 +66,12 @@
 
   # https://discourse.nixos.org/t/is-nixos-affected-by-copy-fail-edit-yes-it-is/77317/42
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.18.22") (lib.mkDefault pkgs.linuxPackages_6_18);
+
+  # "4" certificate issue
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    # "emSign ECC Root CA - G3"
+    # "emSign Root CA - C1"
+    # "emSign ECC Root CA - C3"
+  ];
 }

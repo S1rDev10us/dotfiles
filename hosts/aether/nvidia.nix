@@ -4,11 +4,17 @@
   ...
 }: {
   assertions = [
-    {
+    (let
+      kernelPackages = config.boot.kernelPackages;
+      kernelVersion = kernelPackages.kernel.version;
+      nvidiaVersion = config.boot.kernelPackages.nvidiaPackages.stable.version;
+      currentNvidiaVersion = config.hardware.nvidia.package.version;
+    in {
       # assertion = config.boot.kernelPackages.kernel.version == "7.2.4";
-      assertion = config.boot.kernelPackages.kernel.version == "7.2.8";
-      message = "Nvidia driver patch reminder for aether";
-    }
+      # assertion = config.boot.kernelPackages.kernel.version == "7.2.8";
+      assertion = config.boot.kernelPackages.kernel.version == "7.2.13" && nvidiaVersion == "595.71.05";
+      message = "Nvidia driver patch reminder for aether\n  Kernel version: ${kernelVersion}\n  Kernel nvidia version: ${nvidiaVersion}\n  In use nvidia version: ${currentNvidiaVersion}";
+    })
   ];
   # https://github.com/NixOS/nixpkgs/issues/554125#issuecomment-5346123812
   # The version of the nvidia-open driver that goes along with the 7.2 kernel currently fails to build
